@@ -9,8 +9,10 @@
     <string name="user_password">password</string>
     <string name="user_email">Email</string>
     <string name="user_phone">Phone</string>
-    <string name="register">Register</string>
+    <string name="register">SignUp</string>
     <string name="si_su">Sign in or create a new account .</string>
     <string name="new_user">Create new Account .</string>
     <string name="are_you_forgot_password">Forgot password ?</string>
+    <string name="do_you_have_a_new_account">Do you have a new account?</string>
+    <string name="create_an_account">Create a new account</string>
 </resources>
