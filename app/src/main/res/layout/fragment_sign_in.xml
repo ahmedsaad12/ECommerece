@@ -56,7 +56,6 @@
                     android:layout_height="200dp"
                     android:layout_marginTop="20dp"
                     android:padding="20dp"
-                    android:src="@drawable/logo_txt"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -113,7 +112,7 @@
                             app:errorEnabled="false"
                             app:hintEnabled="false"
                             app:passwordToggleEnabled="true"
-                            app:passwordToggleTint="@color/colorPrimary"
+                            app:passwordToggleTint="@color/black"
 
 
                             >
@@ -145,55 +144,37 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="90dp"
-                    android:layout_marginTop="30dp"
                     android:layout_marginRight="90dp"
                     android:background="@drawable/btn_login_bg"
                     android:onClick="@{(v)->loginListener.checkDataLogin(loginModel.phone_code,loginModel.phone,loginModel.password)}"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     android:textSize="15sp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_forget"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvNewAccount"
-                    app:layout_constraintVertical_bias="0"
 
 
-                    />
+                    tools:layout_editor_absoluteY="488dp" />
 
                 <TextView
                     android:id="@+id/tv_forget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/white"
                     android:padding="15dp"
-                   android:layout_marginTop="8dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"                    android:text="@string/are_you_forgot_password"
+                    android:text="@string/are_you_forgot_password"
                     android:textColor="@color/black"
                     android:textSize="16sp"
 
-                    app:layout_constraintBottom_toTopOf="@id/tvNewAccount"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ll"
-                    app:layout_constraintVertical_bias="0"
 
 
                     tools:ignore="RtlCompat" />
 
-                <TextView
-                    android:id="@+id/tvNewAccount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:onClick="@{()->createAccountListener.createNewAccount()}"
-                    android:layout_marginTop="8dp"
-                    android:padding="16dp"
-                    android:text="@string/register"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
