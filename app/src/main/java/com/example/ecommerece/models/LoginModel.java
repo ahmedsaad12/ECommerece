@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
-import com.example.ecommerece.BR
+import com.example.ecommerece.BR;
 import com.example.ecommerece.R;
 
 

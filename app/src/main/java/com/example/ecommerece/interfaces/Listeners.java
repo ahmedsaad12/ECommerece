@@ -1,7 +1,6 @@
 package com.example.ecommerece.interfaces;
 
 
-import com.creative.share.apps.ebranch.models.ContactUsModel;
 
 public interface Listeners {
 
@@ -51,10 +50,7 @@ public interface Listeners {
     }
 
 
-    interface ContactListener
-    {
-        void sendContact(ContactUsModel contactUsModel);
-    }
+
 
 
     interface UpdateProfileListener

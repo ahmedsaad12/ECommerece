@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDexApplication;
 
-import com.creative.share.apps.ebranch.preferences.Preferences;
+import com.example.ecommerece.preferences.Preferences;
 
 
 public class App extends MultiDexApplication {

@@ -24,4 +24,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="as_buyer">As  Buyer</string>
     <string name="as_seller">As Seller</string>
+    <string name="guest">Guest</string>
+    <string name="back">Back</string>
+    <string name="email_or_phone">Email Or Phone</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="address">Address</string>
 </resources>

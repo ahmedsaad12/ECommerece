@@ -9,9 +9,9 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
 
-import com.creative.share.apps.ebranch.BR;
-import com.creative.share.apps.ebranch.R;
 
+import com.example.ecommerece.BR;
+import com.example.ecommerece.*;
 import java.io.Serializable;
 
 public class SignUpModel extends BaseObservable implements Serializable {
@@ -194,7 +194,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
             }
 
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                error_email.set(context.getString(R.string.inv_email));
+           //     error_email.set(context.getString(R.string.inv_email));
             } else {
                 error_email.set(null);
 
@@ -224,8 +224,8 @@ public class SignUpModel extends BaseObservable implements Serializable {
             } else if (password.length() < 6) {
                 error_password.set(context.getString(R.string.pass_short));
             } else if (password.length() >= 6 && !password.equals(confirmpassword)) {
-                error_password.set(context.getString(R.string.pass_equal_confirm));
-                error_confirm_password.set(context.getString(R.string.pass_equal_confirm));
+              //  error_password.set(context.getString(R.string.pass_equal_confirm));
+                //error_confirm_password.set(context.getString(R.string.pass_equal_confirm));
 
             } else {
                 error_password.set(null);
@@ -240,7 +240,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
             }
 
             if (city_id.isEmpty()) {
-                Toast.makeText(context, context.getString(R.string.ch_city), Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(context, context.getString(R.string.ch_city), Toast.LENGTH_SHORT).show();
             }
 
 

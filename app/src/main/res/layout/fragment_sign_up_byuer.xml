@@ -35,7 +35,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -76,11 +76,11 @@
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/shop_name"
+                android:text="@string/address"
                 android:textColor="@color/gray5"
                 android:textSize="15sp" />
             <LinearLayout
@@ -111,43 +111,10 @@
                 android:layout_height="1dp"
 
                 android:background="@color/gray5" />
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/shop_type"
-                android:textColor="@color/gray5"
-                android:textSize="15sp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-
-                android:background="@drawable/linear_underline_shape"
-                android:padding="10dp">
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:spinnerMode="dialog"
-
-                    >
-
-                </Spinner>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/gray5" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -181,7 +148,7 @@
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -215,7 +182,7 @@
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -229,13 +196,12 @@
 
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="30dp"
+                    android:layout_width="10dp"
                     android:layout_height="30dp"
                     android:padding="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:visibility="gone"
                     />
                 <TextView
                     android:id="@+id/tvCode"
@@ -246,7 +212,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:paddingStart="2dp"
                     android:paddingEnd="2dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
 
 
                     android:textSize="15sp"
@@ -282,8 +248,7 @@
                     app:layout_constraintEnd_toStartOf="@id/imagePhoneCode"
                     app:layout_constraintStart_toEndOf="@id/viewPhoneCode"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="@={signUpModel.phone}"
-                    error="@{signUpModel.error_phone}"
+
 
 
 
@@ -330,7 +295,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -367,7 +332,7 @@
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -408,8 +373,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray4"
                         android:textSize="14sp"
-                        android:text="@={loginModel.password}"
-                        error="@{loginModel.error_password}"
+
                         />
 
 
@@ -422,7 +386,7 @@
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
@@ -462,8 +426,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray4"
                         android:textSize="14sp"
-                        android:text="@={loginModel.password}"
-                        error="@{loginModel.error_password}"
+
                         />
 
 
