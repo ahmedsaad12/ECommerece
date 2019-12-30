@@ -123,10 +123,11 @@ public class HomeActivity extends AppCompatActivity  {
 
     private void setUpBottomNavigation() {
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("", R.drawable.ic_nav_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("", R.drawable.ic_nav_mail);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("", R.drawable.ic_nav_notification);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("", R.drawable.ic_nav_menu);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.following), R.drawable.ic_nav_follow);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.wish), R.drawable.ic_nav_wish);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.call_us), R.drawable.ic_nav_web);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
 
         binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
         binding.ahBottomNav.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.white));
@@ -139,6 +140,8 @@ public class HomeActivity extends AppCompatActivity  {
         binding.ahBottomNav.addItem(item2);
         binding.ahBottomNav.addItem(item3);
         binding.ahBottomNav.addItem(item4);
+        binding.ahBottomNav.addItem(item5);
+
 
         updateBottomNavigationPosition(0);
 
@@ -151,7 +154,7 @@ public class HomeActivity extends AppCompatActivity  {
                     if(userModel!=null){
                     displayFragmentMessages();}
                     else {
-                        Common.CreateNoSignAlertDialog(this);
+                       // Common.CreateNoSignAlertDialog(this);
                     }
                     break;
                 case 2:
@@ -294,7 +297,7 @@ public class HomeActivity extends AppCompatActivity  {
 
     public void refreshActivity(String lang) {
         Paper.book().write("lang", lang);
-        Language.setNewLocale(this, lang);
+        LanguageHelper.setNewLocale(this, lang);
         Intent intent = getIntent();
         finish();
         startActivity(intent);
@@ -305,7 +308,7 @@ public class HomeActivity extends AppCompatActivity  {
         if (userModel == null) {
             NavigateToSignInActivity();
         } else {
-            Logout();
+           // Logout();
         }
     }
 
