@@ -9,19 +9,7 @@
             name="lang"
             type="String" />
 
-        <variable
-            name="loginModel"
-            type="com.example.ecommerece.models.LoginModel" />
 
-        <variable
-            name="loginListener"
-
-            type="com.example.ecommerece.interfaces.Listeners.LoginListener" />
-
-
-        <variable
-            name="showCountryListener"
-            type="com.example.ecommerece.interfaces.Listeners.ShowCountryDialogListener" />
 
     </data>
 
@@ -34,14 +22,15 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/white"
+            android:background="@drawable/splash"
             android:fillViewport="true"
             android:fitsSystemWindows="true"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -75,9 +64,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/logo"
-
-
-                    tools:layout_editor_absoluteY="488dp" />
+                    app:layout_constraintBottom_toTopOf="@id/btnGuest"
+                    tools:layout_editor_absoluteY="488dp"
+                    app:layout_constraintVertical_weight=".2"
+                    />
 
                 <Button
                     android:id="@+id/btnGuest"
@@ -92,9 +82,11 @@
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-
+app:layout_constraintBottom_toTopOf="@+id/tvNoAccount"
                     app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-                    tools:layout_editor_absoluteY="488dp" />
+                    tools:layout_editor_absoluteY="488dp"
+                    app:layout_constraintVertical_weight=".2"
+                    />
 
                 <TextView
                     android:id="@+id/tvNoAccount"

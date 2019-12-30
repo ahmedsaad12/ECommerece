@@ -9,13 +9,13 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.creative.share.apps.ebranch.R;
-import com.creative.share.apps.ebranch.activities_fragments.activity_home.HomeActivity;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.activities.SignInActivity;
-import com.creative.share.apps.ebranch.databinding.ActivitySplashBinding;
-import com.creative.share.apps.ebranch.language.LanguageHelper;
-import com.creative.share.apps.ebranch.preferences.Preferences;
-import com.creative.share.apps.ebranch.tags.Tags;
+
+import com.example.ecommerece.R;
+import com.example.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.example.ecommerece.databinding.ActivitySplashBinding;
+import com.example.ecommerece.language.LanguageHelper;
+import com.example.ecommerece.preferences.Preferences;
+import com.example.ecommerece.tags.Tags;
 
 import java.util.Locale;
 
@@ -41,7 +41,7 @@ public class Splash_Activity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         preferences = Preferences.newInstance();
 
-        animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.lanuch);
+        animation= AnimationUtils.loadAnimation(getBaseContext(), R.anim.lanuch);
         binding.cons.startAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
@@ -55,9 +55,7 @@ public class Splash_Activity extends AppCompatActivity {
                 String session = preferences.getSession(Splash_Activity.this);
                 if (session.equals(Tags.session_login))
                 {
-                    Intent intent=new Intent(Splash_Activity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+
                 }else
                 {
                     Intent intent=new Intent(Splash_Activity.this, SignInActivity.class);

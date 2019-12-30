@@ -4,24 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 
-import com.creative.share.apps.ebranch.R;
-import com.creative.share.apps.ebranch.activities_fragments.activity_map.MapActivity;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_Code_Verification;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_ForgetPassword;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_Language;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_Newpass;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
-import com.creative.share.apps.ebranch.activities_fragments.activity_sign_in.fragments.Fragment_Sign_Up;
-import com.creative.share.apps.ebranch.databinding.ActivitySignInBinding;
-import com.creative.share.apps.ebranch.language.LanguageHelper;
-import com.creative.share.apps.ebranch.models.SelectedLocation;
-import com.creative.share.apps.ebranch.models.UserModel;
-import com.creative.share.apps.ebranch.preferences.Preferences;
+
+import com.example.ecommerece.R;
+import com.example.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
+import com.example.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In_Signup;
+import com.example.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_Up;
+import com.example.ecommerece.databinding.ActivitySignInBinding;
+import com.example.ecommerece.language.LanguageHelper;
+import com.example.ecommerece.preferences.Preferences;
 
 import java.util.Locale;
 
@@ -35,13 +29,10 @@ public class SignInActivity extends AppCompatActivity {
     private int fragment_count = 0;
     private Fragment_Sign_In fragment_sign_in;
     private Fragment_Sign_Up fragment_sign_up;
-    private Fragment_Language fragment_language;
     private String cuurent_language;
     private Preferences preferences;
-    private Fragment_ForgetPassword fragment_forgetpass;
-    private Fragment_Code_Verification fragment_code_verification;
-    private SelectedLocation selectedLocation;
-    private Fragment_Newpass fragment_newpass;
+    private Fragment_Sign_In_Signup fragment_sign_in_signup;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -61,13 +52,13 @@ public class SignInActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             if (!preferences.isLanguageSelected(this))
             {
-                DisplayFragmentLanguage();
+                //DisplayFragmentLanguage();
             }else
             {
-                DisplayFragmentSignIn();
+                DisplayFragmentSignInSignup();
 
             }
-          //  DisplayFragmentSignIn();
+            DisplayFragmentSignInSignup();
 
         }
 
@@ -81,7 +72,15 @@ public class SignInActivity extends AppCompatActivity {
         fragmentManager = this.getSupportFragmentManager();
 
     }
-
+    public void DisplayFragmentSignInSignup() {
+        fragment_count += 1;
+        fragment_sign_in_signup = Fragment_Sign_In_Signup.newInstance();
+        if (fragment_sign_in_signup.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_sign_in_signup).commit();
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_sign_in_signup, "fragment_sign_in_signup").addToBackStack("fragment_sign_in_signup").commit();
+        }
+    }
     public void DisplayFragmentSignIn() {
         fragment_count += 1;
         fragment_sign_in = Fragment_Sign_In.newInstance();
@@ -101,35 +100,36 @@ public class SignInActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_sign_up, "fragment_sign_up").addToBackStack("fragment_sign_up").commit();
         }
     }
-
-    public void DisplayFragmentLanguage() {
-        fragment_language = Fragment_Language.newInstance();
-        if (fragment_language.isAdded()) {
-            fragmentManager.beginTransaction().show(fragment_language).commit();
-        } else {
-            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_language, "fragment_language").addToBackStack("fragment_language").commit();
+    /*
+        public void DisplayFragmentLanguage() {
+            fragment_language = Fragment_Language.newInstance();
+            if (fragment_language.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_language).commit();
+            } else {
+                fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_language, "fragment_language").addToBackStack("fragment_language").commit();
+            }
         }
-    }
-    public void displayFragmentForgetpass() {
-        fragment_count ++;
-        fragment_forgetpass = Fragment_ForgetPassword.newInstance();
+        public void displayFragmentForgetpass() {
+            fragment_count ++;
+            fragment_forgetpass = Fragment_ForgetPassword.newInstance();
 
-        fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_forgetpass, "fragment_forgetpass").addToBackStack("fragment_forgetpass").commit();
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_forgetpass, "fragment_forgetpass").addToBackStack("fragment_forgetpass").commit();
 
-    }
-    public void displayFragmentCodeVerification(UserModel userModel,int type) {
-        fragment_count ++;
-        fragment_code_verification = Fragment_Code_Verification.newInstance(userModel,type);
-        fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_code_verification, "fragment_code_verification").addToBackStack("fragment_code_verification").commit();
+        }
 
-    }
-    public void displayFragmentNewpass(UserModel userModel) {
-        fragment_count ++;
-        fragment_newpass = Fragment_Newpass.newInstance(userModel);
+        public void displayFragmentCodeVerification(UserModel userModel, int type) {
+            fragment_count ++;
+            fragment_code_verification = Fragment_Code_Verification.newInstance(userModel,type);
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_code_verification, "fragment_code_verification").addToBackStack("fragment_code_verification").commit();
 
-        fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_newpass, "fragment_newpass").addToBackStack("fragment_newpass").commit();
+        }
+        public void displayFragmentNewpass(UserModel userModel) {
+            fragment_count ++;
+            fragment_newpass = Fragment_Newpass.newInstance(userModel);
 
-    }
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_newpass, "fragment_newpass").addToBackStack("fragment_newpass").commit();
+
+        }*/
     public void RefreshActivity(String selected_language) {
         Paper.book().write("lang", selected_language);
         LanguageHelper.setNewLocale(this, selected_language);
@@ -148,43 +148,21 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void Back() {
-        if (fragment_language!=null&&fragment_language.isAdded()&&fragment_language.isVisible())
-        {
+
+        if (fragment_count > 1) {
+            fragment_count -= 1;
+            super.onBackPressed();
+
+
+        } else {
+
             finish();
 
-        }else
-        {
-            if (fragment_count >1) {
-                fragment_count -= 1;
-                super.onBackPressed();
-
-
-            } else  {
-
-                finish();
-
-            }
         }
 
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("location")) {
-                selectedLocation = (SelectedLocation) data.getSerializableExtra("location");
 
-if(fragment_sign_up!=null&&fragment_sign_up.isAdded()){
-    fragment_sign_up.setlocation(selectedLocation);
-}
-            }
-        }
 
-    }
 
-    public void selectlocation() {
-        Intent intent = new Intent(SignInActivity.this, MapActivity.class);
-        startActivityForResult(intent, 1);
-    }
 }

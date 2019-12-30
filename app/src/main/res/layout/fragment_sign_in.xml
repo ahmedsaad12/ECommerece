@@ -20,9 +20,7 @@
 
 
 
-        <variable
-            name="showCountryListener"
-            type="com.example.ecommerece.interfaces.Listeners.ShowCountryDialogListener" />
+
 
     </data>
 
@@ -146,7 +144,6 @@
                     android:layout_marginLeft="90dp"
                     android:layout_marginRight="90dp"
                     android:background="@drawable/btn_login_bg"
-                    android:onClick="@{(v)->loginListener.checkDataLogin(loginModel.phone_code,loginModel.phone,loginModel.password)}"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     android:textSize="15sp"
