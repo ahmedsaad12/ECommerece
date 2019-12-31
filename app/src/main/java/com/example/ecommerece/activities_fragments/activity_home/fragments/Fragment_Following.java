@@ -1,6 +1,5 @@
 package com.example.ecommerece.activities_fragments.activity_home.fragments;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,45 +13,35 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ecommerece.R;
 import com.example.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
-import com.example.ecommerece.databinding.FragmentMainBinding;
+import com.example.ecommerece.databinding.FragmentFollowingBinding;
 import com.example.ecommerece.models.UserModel;
 import com.example.ecommerece.preferences.Preferences;
 
-import io.paperdb.Paper;
+public class Fragment_Following extends Fragment {
 
-public class Fragment_Main extends Fragment {
-    private static Dialog dialog;
     private HomeStoreActivity activity;
-    private FragmentMainBinding binding;
+    private FragmentFollowingBinding binding;
     private Preferences preferences;
     private UserModel userModel;
-
-    public static Fragment_Main newInstance() {
-        return new Fragment_Main();
+    private boolean isLoading = false;
+    private int current_page2 = 1;
+    public static Fragment_Following newInstance() {
+        return new Fragment_Following();
     }
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_following,container,false);
         initView();
-
         return binding.getRoot();
     }
 
-
-
     private void initView() {
-
         activity = (HomeStoreActivity) getActivity();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
-        Paper.init(activity);
-
-
-
 
     }
-
-
 
 }

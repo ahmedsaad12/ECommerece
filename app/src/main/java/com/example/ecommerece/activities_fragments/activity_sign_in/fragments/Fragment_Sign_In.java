@@ -99,7 +99,7 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
 
 
     private void navigateToHomeActivity() {
-      /*  Intent intent = new Intent(activity, HomeActivity.class);
+      /*  Intent intent = new Intent(activity, HomeStoreActivity.class);
         startActivity(intent);
         activity.finish();*/
     }

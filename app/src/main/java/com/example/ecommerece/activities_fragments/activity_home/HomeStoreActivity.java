@@ -1,26 +1,15 @@
 package com.example.ecommerece.activities_fragments.activity_home;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Looper;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -30,48 +19,29 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import com.example.ecommerece.R;
+import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_CallUs;
+import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
 import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Main;
-import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Messages;
-import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_More;
-import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Notifications;
+import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Wishlist;
+import com.example.ecommerece.activities_fragments.activity_home.fragments.Fragment_Following;
 import com.example.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.example.ecommerece.databinding.ActivityHomeBinding;
 import com.example.ecommerece.language.LanguageHelper;
 import com.example.ecommerece.models.UserModel;
 import com.example.ecommerece.preferences.Preferences;
-import com.example.ecommerece.share.Common;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.paperdb.Paper;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity  {
+public class HomeStoreActivity extends AppCompatActivity  {
     private ActivityHomeBinding binding;
     private FragmentManager fragmentManager;
     private Fragment_Main fragment_main;
-    private Fragment_Messages fragment_messages;
-    private Fragment_Notifications fragment_notifications;
-    private Fragment_More fragment_more;
+    private Fragment_CallUs fragment_callUs;
+    private Fragment_Following fragment_following;
+    private Fragment_Wishlist fragment_wishlist;
     private Preferences preferences;
     private UserModel userModel;
     private BottomSheetBehavior behavior;
@@ -79,6 +49,7 @@ public class HomeActivity extends AppCompatActivity  {
     private Button btnNearby, btnFurthest, btnWithImage, btcancel, btfilter;
     private Spinner spinner;
     private String lat="0.0", lng="0.0";
+    private Fragment_Shop_Profile fragment_shop_profile;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -152,21 +123,21 @@ public class HomeActivity extends AppCompatActivity  {
                     break;
                 case 1:
                     if(userModel!=null){
-                    displayFragmentMessages();}
+                    displayFragmentCallus();}
                     else {
                        // Common.CreateNoSignAlertDialog(this);
                     }
                     break;
                 case 2:
                     if(userModel!=null){
-                    displayFragmentNotification();}
+                    displayFragmentFollowing();}
                     else {
                        // Common.CreateNoSignAlertDialog(this);
 
                     }
                     break;
                 case 3:
-                    displayFragmentMore();
+                    displayFragmentWishlist();
                     break;
 
             }
@@ -186,17 +157,18 @@ public class HomeActivity extends AppCompatActivity  {
             if (fragment_main == null) {
                 fragment_main = Fragment_Main.newInstance();
             }
-            else {
-                fragment_main.setcat_id("all");
+
+            if (fragment_callUs != null && fragment_callUs.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
             }
-            if (fragment_messages != null && fragment_messages.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_messages).commit();
+            if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
             }
-            if (fragment_notifications != null && fragment_notifications.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_notifications).commit();
+            if (fragment_following != null && fragment_following.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_following).commit();
             }
-            if (fragment_more != null && fragment_more.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_more).commit();
+            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
             }
             if (fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().show(fragment_main).commit();
@@ -210,77 +182,28 @@ public class HomeActivity extends AppCompatActivity  {
         }
     }
 
-    private void displayFragmentMessages() {
+    private void displayFragmentCallus() {
         try {
-            if (fragment_messages == null) {
-                fragment_messages = Fragment_Messages.newInstance();
+            if (fragment_callUs == null) {
+                fragment_callUs = Fragment_CallUs.newInstance();
             }
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
             }
-            if (fragment_notifications != null && fragment_notifications.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_notifications).commit();
+            if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
             }
-            if (fragment_more != null && fragment_more.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_more).commit();
+            if (fragment_following != null && fragment_following.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_following).commit();
             }
-            if (fragment_messages.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_messages).commit();
+            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+            }
+            if (fragment_callUs.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_callUs).commit();
 
             } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_messages, "fragment_messages").addToBackStack("fragment_messages").commit();
-
-            }
-            updateBottomNavigationPosition(1);
-        } catch (Exception e) {
-        }
-    }
-
-    private void displayFragmentNotification() {
-        try {
-            if (fragment_notifications == null) {
-                fragment_notifications = Fragment_Notifications.newInstance();
-            }
-            if (fragment_main != null && fragment_main.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_main).commit();
-            }
-            if (fragment_messages != null && fragment_messages.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_messages).commit();
-            }
-            if (fragment_more != null && fragment_more.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_more).commit();
-            }
-            if (fragment_notifications.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_notifications).commit();
-
-            } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_notifications, "fragment_notifications").addToBackStack("fragment_notifications").commit();
-
-            }
-            updateBottomNavigationPosition(2);
-        } catch (Exception e) {
-        }
-    }
-
-    private void displayFragmentMore() {
-        try {
-            if (fragment_more == null) {
-                fragment_more = Fragment_More.newInstance();
-            }
-            if (fragment_main != null && fragment_main.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_main).commit();
-            }
-            if (fragment_messages != null && fragment_messages.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_messages).commit();
-            }
-            if (fragment_notifications != null && fragment_notifications.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_notifications).commit();
-            }
-            if (fragment_more.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_more).commit();
-
-            } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_more, "fragment_more").addToBackStack("fragment_more").commit();
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_callUs, "fragment_callUs").addToBackStack("fragment_callUs").commit();
 
             }
             updateBottomNavigationPosition(3);
@@ -288,9 +211,95 @@ public class HomeActivity extends AppCompatActivity  {
         }
     }
 
+    private void displayFragmentFollowing() {
+        try {
+            if (fragment_following == null) {
+                fragment_following = Fragment_Following.newInstance();
+            }
+            if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
+            }
+            if (fragment_main != null && fragment_main.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_main).commit();
+            }
+            if (fragment_callUs != null && fragment_callUs.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            }
+            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+            }
+            if (fragment_following.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_following).commit();
+
+            } else {
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_following, "fragment_following").addToBackStack("fragment_following").commit();
+
+            }
+            updateBottomNavigationPosition(1);
+        } catch (Exception e) {
+        }
+    }
+
+    private void displayFragmentWishlist() {
+        try {
+            if (fragment_wishlist == null) {
+                fragment_wishlist = Fragment_Wishlist.newInstance();
+            }
+            if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
+            }
+            if (fragment_main != null && fragment_main.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_main).commit();
+            }
+            if (fragment_callUs != null && fragment_callUs.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            }
+            if (fragment_following != null && fragment_following.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_following).commit();
+            }
+            if (fragment_wishlist.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_wishlist).commit();
+
+            } else {
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_wishlist, "fragment_wishlist").addToBackStack("fragment_wishlist").commit();
+
+            }
+            updateBottomNavigationPosition(2);
+        } catch (Exception e) {
+        }
+    }
+    private void displayFragmentprofile() {
+        try {
+            if (fragment_shop_profile == null) {
+                fragment_shop_profile = Fragment_Shop_Profile.newInstance();
+            }
+            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+            }
+            if (fragment_main != null && fragment_main.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_main).commit();
+            }
+            if (fragment_callUs != null && fragment_callUs.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            }
+            if (fragment_following != null && fragment_following.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_following).commit();
+            }
+            if (fragment_shop_profile.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_shop_profile).commit();
+
+            } else {
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_shop_profile, "fragment_shop_profile").addToBackStack("fragment_shop_profile").commit();
+
+            }
+            updateBottomNavigationPosition(4);
+        } catch (Exception e) {
+        }
+    }
+
 
     private void NavigateToSignInActivity() {
-        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+        Intent intent = new Intent(HomeStoreActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
     }
@@ -367,7 +376,7 @@ public class HomeActivity extends AppCompatActivity  {
 
     public void NavigateToSignInActivity(boolean isSignIn) {
 //Log.e("data",isSignIn+"");
-        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+        Intent intent = new Intent(HomeStoreActivity.this, SignInActivity.class);
         intent.putExtra("sign_up", isSignIn);
         startActivity(intent);
         finish();
