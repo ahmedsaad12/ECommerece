@@ -36,4 +36,6 @@
     <string name="profile">Profile</string>
     <string name="shop_from_the_top_brand">Shop From The Top Brand</string>
     <string name="view_all">View All</string>
+    <string name="orders">Orders</string>
+    <string name="notifications">Notifications</string>
 </resources>
