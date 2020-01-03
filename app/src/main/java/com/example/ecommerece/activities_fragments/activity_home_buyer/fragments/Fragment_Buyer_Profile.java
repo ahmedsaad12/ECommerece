@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ecommerece.R;
 import com.example.ecommerece.activities_fragments.activity_home_buyer.HomeBuyerActivity;
+import com.example.ecommerece.databinding.FragmentClientProfileBinding;
 import com.example.ecommerece.databinding.FragmentShopProfileBinding;
 import com.example.ecommerece.models.UserModel;
 import com.example.ecommerece.preferences.Preferences;
@@ -19,7 +20,7 @@ import com.example.ecommerece.preferences.Preferences;
 public class Fragment_Buyer_Profile extends Fragment {
 
     private HomeBuyerActivity activity;
-    private FragmentShopProfileBinding binding;
+    private FragmentClientProfileBinding binding;
 
     private Preferences preferences;
     private UserModel userModel;
@@ -31,7 +32,7 @@ public class Fragment_Buyer_Profile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop_profile,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_client_profile,container,false);
         initView();
         return binding.getRoot();
     }
