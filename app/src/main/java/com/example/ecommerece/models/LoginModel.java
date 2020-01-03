@@ -2,6 +2,7 @@ package com.example.ecommerece.models;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Patterns;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -12,23 +13,18 @@ import com.example.ecommerece.R;
 
 public class LoginModel extends BaseObservable {
 
-    private String phone_code;
     private String phone;
     private String password;
-    public ObservableField<String> error_phone_code = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
     public ObservableField<String> error_password = new ObservableField<>();
 
 
     public LoginModel() {
-        this.phone_code = "";
         this.phone="";
         this.password="";
     }
 
-    public LoginModel(String phone_code, String phone, String password) {
-        this.phone_code = phone_code;
-        notifyPropertyChanged(BR.phone_code);
+    public LoginModel( String phone, String password) {
         this.phone = phone;
         notifyPropertyChanged(BR.phone);
         this.password = password;
@@ -37,16 +33,7 @@ public class LoginModel extends BaseObservable {
 
     }
 
-    @Bindable
-    public String getPhone_code() {
-        return phone_code;
-    }
 
-    public void setPhone_code(String phone_code) {
-        this.phone_code = phone_code;
-        notifyPropertyChanged(BR.phone_code);
-
-    }
 
     @Bindable
     public String getPhone() {
@@ -70,27 +57,25 @@ public class LoginModel extends BaseObservable {
 
     }
 
-    public boolean isDataValid(Context context)
+    public int isDataValid(Context context)
     {
-        if (!TextUtils.isEmpty(phone_code)&&
+        if (
                 !TextUtils.isEmpty(phone)&&
                 password.length()>=6
         )
         {
-            error_phone_code.set(null);
             error_phone.set(null);
             error_password.set(null);
 
-            return true;
+if (Patterns.EMAIL_ADDRESS.matcher(phone).matches()){
+    return 1;
+}
+else {
+    return 2;
+}
         }else
             {
-                if (phone_code.isEmpty())
-                {
-                    error_phone_code.set(context.getString(R.string.field_req));
-                }else
-                    {
-                        error_phone_code.set(null);
-                    }
+
 
                 if (phone.isEmpty())
                 {
@@ -111,7 +96,7 @@ public class LoginModel extends BaseObservable {
                         error_password.set(null);
 
                     }
-                return false;
+                return -1;
             }
     }
 

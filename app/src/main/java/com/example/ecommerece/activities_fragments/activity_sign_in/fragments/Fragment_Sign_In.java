@@ -84,7 +84,7 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
         if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
         }
-        loginModel = new LoginModel(phone_code,phone,password);
+        loginModel = new LoginModel(phone,password);
         binding.setLoginModel(loginModel);
 
        if (loginModel.isDataValid(activity))

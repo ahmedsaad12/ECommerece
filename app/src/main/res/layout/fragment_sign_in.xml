@@ -29,9 +29,43 @@
         android:layout_height="match_parent"
 
         >
+        <LinearLayout
+            android:id="@+id/llBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            android:onClick="@{()->backListener.back()}"
+
+            >
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_arrow_right"
+                android:padding="5dp"
+                android:clickable="false"
+                android:longClickable="false"
+                android:rotation='@{lang.equals("ar")?180:0}'
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="15sp"
+                android:text="@string/back"
+                android:clickable="false"
+                android:longClickable="false"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
 
         <ScrollView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
             android:fillViewport="true"
@@ -40,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/llBack">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -60,23 +94,6 @@
 android:src="@drawable/logo"
                     android:alpha=".3"
                     />
-                <TextView
-                    android:id="@+id/tv_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="15dp"
-                    android:text="@string/back"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/logo"
-
-
-                    tools:ignore="RtlCompat" />
                 <LinearLayout
                     android:id="@+id/ll"
                     android:layout_width="match_parent"
@@ -85,7 +102,7 @@ android:src="@drawable/logo"
                     android:layout_marginRight="25dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_back"
+                    app:layout_constraintTop_toBottomOf="@id/logo"
                     app:layout_constraintVertical_bias=".2"
 
                     >
@@ -183,7 +200,7 @@ android:src="@drawable/logo"
                     android:layout_height="40dp"
                     android:layout_marginLeft="90dp"
                     android:layout_marginRight="90dp"
-                    android:background="@color/black"
+                    android:background="@drawable/btn_login_bg"
                     android:text="@string/login"
                     android:textColor="@color/white"
                     android:textSize="15sp"
