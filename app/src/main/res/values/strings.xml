@@ -39,4 +39,7 @@
     <string name="orders">Orders</string>
     <string name="notifications">Notifications</string>
     <string name="from">From :</string>
+    <string name="forgot">Forgot</string>
+    <string name="if_you_need_help_resetting_your_password_we_can_help_by_sending_you_alink_to_reset_it">If you need help resetting your password we can help by sending you alink to reset it</string>
+    <string name="send">Send</string>
 </resources>
