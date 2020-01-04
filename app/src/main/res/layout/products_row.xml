@@ -80,7 +80,6 @@ android:layout_marginRight="20dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text='@{lang.equals("ar")?productsmodel.ar_title:productsmodel.en_title}'
                     android:textColor="@color/black"
                     android:textSize="17sp" />
                 <TextView
@@ -89,7 +88,6 @@ android:layout_marginRight="20dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text='@{lang.equals("ar")?productsmodel.main_cat.ar_title:productsmodel.main_cat.en_title}'
                     android:textColor="@color/gray4"
                     android:textSize="14sp" />
             </LinearLayout>

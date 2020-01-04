@@ -9,12 +9,12 @@
             type="String" />
         <variable
             name="backListener"
-            type="com.example.ecommerece.interfaces.Listeners.BackListener" />
+            type="com.elkhelj.ecommerece.interfaces.Listeners.BackListener" />
 
 
         <variable
             name="showDialogListener"
-            type="com.example.ecommerece.interfaces.Listeners.ShowCountryDialogListener" />
+            type="com.elkhelj.ecommerece.interfaces.Listeners.ShowCountryDialogListener" />
 
     </data>
     <ScrollView

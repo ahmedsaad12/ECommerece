@@ -42,4 +42,11 @@
     <string name="forgot">Forgot</string>
     <string name="if_you_need_help_resetting_your_password_we_can_help_by_sending_you_alink_to_reset_it">If you need help resetting your password we can help by sending you alink to reset it</string>
     <string name="send">Send</string>
+    <string name="wait">Wait...</string>
+    <string name="inc_phone_pas">Incorrect phone_email or password</string>
+    <string name="failed">Failed</string>
+    <string name="something">Check internet connection</string>
+    <string name="enter_the_code_to_verfiy_your_code">Enter The Code to Verfiy Your Code</string>
+    <string name="we_have_sent_you_an_sms_with_acode_to_the_number">We have sent you an sms with acode to the number</string>
+
 </resources>

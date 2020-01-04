@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "801178496317",
+    "firebase_url": "https://vstore-b6ad5.firebaseio.com",
+    "project_id": "vstore-b6ad5",
+    "storage_bucket": "vstore-b6ad5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801178496317:android:344cf7b8c4a544b7fb6954",
+        "android_client_info": {
+          "package_name": "com.elkhelj.ecommerece"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801178496317-cuka8fo2h9ahd0a7dgca2hvh66f0kfb3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAURvYi74AagQY4MGycnQGz6L0GvUevgQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801178496317-cuka8fo2h9ahd0a7dgca2hvh66f0kfb3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "801178496317-stcrj714j46svh5upuns7pj5p9nj8rda.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Khalij.Vstore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
