@@ -17,4 +17,17 @@ public interface Service {
             @Field("keyword") String mobile,
             @Field("password") String password
     );
+    @FormUrlEncoded
+    @POST("api/client/register")
+    Call<UserModel> signUp(@Field("name") String name,
+                           @Field("shop_name") String shop_name,
+                           @Field("email") String email,
+                           @Field("password") String password,
+                           @Field("phone") String phone,
+                           @Field("phone_code") String phone_code,
+
+                           @Field("type") String type,
+                           @Field("shop_for") String shop_for
+
+    );
 }

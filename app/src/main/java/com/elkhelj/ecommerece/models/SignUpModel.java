@@ -3,6 +3,7 @@ package com.elkhelj.ecommerece.models;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -16,77 +17,45 @@ import java.io.Serializable;
 public class SignUpModel extends BaseObservable implements Serializable {
 
     private String name;
-    private String phone_code;
+    private String shop_name;
     private String phone;
     private String email;
     private String password;
     private String confirmpassword;
 
-    private String city_id;
+    private String gender_id;
     public ObservableField<String> error_name = new ObservableField<>();
-    public ObservableField<String> error_phone_code = new ObservableField<>();
+    public ObservableField<String> error_shop_name = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
     public ObservableField<String> error_email = new ObservableField<>();
 
     public ObservableField<String> error_password = new ObservableField<>();
     public ObservableField<String> error_confirm_password = new ObservableField<>();
-    public ObservableField<String> address_error = new ObservableField<>();
 
 
     public SignUpModel() {
         this.name = "";
-        this.phone_code = "";
+        this.shop_name = "";
         this.phone = "";
         this.password = "";
         this.confirmpassword = "";
         this.email = "";
-        this.city_id = "";
-    }    private String longitude;
-    private String latitude;
-    private String address;
+        this.gender_id = "";
+    }
 
-    public SignUpModel(String name, String city_id, String phone_code, String phone, String email, String password, String confirmpassword) {
+    public SignUpModel(String name, String gender_id, String shop_name, String phone, String email, String password, String confirmpassword) {
         setName(name);
-        setPhone_code(phone_code);
+        setshop_name(shop_name);
         setPhone(phone);
         setEmail(email);
         setPassword(password);
         setConfirmpassword(confirmpassword);
-        setCity_id(city_id);
-
-    }
-    @Bindable
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-        notifyPropertyChanged(BR.latitude);
 
     }
 
-    @Bindable
-    public String getLatitude() {
-        return latitude;
-    }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-        notifyPropertyChanged(BR.latitude);
 
-    }
 
-    @Bindable
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-        notifyPropertyChanged(BR.address);
-
-    }
     @Bindable
     public String getName() {
         return name;
@@ -100,13 +69,13 @@ public class SignUpModel extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public String getPhone_code() {
-        return phone_code;
+    public String getshop_name() {
+        return shop_name;
     }
 
-    public void setPhone_code(String phone_code) {
-        this.phone_code = phone_code;
-        notifyPropertyChanged(BR.phone_code);
+    public void setshop_name(String shop_name) {
+        this.shop_name = shop_name;
+        notifyPropertyChanged(BR.shop_name);
 
     }
 
@@ -159,31 +128,29 @@ public class SignUpModel extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public String getCity_id() {
-        return city_id;
+    public String getGender_id() {
+        return gender_id;
     }
 
 
-    public void setCity_id(String city_id) {
-        this.city_id = city_id;
+    public void setGender_id(String gender_id) {
+        this.gender_id = gender_id;
     }
 
     public boolean isDataValid(Context context) {
-        if (!TextUtils.isEmpty(phone_code) &&
+        if (!TextUtils.isEmpty(shop_name) &&
                 !TextUtils.isEmpty(phone) &&
                 (password.length() >= 6 && password.equals(confirmpassword)) &&
                 !TextUtils.isEmpty(name) &&
                 ((!TextUtils.isEmpty(email) &&
                         Patterns.EMAIL_ADDRESS.matcher(email).matches()) || TextUtils.isEmpty(email)) &&
-                !TextUtils.isEmpty(city_id)&&address!=null&&!TextUtils.isEmpty(address)
         ) {
             error_name.set(null);
-            error_phone_code.set(null);
+            error_shop_name.set(null);
             error_phone.set(null);
             error_email.set(null);
             error_password.set(null);
             error_confirm_password.set(null);
-            address_error.set(null);
             return true;
         } else {
             if (name.isEmpty()) {
@@ -193,16 +160,16 @@ public class SignUpModel extends BaseObservable implements Serializable {
             }
 
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-           //     error_email.set(context.getString(R.string.inv_email));
+              error_email.set(context.getString(R.string.inc_phone_pas));
             } else {
                 error_email.set(null);
 
             }
 
-            if (phone_code.isEmpty()) {
-                error_phone_code.set(context.getString(R.string.field_req));
+            if (shop_name.isEmpty()) {
+                error_shop_name.set(context.getString(R.string.field_req));
             } else {
-                error_phone_code.set(null);
+                error_shop_name.set(null);
             }
 
             if (phone.isEmpty()) {
@@ -210,13 +177,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
             } else {
                 error_phone.set(null);
             }
-            if (address==null||address.isEmpty()) {
-                address_error.set(context.getString(R.string.field_req));
-            }
-            else {
-                address_error.set(null);
 
-            }
 
             if (password.isEmpty()) {
                 error_password.set(context.getString(R.string.field_req));
@@ -238,8 +199,8 @@ public class SignUpModel extends BaseObservable implements Serializable {
                 error_confirm_password.set(null);
             }
 
-            if (city_id.isEmpty()) {
-             //   Toast.makeText(context, context.getString(R.string.ch_city), Toast.LENGTH_SHORT).show();
+            if (gender_id.isEmpty()) {
+                Toast.makeText(context, context.getString(R.string.shop_type), Toast.LENGTH_SHORT).show();
             }
 
 

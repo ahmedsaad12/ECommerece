@@ -18,7 +18,7 @@
     <string name="fullname">Fullname</string>
     <string name="shop_name">Shop Name</string>
     <string name="done">Done</string>
-    <string name="shop_type">Shop Type</string>
+    <string name="shop_type">Type</string>
     <string name="country">Country</string>
     <string name="city">City</string>
     <string name="confirm_password">Confirm Password</string>
@@ -48,5 +48,7 @@
     <string name="something">Check internet connection</string>
     <string name="enter_the_code_to_verfiy_your_code">Enter The Code to Verfiy Your Code</string>
     <string name="we_have_sent_you_an_sms_with_acode_to_the_number">We have sent you an sms with acode to the number</string>
+    <string name="qatar">Qatar</string>
+    <string name="em_exist">Email or Phone number is exist</string>
 
 </resources>

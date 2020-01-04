@@ -11,6 +11,9 @@
             name="backListener"
             type="com.elkhelj.ecommerece.interfaces.Listeners.BackListener" />
 
+        <variable
+            name="signUpModel"
+            type="com.elkhelj.ecommerece.models.SignUpModel" />
 
         <variable
             name="showDialogListener"
@@ -30,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
 
 
             <TextView
@@ -46,7 +51,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
 
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -64,7 +69,8 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray5"
                     android:textSize="14sp"
-
+                    android:text="@={signUpModel.name}"
+                    error="@{signUpModel.error_name}"
                     />
 
             </LinearLayout>
@@ -74,6 +80,7 @@
                 android:layout_height="1dp"
 
                 android:background="@color/gray5" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +92,7 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
 
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -102,8 +109,46 @@
                     android:singleLine="true"
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray4"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:text="@={signUpModel.shop_name}"
+                    error="@{signUpModel.error_shop_name}"
+                    />
 
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:background="@color/gray5" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/shop_type"
+                android:textColor="@color/gray5"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+
+                android:background="@drawable/linear_underline_shape"
+                android:padding="10dp">
+
+                <Spinner
+                    android:id="@+id/sp_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:spinnerMode="dialog"
+
+                    >
+
+                </Spinner>
             </LinearLayout>
 
             <View
@@ -121,30 +166,20 @@
                 android:text="@string/country"
                 android:textColor="@color/gray5"
                 android:textSize="15sp" />
-            <LinearLayout
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-
-                android:background="@drawable/linear_underline_shape"
-                android:padding="10dp">
-
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:spinnerMode="dialog"
-
-                    >
-
-                </Spinner>
-            </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/qatar"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
@@ -157,7 +192,7 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
 
                 android:background="@drawable/linear_underline_shape"
                 android:padding="10dp">
@@ -177,8 +212,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+
                 android:background="@color/gray5" />
             <TextView
                 android:layout_width="match_parent"
@@ -213,7 +247,7 @@
                     android:paddingStart="2dp"
                     android:paddingEnd="2dp"
                     android:textColor="@color/black"
-
+android:text="+974"
 
                     android:textSize="15sp"
                     />
@@ -244,6 +278,8 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/white"
                     android:textSize="14sp"
+                    android:text="@={signUpModel.phone}"
+                    error="@{signUpModel.error_phone}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/imagePhoneCode"
                     app:layout_constraintStart_toEndOf="@id/viewPhoneCode"
@@ -289,8 +325,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+
                 android:background="@color/gray4" />
 
             <TextView
@@ -304,7 +339,7 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
 
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -321,6 +356,8 @@
                     android:textColor="@color/black"
                     android:textColorHint="@color/gray4"
                     android:textSize="14sp"
+                    android:text="@={signUpModel.email}"
+                    error="@{signUpModel.error_email}"
                     />
 
             </LinearLayout>
@@ -341,8 +378,7 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
 
                 >
@@ -350,7 +386,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="37dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -365,7 +401,7 @@
                     <EditText
                         android:id="@+id/edt_password"
                         android:layout_width="match_parent"
-                        android:layout_height="37dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:background="@color/white"
                         android:inputType="textPassword"
@@ -373,7 +409,8 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray4"
                         android:textSize="14sp"
-
+                        android:text="@={signUpModel.password}"
+                        error="@{signUpModel.error_password}"
                         />
 
 
@@ -395,8 +432,7 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
 
                 >
@@ -404,7 +440,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="37dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -418,7 +454,7 @@
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="37dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center_vertical"
                         android:background="@color/white"
                         android:inputType="textPassword"
@@ -426,7 +462,8 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray4"
                         android:textSize="14sp"
-
+                        android:text="@={signUpModel.confirmpassword}"
+                        error="@{signUpModel.error_confirm_password}"
                         />
 
 
@@ -440,7 +477,7 @@
             <Button
                 android:id="@+id/bt_next"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
