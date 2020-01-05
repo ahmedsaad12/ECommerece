@@ -68,7 +68,7 @@ homeModelList=new ArrayList<>();
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         explore_adapter=new Markets_Adapter(homeModelList,activity);
-binding.recMarket.setLayoutManager(new GridLayoutManager(activity,1));
+binding.recMarket.setLayoutManager(new GridLayoutManager(activity,2));
 binding.recMarket.setAdapter(explore_adapter);
 
 
