@@ -70,11 +70,11 @@ public class Fragment_Main extends Fragment {
     }
 
     private void addFragments_Titles() {
-      //  fragmentList.add(Fragment_Current_Order.newInstance());
+        fragmentList.add(Fragment_Explore.newInstance());
         //fragmentList.add(Fragment_Finshied_Order.newInstance());
 
 
-        //titles.add(getString(R.string.current_order));
+        titles.add(getString(R.string.explore));
         //titles.add(getString(R.string.finish_order));
 
 

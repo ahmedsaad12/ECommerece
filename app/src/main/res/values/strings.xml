@@ -50,5 +50,6 @@
     <string name="we_have_sent_you_an_sms_with_acode_to_the_number">We have sent you an sms with acode to the number</string>
     <string name="qatar">Qatar</string>
     <string name="em_exist">Email or Phone number is exist</string>
+    <string name="explore">Explore</string>
 
 </resources>

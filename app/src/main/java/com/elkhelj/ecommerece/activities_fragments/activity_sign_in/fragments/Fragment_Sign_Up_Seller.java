@@ -74,7 +74,10 @@ public class Fragment_Sign_Up_Seller extends Fragment implements Listeners.SignU
         Paper.init(activity);
         preferences = Preferences.newInstance();
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
+        binding.setBackListener(this);
+        binding.setLang(current_language);
+        binding.setSignUpListener(this);
+        binding.setSignUpModel(signUpModel);
         createCountryDialog();
 
         filter_models=new ArrayList<>();

@@ -76,7 +76,10 @@ public class Fragment_Sign_Up_Buyer extends Fragment implements Listeners.SignUp
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
 
         createCountryDialog();
-
+binding.setBackListener(this);
+binding.setLang(current_language);
+binding.setSignUpListener(this);
+binding.setSignUpModel(signUpModel);
         filter_models=new ArrayList<>();
         setfiltermodels();
 

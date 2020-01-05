@@ -21,7 +21,7 @@ public interface Service {
             @Field("password") String password
     );
     @FormUrlEncoded
-    @POST("api/client/register")
+    @POST("api/register")
     Call<UserModel> signUp(@Field("name") String name,
                            @Field("shop_name") String shop_name,
                            @Field("email") String email,

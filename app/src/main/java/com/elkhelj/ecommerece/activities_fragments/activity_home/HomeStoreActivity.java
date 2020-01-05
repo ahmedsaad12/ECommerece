@@ -32,6 +32,7 @@ import com.elkhelj.ecommerece.preferences.Preferences;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import java.util.List;
+import java.util.Locale;
 
 import io.paperdb.Paper;
 
@@ -54,7 +55,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
-        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", "ar")));
+        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
     }
 
@@ -83,14 +84,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
 
         setUpBottomNavigation();
-        setUpBottomSheet();
     }
 
-    private void setUpBottomSheet() {
 
-        behavior = BottomSheetBehavior.from(root);
-
-    }
 
     private void setUpBottomNavigation() {
 
