@@ -52,5 +52,9 @@
     <string name="em_exist">Email or Phone number is exist</string>
     <string name="explore">Explore</string>
     <string name="shops">Shops</string>
+    <string name="just_arrivals">Just Arrivals</string>
+    <string name="catogry">Catogry</string>
+    <string name="men">Men</string>
+    <string name="Women">Women</string>
 
 </resources>

@@ -2,12 +2,15 @@ package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
@@ -18,6 +21,7 @@ import com.elkhelj.ecommerece.adapters.ViewPagerAdapter;
 import com.elkhelj.ecommerece.databinding.FragmentMainBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +69,36 @@ public class Fragment_Main extends Fragment {
         binding.pager.setAdapter(adapter);
 
 
+        binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+          if(tab.getPosition()==0){
+              binding.scroll.setBackground(activity.getResources().getDrawable(R.drawable.exploerbackground));
+          }
+          else if(tab.getPosition()==1){
+              binding.scroll.setBackground(activity.getResources().getDrawable(R.drawable.exploerbackground));
+
+          }
+          else if(tab.getPosition()==2){
+              binding.scroll.setBackgroundColor(activity.getResources().getColor(R.color.white));
+
+          }
+          else if(tab.getPosition()==3){
+              binding.scroll.setBackground(activity.getResources().getDrawable(R.drawable.womenbackground));
+
+          }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
     }
@@ -72,11 +106,13 @@ public class Fragment_Main extends Fragment {
     private void addFragments_Titles() {
         fragmentList.add(Fragment_Explore.newInstance());
         fragmentList.add(Fragment_Shops.newInstance());
-
+        fragmentList.add(Fragment_Men.newInstance());
+        fragmentList.add(Fragment_Women.newInstance());
 
         titles.add(getString(R.string.explore));
         titles.add(getString(R.string.shops));
-
+        titles.add(getString(R.string.men));
+        titles.add(getString(R.string.Women));
 
 
     }

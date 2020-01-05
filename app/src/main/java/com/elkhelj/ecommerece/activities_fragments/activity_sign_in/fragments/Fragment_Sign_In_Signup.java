@@ -1,5 +1,6 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.elkhelj.ecommerece.databinding.FragmentSignInSignupBinding;
 import com.elkhelj.ecommerece.models.LoginModel;
@@ -54,7 +56,14 @@ binding.tvsignup.setOnClickListener(new View.OnClickListener() {
         activity.DisplayFragmentPhone();
     }
 });
+binding.btnGuest.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(activity, HomeStoreActivity.class);
+        startActivity(intent);
 
+    }
+});
 
     }
 
