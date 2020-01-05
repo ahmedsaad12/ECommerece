@@ -10,6 +10,9 @@
         <variable
             name="backListener"
             type="com.elkhelj.ecommerece.interfaces.Listeners.BackListener" />
+        <variable
+            name="signUpListener"
+            type="com.elkhelj.ecommerece.interfaces.Listeners.SignUpListener" />
 
         <variable
             name="signUpModel"
@@ -485,6 +488,8 @@ android:text="+974"
                 android:background="@drawable/btn_login_bg"
                 android:gravity="center"
                 android:text="@string/done"
+                android:onClick="@{()->signUpListener.checkDataSignUp(signUpModel.name,signUpModel.shop_name,signUpModel.phone,signUpModel.email,signUpModel.password,signUpModel.confirmpassword)}"
+
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 

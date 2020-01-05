@@ -5,45 +5,47 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
-import com.elkhelj.ecommerece.databinding.ActivitySplashBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.tags.Tags;
 
-import java.util.Locale;
-
-import io.paperdb.Paper;
 
 public class Splash_Activity extends AppCompatActivity {
-
-    private ActivitySplashBinding binding;
-    private Animation animation;
+    private ConstraintLayout fl;
     private Preferences preferences;
+    private String session;
+    private Animation animation;
+
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        Paper.init(newBase);
-        super.attachBaseContext(LanguageHelper.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
-
+    protected void attachBaseContext(Context base)
+    {
+        super.attachBaseContext(LanguageHelper.updateResources(base, Preferences.newInstance().getLanguage(base)));
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        initView();
+    }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-        preferences = Preferences.newInstance();
+    private void initView() {
+        preferences=Preferences.newInstance();
+        session=preferences.getSession(this);
+        fl=findViewById(R.id.cons);
 
-        animation= AnimationUtils.loadAnimation(getBaseContext(), R.anim.lanuch);
-        binding.cons.startAnimation(animation);
+        animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.lanuch);
 
+        fl.startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -52,16 +54,15 @@ public class Splash_Activity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                String session = preferences.getSession(Splash_Activity.this);
-                if (session.equals(Tags.session_login))
-                {
-
-                }else
-                {
-                    Intent intent=new Intent(Splash_Activity.this, SignInActivity.class);
+                if(session.equals(Tags.session_login)){
+                    Intent intent = new Intent(Splash_Activity.this, HomeStoreActivity.class);
                     startActivity(intent);
-                    finish();
                 }
+                else {
+                    Intent intent = new Intent(Splash_Activity.this, SignInActivity.class);
+                    startActivity(intent);
+                }
+                finish();
 
             }
 

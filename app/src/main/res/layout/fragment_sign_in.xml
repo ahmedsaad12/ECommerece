@@ -94,7 +94,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
 android:src="@drawable/logo"
-                    android:alpha=".3"
                     />
                 <LinearLayout
                     android:id="@+id/ll"

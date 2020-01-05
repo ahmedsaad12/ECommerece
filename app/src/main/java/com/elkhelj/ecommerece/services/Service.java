@@ -3,7 +3,10 @@ package com.elkhelj.ecommerece.services;
 
 
 
+import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -29,5 +32,9 @@ public interface Service {
                            @Field("type") String type,
                            @Field("shop_for") String shop_for
 
+    );
+    @FormUrlEncoded
+    @POST("api/home")
+    Call<List<Home_Model>> getproducts(@Field("key_word") String key_word
     );
 }

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
-import com.elkhelj.ecommerece.databinding.FragmentSignInBinding;
 import com.elkhelj.ecommerece.databinding.FragmentSignInSignupBinding;
 import com.elkhelj.ecommerece.models.LoginModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -31,9 +30,8 @@ public class Fragment_Sign_In_Signup extends Fragment  {
     @Override
     public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, @androidx.annotation.Nullable ViewGroup container, @androidx.annotation.Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in_signup, container, false);
-        View view = binding.getRoot();
         initView();
-        return view;
+        return binding.getRoot();
     }
 
     private void initView() {

@@ -81,7 +81,7 @@ public class Fragment_Sign_Up_Buyer extends Fragment implements Listeners.SignUp
         setfiltermodels();
 
         filterAdapter=new FilterAdapter(filter_models,activity);
-
+binding.spType.setAdapter(filterAdapter);
         binding.spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -183,7 +183,12 @@ public class Fragment_Sign_Up_Buyer extends Fragment implements Listeners.SignUp
         if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
         }
-
+        signUpModel.setPhone(phone);
+        signUpModel.setShop_name(shopname);
+        signUpModel.setName(name);
+        signUpModel.setEmail(email);
+        signUpModel.setPassword(password);
+        signUpModel.setConfirmpassword(confirmpassword);
 
         if (signUpModel.isDataValid(activity))
         {
@@ -202,7 +207,7 @@ public class Fragment_Sign_Up_Buyer extends Fragment implements Listeners.SignUp
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .signUp(signUpModel.getName(),signUpModel.getshop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","1",signUpModel.getGender_id())
+                    .signUp(signUpModel.getName(),signUpModel.getShop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","1",signUpModel.getGender_id())
                     .enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {

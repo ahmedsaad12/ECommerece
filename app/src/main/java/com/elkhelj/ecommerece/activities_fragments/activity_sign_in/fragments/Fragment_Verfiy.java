@@ -36,6 +36,8 @@ import java.util.concurrent.TimeUnit;
 import io.paperdb.Paper;
 
 public class Fragment_Verfiy extends Fragment {
+    private static final String TAG = "DATA";
+
     private FragmentVerficationBinding binding;
     private SignInActivity activity;
     private String current_language;
@@ -45,6 +47,7 @@ public class Fragment_Verfiy extends Fragment {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String id;
     private ProgressDialog dialo;
+    private String phone;
 
     @Override
     public View onCreateView(@androidx.annotation.NonNull LayoutInflater inflater, @androidx.annotation.Nullable ViewGroup container, @androidx.annotation.Nullable Bundle savedInstanceState) {
@@ -74,6 +77,9 @@ public class Fragment_Verfiy extends Fragment {
                    binding.edtVer.setText(vercode);
                     Log.e("code",vercode);
                     verfiycode(vercode);}
+                else {
+                    siginwithcredental(phoneAuthCredential);
+                }
 
 
             }
@@ -86,16 +92,16 @@ public class Fragment_Verfiy extends Fragment {
 
     }
     private void verfiycode(String code) {
-        dialo = Common.createProgressDialog(activity,getString(R.string.wait));
-        dialo.setCancelable(false);
-        dialo.show();
+
         if(id!=null){
             PhoneAuthCredential credential=PhoneAuthProvider.getCredential(id,code);
             siginwithcredental(credential);}
     }
 
     private void siginwithcredental(PhoneAuthCredential credential) {
-
+        dialo = Common.createProgressDialog(activity,getString(R.string.wait));
+        dialo.setCancelable(false);
+        dialo.show();
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -109,6 +115,13 @@ public class Fragment_Verfiy extends Fragment {
     }
 
     private void initView() {
+        authn();
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            phone =  bundle.getString(TAG);
+sendverficationcode(phone,"+20");
+
+        }
         activity = (SignInActivity) getActivity();
         preferences = Preferences.newInstance();
         Paper.init(activity);
@@ -136,8 +149,13 @@ binding.btnLogin.setOnClickListener(new View.OnClickListener() {
     }
 
 
-    public static Fragment_Verfiy newInstance() {
-        return new Fragment_Verfiy();
+    public static Fragment_Verfiy newInstance(String phone) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString(TAG, phone);
+        Fragment_Verfiy fragment_code_verification = new Fragment_Verfiy();
+        fragment_code_verification.setArguments(bundle);
+        return fragment_code_verification;
     }
 
 
@@ -151,5 +169,10 @@ binding.btnLogin.setOnClickListener(new View.OnClickListener() {
         activity.finish();*/
     }
 
+    public void sendverficationcode(String phone, String phone_code) {
+        Log.e("kkk",phone_code+phone);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(phone_code+phone,59, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD,  mCallbacks);
+
+    }
 
 }

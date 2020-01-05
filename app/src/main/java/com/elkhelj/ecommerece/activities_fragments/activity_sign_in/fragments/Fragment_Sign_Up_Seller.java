@@ -183,8 +183,12 @@ gender=1;
         if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
         }
-
-
+signUpModel.setPhone(phone);
+signUpModel.setShop_name(shopname);
+signUpModel.setName(name);
+signUpModel.setEmail(email);
+signUpModel.setPassword(password);
+signUpModel.setConfirmpassword(confirmpassword);
         if (signUpModel.isDataValid(activity))
         {
             signUp(signUpModel);
@@ -202,7 +206,7 @@ gender=1;
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .signUp(signUpModel.getName(),signUpModel.getshop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","2",signUpModel.getGender_id())
+                    .signUp(signUpModel.getName(),signUpModel.getShop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","2",signUpModel.getGender_id())
                     .enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {

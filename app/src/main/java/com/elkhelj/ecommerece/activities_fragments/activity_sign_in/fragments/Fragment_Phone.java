@@ -72,7 +72,7 @@ binding.btnLogin.setOnClickListener(new View.OnClickListener() {
     private void checkdata() {
         String phone=binding.edtPhone.getText().toString();
         if(!phone.isEmpty()){
-            activity.DisplayFragmentVerfiy();
+            activity.DisplayFragmentVerfiy(phone);
         }
         else {
             binding.edtPhone.setError(getResources().getString(R.string.field_req));

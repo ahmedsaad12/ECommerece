@@ -6,7 +6,9 @@
         <variable
             name="lang"
             type="String" />
-
+<variable
+    name="productsmodel"
+    type="com.elkhelj.ecommerece.models.Home_Model.Products" />
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,7 +47,7 @@
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
                         android:background="@color/gray3"
-
+                        image="@{productsmodel.image}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -81,15 +83,16 @@ android:layout_marginRight="20dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:text="@{productsmodel.name}"
+                    />
                 <TextView
                     android:id="@+id/tv_cat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
                     android:textColor="@color/gray4"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:text="@{productsmodel.price}"                    />
             </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

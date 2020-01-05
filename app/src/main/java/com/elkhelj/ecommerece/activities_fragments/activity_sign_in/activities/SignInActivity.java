@@ -103,9 +103,9 @@ public class SignInActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_phone, "fragment_phone").addToBackStack("fragment_phone").commit();
         }
     }
-    public void DisplayFragmentVerfiy() {
+    public void DisplayFragmentVerfiy(String phone) {
         fragment_count += 1;
-        fragment_verfiy= Fragment_Verfiy.newInstance();
+        fragment_verfiy= Fragment_Verfiy.newInstance(phone);
         if (fragment_verfiy.isAdded()) {
             fragmentManager.beginTransaction().show(fragment_verfiy).commit();
         } else {

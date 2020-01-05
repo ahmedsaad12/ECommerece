@@ -16,11 +16,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+android:background="@drawable/loginbackground"
         >
 
         <ScrollView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
             android:fitsSystemWindows="true"
@@ -54,18 +54,15 @@ android:src="@drawable/logo"
     android:layout_height="0dp"
     app:layout_constraintTop_toBottomOf="@+id/logo"
     app:layout_constraintBottom_toBottomOf="parent"
+
     >
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/login_bg"
-        android:alpha=".2"
-/>                <Button
+               <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
+                   android:layout_marginTop="100dp"
                     android:background="@drawable/btn_login_bg"
                     android:text="@string/login"
                     android:textColor="@color/white"
@@ -75,7 +72,7 @@ android:src="@drawable/logo"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/btnGuest"
                     tools:layout_editor_absoluteY="488dp"
-                    app:layout_constraintVertical_weight=".2"
+
                     />
 
                 <Button
@@ -91,7 +88,6 @@ android:src="@drawable/logo"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintBottom_toTopOf="@+id/tvNoAccount"
                     app:layout_constraintTop_toBottomOf="@+id/btnLogin"
                     tools:layout_editor_absoluteY="488dp"
                     app:layout_constraintVertical_weight=".2"
@@ -108,9 +104,11 @@ app:layout_constraintBottom_toTopOf="@+id/tvNoAccount"
                     android:text="@string/do_you_have_a_new_account"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    app:layout_constraintVertical_bias="1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnGuest" />
+                    app:layout_constraintTop_toBottomOf="@id/btnGuest"
+                    />
 
                 <TextView
                     android:id="@+id/tvsignup"
@@ -125,7 +123,9 @@ app:layout_constraintBottom_toTopOf="@+id/tvNoAccount"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnGuest" />
+                    app:layout_constraintTop_toBottomOf="@id/btnGuest"
+                    app:layout_constraintVertical_bias="1"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

@@ -45,7 +45,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
 
     public SignUpModel(String name, String gender_id, String shop_name, String phone, String email, String password, String confirmpassword) {
         setName(name);
-        setshop_name(shop_name);
+        setShop_name(shop_name);
         setPhone(phone);
         setEmail(email);
         setPassword(password);
@@ -69,11 +69,11 @@ public class SignUpModel extends BaseObservable implements Serializable {
     }
 
     @Bindable
-    public String getshop_name() {
+    public String getShop_name() {
         return shop_name;
     }
 
-    public void setshop_name(String shop_name) {
+    public void setShop_name(String shop_name) {
         this.shop_name = shop_name;
         notifyPropertyChanged(BR.shop_name);
 
@@ -143,7 +143,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
                 (password.length() >= 6 && password.equals(confirmpassword)) &&
                 !TextUtils.isEmpty(name) &&
                 ((!TextUtils.isEmpty(email) &&
-                        Patterns.EMAIL_ADDRESS.matcher(email).matches()) || TextUtils.isEmpty(email)) &&
+                        Patterns.EMAIL_ADDRESS.matcher(email).matches()) ||! TextUtils.isEmpty(email))
         ) {
             error_name.set(null);
             error_shop_name.set(null);
