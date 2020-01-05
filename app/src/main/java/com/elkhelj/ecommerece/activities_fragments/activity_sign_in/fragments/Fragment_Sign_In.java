@@ -34,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Sign_In extends Fragment implements Listeners.LoginListener {
+public class Fragment_Sign_In extends Fragment implements Listeners.LoginListener, Listeners.BackListener {
     private FragmentSignInBinding binding;
     private SignInActivity activity;
     private String current_language;
@@ -59,6 +59,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
         binding.setLoginModel(loginModel);
         binding.setLang(current_language);
         binding.setLoginListener(this);
+        binding.setBackListener(this);
 binding.tvForget.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -173,5 +174,8 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
     }
 
 
-
+    @Override
+    public void back() {
+        activity.Back();
+    }
 }
