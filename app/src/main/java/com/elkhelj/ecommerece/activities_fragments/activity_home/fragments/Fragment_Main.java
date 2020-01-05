@@ -71,11 +71,11 @@ public class Fragment_Main extends Fragment {
 
     private void addFragments_Titles() {
         fragmentList.add(Fragment_Explore.newInstance());
-        //fragmentList.add(Fragment_Finshied_Order.newInstance());
+        fragmentList.add(Fragment_Shops.newInstance());
 
 
         titles.add(getString(R.string.explore));
-        //titles.add(getString(R.string.finish_order));
+        titles.add(getString(R.string.shops));
 
 
 

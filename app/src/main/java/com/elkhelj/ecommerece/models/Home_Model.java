@@ -8,7 +8,7 @@ public class Home_Model implements Serializable {
              private String name;
              private String order;
            private List<Products> products;
-
+private String image;
     public int getId() {
         return id;
     }
@@ -23,6 +23,10 @@ public class Home_Model implements Serializable {
 
     public List<Products> getProducts() {
         return products;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public class Products implements Serializable
