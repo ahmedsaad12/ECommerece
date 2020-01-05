@@ -57,7 +57,7 @@ public class Fragment_Sign_Up extends Fragment implements Listeners.BackListener
         for(int i=0; i < binding.tab.getTabCount(); i++) {
             View tab = ((ViewGroup) binding.tab.getChildAt(0)).getChildAt(i);
             ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
-            p.setMargins(0, 0, 50, 0);
+            p.setMargins(50, 0, 50, 0);
             tab.requestLayout();
         }
 
