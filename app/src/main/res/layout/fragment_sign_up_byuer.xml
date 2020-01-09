@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/linear_underline_shape"
-                android:padding="10dp">
+                android:padding="2dp">
 
                 <Spinner
                     android:id="@+id/sp_type"
