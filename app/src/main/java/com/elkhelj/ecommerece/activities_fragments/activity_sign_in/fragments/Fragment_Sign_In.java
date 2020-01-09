@@ -27,6 +27,7 @@ import com.elkhelj.ecommerece.tags.Tags;
 import com.mukesh.countrypicker.CountryPicker;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -80,6 +81,8 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public void checkDataLogin( String phone, String password) {
+        phone=     String.format(Locale.ENGLISH, "%d", Integer.parseInt(phone));
+
         if (phone.startsWith("0")) {
             phone = phone.replaceFirst("0", "");
         }
@@ -88,6 +91,7 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
 
        if (loginModel.isDataValid(activity))
         {
+
             login(phone,password);
         }
       //  navigateToHomeActivity();
@@ -116,6 +120,12 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
 
                             }else
                             {
+                                try {
+                                    Log.e("error",response.code()+"_"+response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
                                 if (response.code() == 422) {
                                     Toast.makeText(activity, getString(R.string.inc_phone_pas), Toast.LENGTH_SHORT).show();
                                 } else if (response.code() == 500) {

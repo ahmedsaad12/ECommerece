@@ -8,6 +8,7 @@ import com.elkhelj.ecommerece.models.UserModel;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -17,7 +18,7 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/login")
     Call<UserModel> login(
-            @Field("keyword") String mobile,
+            @Field("kayWord") String mobile,
             @Field("password") String password
     );
     @FormUrlEncoded
@@ -36,5 +37,12 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/home")
     Call<List<Home_Model>> getproducts(@Field("key_word") String key_word
+    );
+    @FormUrlEncoded
+    @POST("api/contact_us")
+    Call<ResponseBody> sendContact(@Field("name") String name,
+                                   @Field("email") String email,
+                                   @Field("subject") String subject,
+                                   @Field("message") String message
     );
 }

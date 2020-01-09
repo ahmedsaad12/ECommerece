@@ -18,17 +18,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="15sp"
         android:gravity="center"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text='@{lang.equals("ar")?filterModel.ar_filter:filterModel.en_filter}'
         />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary"
-            />
+       
     </LinearLayout>
 </layout>

@@ -17,6 +17,10 @@ import com.elkhelj.ecommerece.databinding.FragmentShopProfileBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 
+import java.util.Locale;
+
+import io.paperdb.Paper;
+
 public class Fragment_Shop_Profile extends Fragment {
 
     private HomeStoreActivity activity;
@@ -24,6 +28,7 @@ public class Fragment_Shop_Profile extends Fragment {
 
     private Preferences preferences;
     private UserModel userModel;
+    private String lang;
 
     public static Fragment_Shop_Profile newInstance() {
         return new Fragment_Shop_Profile();
@@ -41,9 +46,12 @@ public class Fragment_Shop_Profile extends Fragment {
         activity = (HomeStoreActivity) getActivity();
         preferences=Preferences.newInstance();
         userModel=preferences.getUserData(activity);
+        Paper.init(activity);
+        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
+        if(userModel!=null){
+binding.setUsermodel(userModel);}
 
-
-
+binding.setLang(lang);
 
 
     }

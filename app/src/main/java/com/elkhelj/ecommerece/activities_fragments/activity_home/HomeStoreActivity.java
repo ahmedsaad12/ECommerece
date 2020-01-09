@@ -138,6 +138,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     break;
                 case 3:
                     displayFragmentCallus();
+                    break;
                 case 4:
                     displayFragmentprofile();
 
@@ -336,11 +337,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     @SuppressLint("RestrictedApi")
     @Override
     public void onBackPressed() {
-        if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            binding.fab.setVisibility(View.VISIBLE);
 
-            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        } else {
             if (fragment_main != null && fragment_main.isAdded() && fragment_main.isVisible()) {
                 if (userModel == null) {
                     NavigateToSignInActivity();
@@ -350,7 +347,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
             } else {
                 displayFragmentMain();
             }
-        }
+
 
     }
 

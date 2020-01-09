@@ -31,7 +31,10 @@
         <activity
             android:name="com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
+
+            />
 
         <activity
             android:name="com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity"

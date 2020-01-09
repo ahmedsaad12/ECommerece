@@ -56,5 +56,13 @@
     <string name="catogry">Catogry</string>
     <string name="men">Men</string>
     <string name="Women">Women</string>
+    <string name="inv_email">Invalid email</string>
+    <string name="email">Email</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="suc">Success !</string>
+    <string name="my_address">My Address</string>
+    <string name="account">Account</string>
+    <string name="language">Language</string>
 
 </resources>

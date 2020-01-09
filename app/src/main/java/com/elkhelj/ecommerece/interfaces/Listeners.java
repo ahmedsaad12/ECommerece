@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.interfaces;
 
 
+import com.elkhelj.ecommerece.models.ContactUsModel;
 
 public interface Listeners {
 
@@ -56,6 +57,10 @@ public interface Listeners {
     interface UpdateProfileListener
     {
         void updateProfile();
+    }
+    interface ContactListener
+    {
+        void sendContact(ContactUsModel contactUsModel);
     }
 
 

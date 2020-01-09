@@ -62,30 +62,7 @@ public class GeneralMethod {
         }
     }
 
-    @BindingAdapter("image")
-    public static void displayImageHome(ImageView imageView, int image_resource)
-    {
-        imageView.setImageResource(image_resource);
-    }
 
-
-    @BindingAdapter("serviceImage")
-    public static void serviceImage(ImageView imageView,String endPoint)
-    {
-      //  Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).placeholder(R.drawable.logo).fit().into(imageView);
-    }
-
-    @BindingAdapter("profileImage")
-    public static void profileImage(CircleImageView imageView, String endPoint)
-    {
- //       Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).placeholder(R.drawable.logo_txt).fit().into(imageView);
-    }
-
-    @BindingAdapter("offerImage")
-    public static void offerImage(RoundedImageView imageView, String endPoint)
-    {
- //       Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_URL+endPoint)).placeholder(R.drawable.logo).fit().into(imageView);
-    }
 
 
 
