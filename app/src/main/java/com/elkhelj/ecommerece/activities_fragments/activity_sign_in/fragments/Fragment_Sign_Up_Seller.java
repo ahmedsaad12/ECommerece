@@ -84,7 +84,7 @@ public class Fragment_Sign_Up_Seller extends Fragment implements Listeners.SignU
         setfiltermodels();
 
         filterAdapter=new FilterAdapter(filter_models,activity);
-
+binding.spType.setAdapter(filterAdapter);
        binding.spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
