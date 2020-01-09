@@ -11,15 +11,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
-import com.elkhelj.ecommerece.activities_fragments.activity_home_buyer.HomeBuyerActivity;
 import com.elkhelj.ecommerece.databinding.FragmentClientProfileBinding;
-import com.elkhelj.ecommerece.databinding.FragmentShopProfileBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 
 public class Fragment_Buyer_Profile extends Fragment {
 
-    private HomeBuyerActivity activity;
     private FragmentClientProfileBinding binding;
 
     private Preferences preferences;
@@ -38,9 +35,7 @@ public class Fragment_Buyer_Profile extends Fragment {
     }
 
     private void initView() {
-        activity = (HomeBuyerActivity) getActivity();
-        preferences=Preferences.newInstance();
-        userModel=preferences.getUserData(activity);
+
 
 
 

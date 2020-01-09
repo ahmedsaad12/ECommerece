@@ -1,4 +1,4 @@
-package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments;
+package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
 import android.app.Dialog;
 import android.graphics.PorterDuff;
@@ -18,10 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
-import com.elkhelj.ecommerece.adapters.Explore_Adapter;
 import com.elkhelj.ecommerece.adapters.Markets_Adapter;
-import com.elkhelj.ecommerece.databinding.FragmentExploreBinding;
-import com.elkhelj.ecommerece.databinding.FragmentMarketsBinding;
+import com.elkhelj.ecommerece.databinding.FragmentWomenBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -37,21 +35,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Shops extends Fragment {
+public class Fragment_Women extends Fragment {
     private static Dialog dialog;
     private HomeStoreActivity activity;
-    private FragmentMarketsBinding binding;
+    private FragmentWomenBinding binding;
     private Preferences preferences;
     private UserModel userModel;
 private List<Home_Model> homeModelList;
 private Markets_Adapter explore_adapter;
-    public static Fragment_Shops newInstance() {
-        return new Fragment_Shops();
+    public static Fragment_Women newInstance() {
+        return new Fragment_Women();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_markets, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_women, container, false);
         initView();
 getECPLORE();
         return binding.getRoot();
@@ -68,7 +66,7 @@ homeModelList=new ArrayList<>();
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         explore_adapter=new Markets_Adapter(homeModelList,activity);
-binding.recMarket.setLayoutManager(new GridLayoutManager(activity,2));
+binding.recMarket.setLayoutManager(new GridLayoutManager(activity,1));
 binding.recMarket.setAdapter(explore_adapter);
 
 

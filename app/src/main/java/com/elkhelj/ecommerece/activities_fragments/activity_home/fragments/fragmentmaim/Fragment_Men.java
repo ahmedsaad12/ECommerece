@@ -1,4 +1,4 @@
-package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments;
+package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
 import android.app.Dialog;
 import android.graphics.PorterDuff;
@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.Markets_Adapter;
-import com.elkhelj.ecommerece.databinding.FragmentMarketsBinding;
 import com.elkhelj.ecommerece.databinding.FragmentMenBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;

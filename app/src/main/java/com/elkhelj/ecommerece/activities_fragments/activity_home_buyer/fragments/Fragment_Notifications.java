@@ -11,15 +11,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
-import com.elkhelj.ecommerece.activities_fragments.activity_home_buyer.HomeBuyerActivity;
 import com.elkhelj.ecommerece.databinding.FragmentNotidicationsBinding;
-import com.elkhelj.ecommerece.databinding.FragmentWishlistBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 
 public class Fragment_Notifications extends Fragment {
 
-    private HomeBuyerActivity activity;
     private FragmentNotidicationsBinding binding;
     private Preferences preferences;
     private UserModel userModel;
@@ -40,9 +37,7 @@ public class Fragment_Notifications extends Fragment {
     }
 
     private void initView() {
-        activity = (HomeBuyerActivity) getActivity();
-        preferences = Preferences.newInstance();
-        userModel = preferences.getUserData(activity);
+
 
     }
 

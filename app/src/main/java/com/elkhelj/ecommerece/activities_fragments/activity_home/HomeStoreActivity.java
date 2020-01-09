@@ -21,7 +21,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_CallUs;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Main;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Main;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Wishlist;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Following;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
@@ -91,7 +91,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private void setUpBottomNavigation() {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.following), R.drawable.ic_nav_follow);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.search), R.drawable.ic_search);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.wish), R.drawable.ic_nav_wish);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.call_us), R.drawable.ic_nav_web);
         AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
@@ -127,8 +127,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     }
                     break;
                 case 2:
+                    displayFragmentWishlist();
+
                     if(userModel!=null){
-                        displayFragmentWishlist();
                     }
                     else {
                        // Common.CreateNoSignAlertDialog(this);
@@ -138,8 +139,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 case 3:
                     displayFragmentCallus();
                 case 4:
+                    displayFragmentprofile();
+
                     if(userModel!=null){
-                        displayFragmentprofile();
                     }
                     else {
                         // Common.CreateNoSignAlertDialog(this);

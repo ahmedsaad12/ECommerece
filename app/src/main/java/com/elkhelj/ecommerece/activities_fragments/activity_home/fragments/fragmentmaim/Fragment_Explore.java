@@ -1,4 +1,4 @@
-package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments;
+package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
 import android.app.Dialog;
 import android.graphics.PorterDuff;
@@ -18,9 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
-import com.elkhelj.ecommerece.adapters.Markets_Adapter;
-import com.elkhelj.ecommerece.databinding.FragmentMenBinding;
-import com.elkhelj.ecommerece.databinding.FragmentWomenBinding;
+import com.elkhelj.ecommerece.adapters.Explore_Adapter;
+import com.elkhelj.ecommerece.databinding.FragmentExploreBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -36,21 +35,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Women extends Fragment {
+public class Fragment_Explore extends Fragment {
     private static Dialog dialog;
     private HomeStoreActivity activity;
-    private FragmentWomenBinding binding;
+    private FragmentExploreBinding binding;
     private Preferences preferences;
     private UserModel userModel;
 private List<Home_Model> homeModelList;
-private Markets_Adapter explore_adapter;
-    public static Fragment_Women newInstance() {
-        return new Fragment_Women();
+private Explore_Adapter explore_adapter;
+    public static Fragment_Explore newInstance() {
+        return new Fragment_Explore();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_women, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_explore, container, false);
         initView();
 getECPLORE();
         return binding.getRoot();
@@ -66,9 +65,9 @@ homeModelList=new ArrayList<>();
         Paper.init(activity);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-        explore_adapter=new Markets_Adapter(homeModelList,activity);
-binding.recMarket.setLayoutManager(new GridLayoutManager(activity,1));
-binding.recMarket.setAdapter(explore_adapter);
+        explore_adapter=new Explore_Adapter(homeModelList,activity);
+binding.recView.setLayoutManager(new GridLayoutManager(activity,1));
+binding.recView.setAdapter(explore_adapter);
 
 
 
@@ -79,7 +78,7 @@ binding.recMarket.setAdapter(explore_adapter);
         binding.progBar.setVisibility(View.VISIBLE);
 
         Api.getService(Tags.base_url)
-                .getproducts("shops")
+                .getproducts("brands")
                 .enqueue(new Callback<List<Home_Model>>() {
                     @Override
                     public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {
@@ -90,9 +89,9 @@ binding.recMarket.setAdapter(explore_adapter);
                             explore_adapter.notifyDataSetChanged();
 
                             if (homeModelList.size() > 0) {
-                                binding.tvNoEvents.setVisibility(View.GONE);
+                                binding.tvNoOrder.setVisibility(View.GONE);
                             } else {
-                                binding.tvNoEvents.setVisibility(View.VISIBLE);
+                                binding.tvNoOrder.setVisibility(View.VISIBLE);
 
                             }
                         } else {
