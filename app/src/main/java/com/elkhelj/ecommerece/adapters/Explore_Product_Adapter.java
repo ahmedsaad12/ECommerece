@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class Explore_Product_Adapter extends RecyclerView.Adapter<RecyclerView.V
 eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        Log.e("datas",context.getApplicationContext().toString());
         if(context instanceof HomeStoreActivity){
             homeStoreActivity=(HomeStoreActivity)context;
             homeStoreActivity.showdetials(orderlist.get(eventHolder.getLayoutPosition()).getId());

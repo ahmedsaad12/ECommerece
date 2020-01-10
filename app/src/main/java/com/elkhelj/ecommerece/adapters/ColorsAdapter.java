@@ -3,6 +3,7 @@ package com.elkhelj.ecommerece.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +59,12 @@ public class ColorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if (holder instanceof EventHolder)
         {
         EventHolder eventHolder = (EventHolder) holder;
-        eventHolder.binding.image.setCircleBackgroundColor(Color.parseColor(order_orderModel.getColor()));
+        eventHolder.binding.image.setCircleBackgroundColor(Color.parseColor("#6f4eb1"));
         eventHolder.binding.setColormodel(order_orderModel);
-
+            GradientDrawable draw = new GradientDrawable();
+            draw.setShape(GradientDrawable.OVAL);
+            draw.setColor(Color.parseColor("#6f4eb1"));
+            eventHolder.binding.image.setBackground(draw);
         }
     }
 
