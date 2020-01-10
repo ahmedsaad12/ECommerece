@@ -63,7 +63,7 @@ public class ColorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         eventHolder.binding.setColormodel(order_orderModel);
             GradientDrawable draw = new GradientDrawable();
             draw.setShape(GradientDrawable.OVAL);
-            draw.setColor(Color.parseColor("#6f4eb1"));
+            draw.setColor(Color.parseColor(order_orderModel.getColor().replace(" ","")));
             eventHolder.binding.image.setBackground(draw);
         }
     }
