@@ -40,6 +40,11 @@
             android:name="com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_adsdetails.AdsDetialsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
 
 
 

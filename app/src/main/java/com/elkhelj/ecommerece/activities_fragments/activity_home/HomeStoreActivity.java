@@ -19,6 +19,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_CallUs;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Main;
@@ -387,5 +388,10 @@ public class HomeStoreActivity extends AppCompatActivity  {
         startActivity(intent);
         finish();
 
+    }
+    public void showdetials(int id) {
+        Intent intent=new Intent(HomeStoreActivity.this, AdsDetialsActivity.class);
+        intent.putExtra("search",id);
+        startActivity(intent);
     }
 }

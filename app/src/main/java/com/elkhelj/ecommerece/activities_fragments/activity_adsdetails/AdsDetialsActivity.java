@@ -17,10 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.adapters.ColorsAdapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
+import com.elkhelj.ecommerece.adapters.SizeAdapter;
 import com.elkhelj.ecommerece.databinding.ActivityProductDetialsBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
@@ -56,10 +59,12 @@ public class AdsDetialsActivity extends AppCompatActivity implements Listeners.B
     private UserModel userModel;
 private String search_id;
     private int current_page = 0, NUM_PAGES;
-
+private ColorsAdapter colorsAdapter;
+private SizeAdapter sizeAdapter;
     private SingleAdsSlidingImage_Adapter singleslidingImage__adapter;
     private Single_Adversiment_Model single_adversiment_model;
-
+private List<Single_Adversiment_Model.Colors> colorsList;
+private List<Single_Adversiment_Model.Sizes> sizesList;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -103,7 +108,8 @@ private String search_id;
 if(getIntent().getIntExtra("search",-1)!=0){
     search_id=getIntent().getIntExtra("search",-1)+"";
 }
-
+colorsList=new ArrayList<>();
+sizesList=new ArrayList<>();
         single_adversiment_model=new Single_Adversiment_Model();
         preferences=  Preferences.newInstance();
         userModel=preferences.getUserData(this);
@@ -112,12 +118,15 @@ if(getIntent().getIntExtra("search",-1)!=0){
         binding.setLang(lang);
         binding.setBackListener(this);
 
-
+colorsAdapter=new ColorsAdapter(colorsList,this,null);
+sizeAdapter=new SizeAdapter(sizesList,this,null);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         binding.progBar.setVisibility(View.GONE);
-
-
+binding.recColor.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
+binding.recColor.setAdapter(colorsAdapter);
+binding.recSize.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
+binding.recSize.setAdapter(sizeAdapter);
     }
 
 
@@ -184,6 +193,16 @@ dialog.dismiss();
             NUM_PAGES = body.getProduct_images().size();
             singleslidingImage__adapter = new SingleAdsSlidingImage_Adapter(this, body.getProduct_images());
             binding.pager.setAdapter(singleslidingImage__adapter);
+        }
+        if(body.getColors()!=null){
+            colorsList.clear();
+            colorsList.addAll(body.getColors());
+            colorsAdapter.notifyDataSetChanged();
+        }
+        if(body.getSizes()!=null){
+            sizesList.clear();
+            sizesList.addAll(body.getSizes());
+            sizeAdapter.notifyDataSetChanged();
         }
     }
 
