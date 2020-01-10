@@ -64,5 +64,6 @@
     <string name="my_address">My Address</string>
     <string name="account">Account</string>
     <string name="language">Language</string>
+    <string name="ch_city">Choose City</string>
 
 </resources>

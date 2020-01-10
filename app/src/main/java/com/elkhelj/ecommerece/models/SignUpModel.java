@@ -24,6 +24,8 @@ public class SignUpModel extends BaseObservable implements Serializable {
     private String confirmpassword;
 
     private String gender_id;
+    private String city_id;
+
     public ObservableField<String> error_name = new ObservableField<>();
     public ObservableField<String> error_shop_name = new ObservableField<>();
     public ObservableField<String> error_phone = new ObservableField<>();
@@ -43,16 +45,14 @@ public class SignUpModel extends BaseObservable implements Serializable {
         this.gender_id = "";
     }
 
-    public SignUpModel(String name, String gender_id, String shop_name, String phone, String email, String password, String confirmpassword) {
-        setName(name);
-        setShop_name(shop_name);
-        setPhone(phone);
-        setEmail(email);
-        setPassword(password);
-        setConfirmpassword(confirmpassword);
 
+    @Bindable
+    public String getCity_id() {
+        return city_id;
     }
-
+    public void setCity_id(String city_id) {
+        this.city_id = city_id;
+    }
 
 
 
@@ -144,6 +144,7 @@ public class SignUpModel extends BaseObservable implements Serializable {
                 !TextUtils.isEmpty(name) &&
                 ((!TextUtils.isEmpty(email) &&
                         Patterns.EMAIL_ADDRESS.matcher(email).matches()) ||! TextUtils.isEmpty(email))
+                &&!TextUtils.isEmpty(city_id)
         ) {
             error_name.set(null);
             error_shop_name.set(null);
@@ -203,7 +204,10 @@ public class SignUpModel extends BaseObservable implements Serializable {
                 Toast.makeText(context, context.getString(R.string.shop_type), Toast.LENGTH_SHORT).show();
             }
 
-
+            if (city_id.isEmpty())
+            {
+                Toast.makeText(context, context.getString(R.string.ch_city), Toast.LENGTH_SHORT).show();
+            }
             return false;
         }
     }

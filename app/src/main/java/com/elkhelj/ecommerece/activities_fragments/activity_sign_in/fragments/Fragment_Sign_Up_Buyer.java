@@ -20,10 +20,12 @@ import androidx.fragment.app.Fragment;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.elkhelj.ecommerece.adapters.CityAdapter;
 import com.elkhelj.ecommerece.adapters.FilterAdapter;
 import com.elkhelj.ecommerece.databinding.FragmentSignUpBinding;
 import com.elkhelj.ecommerece.databinding.FragmentSignUpByuerBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
+import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Filter_model;
 import com.elkhelj.ecommerece.models.SignUpModel;
 import com.elkhelj.ecommerece.models.UserModel;
@@ -56,6 +58,9 @@ public class Fragment_Sign_Up_Buyer extends Fragment implements Listeners.SignUp
     private FilterAdapter filterAdapter;
     private Filter_model filter_model1,filter_model2,filter_model3;
     private int gender;
+    private CityAdapter adapter;
+    private List<Cities_Model> dataList;
+    private String city_id = "";
     public static Fragment_Sign_Up_Buyer newInstance() {
         return new Fragment_Sign_Up_Buyer();
     }
@@ -81,10 +86,37 @@ binding.setLang(current_language);
 binding.setSignUpListener(this);
 binding.setSignUpModel(signUpModel);
         filter_models=new ArrayList<>();
+        dataList = new ArrayList<>();
+
         setfiltermodels();
 
         filterAdapter=new FilterAdapter(filter_models,activity);
 binding.spType.setAdapter(filterAdapter);
+        adapter = new CityAdapter(dataList, activity);
+        binding.spCity.setAdapter(adapter);
+
+        getCities();
+
+        binding.spCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    city_id = "";
+                    signUpModel.setCity_id(city_id);
+                    binding.setSignUpModel(signUpModel);
+                } else {
+                    city_id = String.valueOf(dataList.get(i).getId());
+                    signUpModel.setCity_id(city_id);
+                    binding.setSignUpModel(signUpModel);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         binding.spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -113,8 +145,79 @@ binding.spType.setAdapter(filterAdapter);
 
 
     }
+    private void updateCityAdapter(List<Cities_Model> body) {
+        if (current_language.equals("ar")) {
+            dataList.add(new Cities_Model("إختر المدينه"));
+        } else {
+            dataList.add(new Cities_Model("choose city"));
+        }
+
+        dataList.addAll(body);
+        adapter.notifyDataSetChanged();
+
+    }
+
+    private void getCities() {
+        try {
+            ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
+            dialog.setCancelable(false);
+            dialog.show();
+            Api.getService(Tags.base_url)
+                    .getCity()
+                    .enqueue(new Callback<List<Cities_Model>>() {
+                        @Override
+                        public void onResponse(Call<List<Cities_Model>> call, Response<List<Cities_Model>> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                if (response.body() != null) {
+                                    updateCityAdapter(response.body());
+                                } else {
+                                    Log.e("error", response.code() + "_" + response.errorBody());
+
+                                }
+
+                            } else {
+
+                                try {
+
+                                    Log.e("error", response.code() + "_" + response.errorBody().string());
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                if (response.code() == 500) {
+                                    Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
 
 
+                                } else {
+                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Cities_Model>> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+        }
+
+    }
 
     private void setfiltermodels() {
         filter_model1=new Filter_model();
@@ -210,7 +313,7 @@ binding.spType.setAdapter(filterAdapter);
             dialog.setCancelable(false);
             dialog.show();
             Api.getService(Tags.base_url)
-                    .signUp(signUpModel.getName(),signUpModel.getShop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","1",signUpModel.getGender_id())
+                    .signUp(signUpModel.getName(),signUpModel.getShop_name(),signUpModel.getEmail(),signUpModel.getPassword(),signUpModel.getPhone(),"00974","1",signUpModel.getGender_id(),activity.getResources().getString(R.string.qatar),signUpModel.getCity_id())
                     .enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {

@@ -193,17 +193,16 @@
                 android:textSize="15sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
 
                 android:background="@drawable/linear_underline_shape"
-                android:padding="10dp">
+                android:padding="2dp">
 
                 <Spinner
+                    android:id="@+id/sp_city"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:spinnerMode="dialog"
 
                     >
 
