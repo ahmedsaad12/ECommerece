@@ -3,6 +3,7 @@ package com.elkhelj.ecommerece.services;
 
 import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
+import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 
 import java.util.List;
@@ -53,4 +54,11 @@ public interface Service {
                                    @Field("subject") String subject,
                                    @Field("message") String message
     );
+    @FormUrlEncoded
+    @POST("api/single_product")
+    Call<Single_Adversiment_Model> getSingleAds(
+
+            @Field("product_id") String product_id
+    );
+
 }

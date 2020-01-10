@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
@@ -66,7 +68,7 @@ homeModelList=new ArrayList<>();
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         explore_adapter=new Markets_Adapter(homeModelList,activity);
-binding.recMarket.setLayoutManager(new GridLayoutManager(activity,1));
+binding.recMarket.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
 binding.recMarket.setAdapter(explore_adapter);
 
 
@@ -78,7 +80,7 @@ binding.recMarket.setAdapter(explore_adapter);
         binding.progBar.setVisibility(View.VISIBLE);
 
         Api.getService(Tags.base_url)
-                .getproducts("shops")
+                .getproducts("men")
                 .enqueue(new Callback<List<Home_Model>>() {
                     @Override
                     public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {

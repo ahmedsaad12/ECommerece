@@ -65,5 +65,9 @@
     <string name="account">Account</string>
     <string name="language">Language</string>
     <string name="ch_city">Choose City</string>
+    <string name="product_detials">Product Detials</string>
+    <string name="colors">Colors</string>
+    <string name="add_to_bag">Add To Bag</string>
+    <string name="you_also_like_this">You Also Like This</string>
 
 </resources>
