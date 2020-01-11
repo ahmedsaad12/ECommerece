@@ -46,6 +46,10 @@ public interface Service {
     @POST("api/home")
     Call<List<Home_Model>> getproducts(@Field("key_word") String key_word
     );
+    @FormUrlEncoded
+    @POST("api/home")
+    Call<Home_Model> getproductss(@Field("key_word") String key_word
+    );
 
     @FormUrlEncoded
     @POST("api/contact_us")

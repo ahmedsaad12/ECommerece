@@ -8,6 +8,8 @@ public class Home_Model implements Serializable {
              private String name;
              private String order;
            private List<Products> products;
+           private List<Products> ads;
+           private  List<Categories> categories;
 private String image;
 
     public int getId() {
@@ -24,6 +26,14 @@ private String image;
 
     public List<Products> getProducts() {
         return products;
+    }
+
+    public List<Products> getAds() {
+        return ads;
+    }
+
+    public List<Categories> getCategories() {
+        return categories;
     }
 
     public String getImage() {
@@ -107,6 +117,34 @@ private String image;
 
         public String getSub_category_name() {
             return sub_category_name;
+        }
+    }
+     public class Categories implements Serializable
+    {
+        private int id;
+            private String name;
+            private String super_cat;
+            private String type;
+            private String image;
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getSuper_cat() {
+            return super_cat;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getImage() {
+            return image;
         }
     }
 }

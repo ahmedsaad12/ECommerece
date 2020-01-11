@@ -13,17 +13,17 @@
             type="String" />
 
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
         >
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <TextView
@@ -34,16 +34,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_margin="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name1"
 
                 tools:ignore="RtlCompat" />
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recview1"
+                android:id="@+id/recview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/tv1"
-                android:padding="15dp"
 
                 >
 
@@ -56,14 +52,12 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_margin="15dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name1"
+
 
                 tools:ignore="RtlCompat" />
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
 
                 >
                 <LinearLayout
@@ -96,7 +90,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recMarket"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="15dp"
 
                     >
@@ -118,5 +112,5 @@
         </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

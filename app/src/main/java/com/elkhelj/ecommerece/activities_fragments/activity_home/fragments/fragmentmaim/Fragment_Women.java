@@ -15,10 +15,16 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.adapters.Catogry_Adapter;
 import com.elkhelj.ecommerece.adapters.Markets_Adapter;
+import com.elkhelj.ecommerece.adapters.MenAds_Adapter;
+import com.elkhelj.ecommerece.adapters.Women_Catogry_Adapter;
+import com.elkhelj.ecommerece.adapters.Women_Product_Adapter;
 import com.elkhelj.ecommerece.databinding.FragmentWomenBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
@@ -41,8 +47,10 @@ public class Fragment_Women extends Fragment {
     private FragmentWomenBinding binding;
     private Preferences preferences;
     private UserModel userModel;
-private List<Home_Model> homeModelList;
-private Markets_Adapter explore_adapter;
+    private List<Home_Model.Categories> categoriesList;
+    private Women_Catogry_Adapter catogry_adapter;
+    private List<Home_Model.Products> productsList;
+    private Women_Product_Adapter menAds_adapter;
     public static Fragment_Women newInstance() {
         return new Fragment_Women();
     }
@@ -58,17 +66,20 @@ getECPLORE();
 
 
     private void initView() {
-homeModelList=new ArrayList<>();
+        categoriesList=new ArrayList<>();
+        productsList=new ArrayList<>();
         activity = (HomeStoreActivity) getActivity();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-        explore_adapter=new Markets_Adapter(homeModelList,activity);
-binding.recMarket.setLayoutManager(new GridLayoutManager(activity,1));
-binding.recMarket.setAdapter(explore_adapter);
-
+        catogry_adapter=new Women_Catogry_Adapter(categoriesList,activity,null);
+        menAds_adapter=new Women_Product_Adapter(productsList,activity);
+        binding.recview.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
+        binding.recview.setAdapter(menAds_adapter);
+        binding.recMarket.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
+        binding.recMarket.setAdapter(catogry_adapter);
 
 
 
@@ -78,22 +89,13 @@ binding.recMarket.setAdapter(explore_adapter);
         binding.progBar.setVisibility(View.VISIBLE);
 
         Api.getService(Tags.base_url)
-                .getproducts("shops")
-                .enqueue(new Callback<List<Home_Model>>() {
+                .getproductss("men")
+                .enqueue(new Callback<Home_Model>() {
                     @Override
-                    public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {
+                    public void onResponse(Call<Home_Model> call, Response<Home_Model> response) {
                         binding.progBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null ) {
-                            homeModelList.clear();
-                            homeModelList.addAll(response.body());
-                            explore_adapter.notifyDataSetChanged();
-
-                            if (homeModelList.size() > 0) {
-                                binding.tvNoEvents.setVisibility(View.GONE);
-                            } else {
-                                binding.tvNoEvents.setVisibility(View.VISIBLE);
-
-                            }
+                            update(response.body());
                         } else {
 
                             try {
@@ -112,7 +114,7 @@ binding.recMarket.setAdapter(explore_adapter);
                     }
 
                     @Override
-                    public void onFailure(Call<List<Home_Model>> call, Throwable t) {
+                    public void onFailure(Call<Home_Model> call, Throwable t) {
                         try {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
@@ -128,5 +130,26 @@ binding.recMarket.setAdapter(explore_adapter);
                     }
                 });
     }
+
+    private void update(Home_Model body) {
+        if(body.getCategories()!=null){
+            categoriesList.clear();
+            categoriesList.addAll(body.getCategories());
+            catogry_adapter.notifyDataSetChanged();
+
+        }
+        if(body.getAds()!=null){
+            productsList.clear();
+            productsList.addAll(body.getAds());
+            menAds_adapter.notifyDataSetChanged();
+            if (productsList.size() > 0) {
+                binding.tvNoEvents.setVisibility(View.GONE);
+            } else {
+                binding.tvNoEvents.setVisibility(View.VISIBLE);
+
+            }}
+
+    }
+
 
 }
