@@ -50,7 +50,10 @@ public interface Service {
     @POST("api/home")
     Call<Home_Model> getproductss(@Field("key_word") String key_word
     );
-
+    @FormUrlEncoded
+    @POST("api/filter_shop_name")
+    Call<List<Home_Model>> getSHOPS(@Field("key_word") String key_word
+    );
     @FormUrlEncoded
     @POST("api/contact_us")
     Call<ResponseBody> sendContact(@Field("name") String name,

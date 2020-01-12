@@ -3,10 +3,12 @@ package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.frag
 import android.app.Dialog;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,7 @@ import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
+import com.elkhelj.ecommerece.share.Common;
 import com.elkhelj.ecommerece.tags.Tags;
 
 import java.io.IOException;
@@ -43,6 +46,8 @@ public class Fragment_Shops extends Fragment {
     private UserModel userModel;
 private List<Home_Model> homeModelList;
 private Markets_Adapter explore_adapter;
+    private String query;
+
     public static Fragment_Shops newInstance() {
         return new Fragment_Shops();
     }
@@ -69,6 +74,21 @@ homeModelList=new ArrayList<>();
 binding.recMarket.setLayoutManager(new GridLayoutManager(activity,2));
 binding.recMarket.setAdapter(explore_adapter);
 
+        binding.edtSearch.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                query = binding.edtSearch.getText().toString();
+                if (!TextUtils.isEmpty(query)) {
+                    Common.CloseKeyBoard(activity,binding.edtSearch);
+                    getECPLORE(query);
+                    return false;
+                }
+                else {
+                        getECPLORE();
+                return false;
+                }
+            }
+            return false;
+        });
 
 
 
@@ -128,5 +148,59 @@ binding.recMarket.setAdapter(explore_adapter);
                     }
                 });
     }
+    private void getECPLORE(String search)
+    {
+        binding.progBar.setVisibility(View.VISIBLE);
 
+        Api.getService(Tags.base_url)
+                .getSHOPS(search)
+                .enqueue(new Callback<List<Home_Model>>() {
+                    @Override
+                    public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {
+                        binding.progBar.setVisibility(View.GONE);
+                        if (response.isSuccessful() && response.body() != null ) {
+                            homeModelList.clear();
+                            homeModelList.addAll(response.body());
+                            explore_adapter.notifyDataSetChanged();
+
+                            if (homeModelList.size() > 0) {
+                                binding.tvNoEvents.setVisibility(View.GONE);
+                            } else {
+                                binding.tvNoEvents.setVisibility(View.VISIBLE);
+
+                            }
+                        } else {
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 500) {
+                                Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Home_Model>> call, Throwable t) {
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+    }
 }
