@@ -115,6 +115,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_logo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -124,7 +125,7 @@
                         >
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="130dp"
-                            android:layout_height="130dp"
+                            android:layout_height="100dp"
                             android:layout_gravity="center"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
@@ -149,6 +150,7 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+
                         android:padding="15dp"
                         >
                         <TextView
@@ -169,13 +171,15 @@
                             />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/llfolow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/likes"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:padding="15dp"
+app:layout_constraintStart_toEndOf="@+id/ll_logo"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias=".9"
                         >
                         <TextView
                             android:layout_width="wrap_content"
@@ -201,6 +205,7 @@
                     android:layout_height="wrap_content">
 
                     <LinearLayout
+                        android:id="@+id/ll_rate"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -228,12 +233,83 @@
                             app:srb_fillColor="@color/colorPrimary"
                             app:srb_numberOfStars="5"
                             app:srb_starBackgroundColor="@color/white"
-                            app:srb_starBorderWidth="3"
-                            app:srb_starSize="25dp"
+                            app:srb_starBorderWidth="1"
+                            app:srb_starSize="10dp"
                             app:srb_starsSeparation="10dp"
                             app:srb_stepSize=".5"
                             android:background="@drawable/rec_shape"
                             android:padding="5dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ll_rate"
+                        android:padding="15dp"
+                        >
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/ic_user"
+                            android:layout_gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/following"
+                            android:textSize="17sp"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintStart_toEndOf="@+id/follow"                        android:padding="15dp"
+                        >
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/ic_share"
+                            android:layout_gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/share"
+                            android:textSize="17sp"
+                            android:textColor="@color/black"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintStart_toEndOf="@+id/like"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:padding="15dp"
+                        >
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="45dp"
+                            android:src="@drawable/ic_share"
+                            android:layout_gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/share"
+                            android:textSize="17sp"
+                            android:textColor="@color/black"
                             />
                     </LinearLayout>
 
