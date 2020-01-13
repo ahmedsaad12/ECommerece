@@ -71,6 +71,8 @@
     <string name="you_also_like_this">You Also Like This</string>
     <string name="news">New</string>
     <string name="trending">Trending</string>
-    <string name="catogry">Catogry</string>
-
+    <string name="share">share</string>
+    <string name="likes">Likes</string>
+    <string name="followers">Followers</string>
+    <string name="rating">Rating</string>
 </resources>
