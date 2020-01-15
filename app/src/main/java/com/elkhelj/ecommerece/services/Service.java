@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.services;
 
 
+import com.elkhelj.ecommerece.models.Add_Order_Model;
 import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -67,5 +69,6 @@ public interface Service {
 
             @Field("product_id") String product_id
     );
-
+    @POST("api/order/add")
+    Call<ResponseBody> accept_orders(@Body Add_Order_Model add_order_model);
 }

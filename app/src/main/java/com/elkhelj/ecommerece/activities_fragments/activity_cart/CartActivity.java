@@ -14,20 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.creative.share.apps.ebranch.R;
-import com.creative.share.apps.ebranch.activities_fragments.activity_copoun.CopounActivity;
-import com.creative.share.apps.ebranch.activities_fragments.activity_map.MapActivity;
-import com.creative.share.apps.ebranch.adapters.Cart_Adapter;
-import com.creative.share.apps.ebranch.databinding.ActivityCartBinding;
-import com.creative.share.apps.ebranch.interfaces.Listeners;
-import com.creative.share.apps.ebranch.language.LanguageHelper;
-import com.creative.share.apps.ebranch.models.Add_Order_Model;
-import com.creative.share.apps.ebranch.models.SelectedLocation;
-import com.creative.share.apps.ebranch.models.UserModel;
-import com.creative.share.apps.ebranch.preferences.Preferences;
-import com.creative.share.apps.ebranch.remote.Api;
-import com.creative.share.apps.ebranch.share.Common;
-import com.creative.share.apps.ebranch.tags.Tags;
+
+import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.adapters.Cart_Adapter;
+import com.elkhelj.ecommerece.databinding.ActivityCartBinding;
+import com.elkhelj.ecommerece.interfaces.Listeners;
+import com.elkhelj.ecommerece.language.LanguageHelper;
+import com.elkhelj.ecommerece.models.Add_Order_Model;
+import com.elkhelj.ecommerece.models.Orders_Cart_Model;
+import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.preferences.Preferences;
+import com.elkhelj.ecommerece.remote.Api;
+import com.elkhelj.ecommerece.share.Common;
+import com.elkhelj.ecommerece.tags.Tags;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,12 +45,9 @@ public class CartActivity extends AppCompatActivity implements Listeners.BackLis
     private Preferences preferences;
     private UserModel userModel;
     private String lang;
-private List<Add_Order_Model.Products> order_details;
+private List<Orders_Cart_Model> order_details;
 private Cart_Adapter cart_adapter;
 private double totalcost;
-    private Add_Order_Model add_order_model;
-    private SelectedLocation selectedLocation;
-    private String copun="";
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -73,16 +69,14 @@ getorders();
     private void getorders() {
         if(preferences.getUserOrder(this)!=null){
             order_details.clear();
-            order_details.addAll(preferences.getUserOrder(this).getProducts());
+            order_details.addAll(preferences.getUserOrder(this));
             cart_adapter.notifyDataSetChanged();
         gettotal();
         }
         else {
             binding.llNoStore.setVisibility(View.VISIBLE);
-            binding.radio.setVisibility(View.GONE);
             binding.tvTotal.setVisibility(View.GONE);
             binding.btCom.setVisibility(View.GONE);
-            binding.tvcopon.setVisibility(View.GONE);
 
         }
     }
@@ -90,7 +84,7 @@ getorders();
     private void gettotal() {
         double total=0;
         for(int i=0;i<order_details.size();i++){
-            total+=order_details.get(i).getTotal_price();
+            total+=Double.parseDouble(order_details.get(i).getPrice());
         }
         totalcost=total;
         binding.tvTotal.setText(getResources().getString(R.string.total)+total+"");
@@ -116,122 +110,66 @@ binding.btCom.setOnClickListener(new View.OnClickListener() {
             checkdata();
         }
         else {
-            Common.CreateNoSignAlertDialog(CartActivity.this);
+           // Common.CreateNoSignAlertDialog(CartActivity.this);
         }
     }
 });
-binding.tvcopon.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        copun();
-    }
-});
+
     }
 
     private void checkdata() {
-         add_order_model=preferences.getUserOrder(this);
-           add_order_model.setUser_id(userModel.getId());
-           add_order_model.setTotal_cost(totalcost);
-           if(binding.rBranch.isChecked()){
-               add_order_model.setOrder_type(3);
-           }
-           else if(binding.rHome.isChecked()){
-               add_order_model.setOrder_type(1);
-           }
-        selectlocation();
+        Add_Order_Model order_model=new Add_Order_Model();
 
+if(preferences.getUserOrder(this)!=null){
+    order_model.setUser_id(userModel.getId());
+    order_model.setOrder_detials(preferences.getUserOrder(this));
+}
+
+accept_order(order_model);
     }
 
 
     public void removeitem(int layoutPosition) {
         order_details.remove(layoutPosition);
         if(order_details.size()>0){
-            Add_Order_Model add_order_model=preferences.getUserOrder(this);
-            add_order_model.setProducts(order_details);
-            preferences.create_update_order(this,add_order_model);
+
+            preferences.create_update_order(this,order_details);
             gettotal();
         }
         else {
             preferences.create_update_order(this,null);
             binding.llNoStore.setVisibility(View.VISIBLE);
-            binding.radio.setVisibility(View.GONE);
             binding.tvTotal.setVisibility(View.GONE);
             binding.btCom.setVisibility(View.GONE);
-            binding.tvcopon.setVisibility(View.GONE);
 
         }
 
         cart_adapter.notifyDataSetChanged();
 
     }
-    public void additem(int layoutPosition) {
-        Add_Order_Model.Products products1 =order_details.get(layoutPosition);
-products1.setTotal_price((products1.getTotal_price()/ products1.getAmount())*(products1.getAmount()+1));
+    public void additem(int layoutPosition, int i) {
+        Orders_Cart_Model products1 =order_details.get(layoutPosition);
+products1.setPrice(((Double.parseDouble(products1.getPrice())/ products1.getAmount())*(i))+"");
         products1.setAmount(products1.getAmount()+1);
         order_details.remove(layoutPosition);
         order_details.add(layoutPosition, products1);
-        Add_Order_Model add_order_model=preferences.getUserOrder(this);
-        add_order_model.setProducts(order_details);
-        preferences.create_update_order(this,add_order_model);
+
+        preferences.create_update_order(this,order_details);
         cart_adapter.notifyDataSetChanged();
         gettotal();
-    }
-    public void minusitem(int layoutPosition) {
-
-        Add_Order_Model.Products products1 =order_details.get(layoutPosition);
-        if(products1.getAmount()>1){
-        products1.setTotal_price((products1.getTotal_price()/ products1.getAmount())*(products1.getAmount()-1));
-        products1.setAmount(products1.getAmount()-1);
-        order_details.remove(layoutPosition);
-        order_details.add(layoutPosition, products1);
-        Add_Order_Model add_order_model=preferences.getUserOrder(this);
-        add_order_model.setProducts(order_details);
-        preferences.create_update_order(this,add_order_model);
-        cart_adapter.notifyDataSetChanged();
-            gettotal();
-
-        }
     }
 
     @Override
     public void back() {
         finish();
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("location")) {
-                selectedLocation = (SelectedLocation) data.getSerializableExtra("location");
 
-                add_order_model.setAddress(selectedLocation.getAddress());
-                add_order_model.setLatitude(selectedLocation.getLat());
-                add_order_model.setLongitude(selectedLocation.getLng());
-                add_order_model.setCoupon_serial(copun);
-
-accept_order();
-            }
-        }
-        else  if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            if (data.hasExtra("copun")) {
-                copun = data.getStringExtra("copun");
-
-
-            }
-        }
-
-    }
-
-    public void selectlocation() {
-        Intent intent = new Intent(CartActivity.this, MapActivity.class);
-        startActivityForResult(intent, 1);
-    }
-    private void accept_order() {
+    private void accept_order(Add_Order_Model order_model) {
 
         final ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
-        Api.getService(Tags.base_url).accept_orders(add_order_model).enqueue(new Callback<ResponseBody>() {
+        Api.getService(Tags.base_url).accept_orders(order_model).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -242,7 +180,7 @@ showorders();
 
                   //  activity.refresh(Send_Data.getType());
                 } else {
-                    Common.CreateDialogAlert(CartActivity.this, getString(R.string.failed));
+                  //  Common.CreateDialogAlert(CartActivity.this, getString(R.string.failed));
 
                     try {
                         Log.e("Error_code", response.code() + "_" + response.errorBody().string());
@@ -270,19 +208,11 @@ showorders();
         order_details.clear();
         cart_adapter.notifyDataSetChanged();
         binding.llNoStore.setVisibility(View.VISIBLE);
-        binding.radio.setVisibility(View.GONE);
         binding.tvTotal.setVisibility(View.GONE);
         binding.btCom.setVisibility(View.GONE);
-        binding.tvcopon.setVisibility(View.GONE);
-      Common.CreateDialogAlert2(this,getResources().getString(R.string.suc));
+    //  Common.CreateDialogAlert2(this,getResources().getString(R.string.suc));
     }
 
 
-    public void copun() {
-        Intent intent = new Intent(CartActivity.this, CopounActivity.class);
-        add_order_model=preferences.getUserOrder(this);
-        intent.putExtra("marketid",add_order_model.getMarket_id()+"");
 
-        startActivityForResult(intent, 2);
-    }
 }

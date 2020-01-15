@@ -158,6 +158,7 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
 orders_cart_model.setPrice(single_adversiment_model.getProducts().getPrice());
 orders_cart_model.setName(single_adversiment_model.getProducts().getName());
 orders_cart_model.setProduct_id(single_adversiment_model.getProducts().getId());
+orders_cart_model.setAmount(1);
 orders_cart_models.add(orders_cart_model);
 preferences.create_update_order(this,orders_cart_models);
     }

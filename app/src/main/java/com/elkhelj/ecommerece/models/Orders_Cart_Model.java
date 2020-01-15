@@ -13,7 +13,7 @@ public class Orders_Cart_Model implements Serializable {
    private int size_id;
    private String color_name;
    private String size_name;
-
+private int amount;
     public String getName() {
         return name;
     }
@@ -76,6 +76,14 @@ public class Orders_Cart_Model implements Serializable {
 
     public void setSize_name(String size_name) {
         this.size_name = size_name;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
 

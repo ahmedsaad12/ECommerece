@@ -4,16 +4,20 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.creative.share.apps.ebranch.R;
-import com.creative.share.apps.ebranch.activities_fragments.activity_cart.CartActivity;
-import com.creative.share.apps.ebranch.databinding.CartRowBinding;
-import com.creative.share.apps.ebranch.models.Add_Order_Model;
 
+import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_cart.CartActivity;
+import com.elkhelj.ecommerece.databinding.CartRowBinding;
+import com.elkhelj.ecommerece.models.Orders_Cart_Model;
+import com.elkhelj.ecommerece.models.TypeDataModel;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,12 +25,13 @@ import io.paperdb.Paper;
 
 public class Cart_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Add_Order_Model.Products> orderlist;
+    private List<Orders_Cart_Model> orderlist;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
 private CartActivity cartActivity;
-    public Cart_Adapter(List<Add_Order_Model.Products> orderlist, Context context) {
+
+    public Cart_Adapter(List<Orders_Cart_Model> orderlist, Context context) {
         this.orderlist = orderlist;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -54,7 +59,16 @@ private CartActivity cartActivity;
         EventHolder eventHolder = (EventHolder) holder;
        eventHolder.binding.setLang(lang);
         eventHolder.binding.setModel(orderlist.get(position));
-eventHolder.binding.imageDelete.setOnClickListener(new View.OnClickListener() {
+         List<TypeDataModel.TypeModel> numbModelList;
+        numbModelList = new ArrayList<>();
+        numbModelList.add(new TypeDataModel.TypeModel("اختر عدد دورات المياه"));
+        Spinner_Type_Adapter numAdapter = new Spinner_Type_Adapter(numbModelList, context);
+
+        numbModelList.add(new TypeDataModel.TypeModel("1"));
+        numbModelList.add(new TypeDataModel.TypeModel("2"));
+        numbModelList.add(new TypeDataModel.TypeModel("3"));
+        eventHolder.binding.spinnerType.setAdapter(numAdapter);
+        eventHolder.binding.imageDelete.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if(context instanceof  CartActivity){
@@ -63,22 +77,31 @@ eventHolder.binding.imageDelete.setOnClickListener(new View.OnClickListener() {
         }
     }
 });
-eventHolder.binding.imageIncrease.setOnClickListener(new View.OnClickListener() {
+        eventHolder.binding.spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                if(context instanceof  CartActivity){
+                    cartActivity=(CartActivity)context;
+                    cartActivity.additem(eventHolder.getLayoutPosition(),i+1);
+                }
+
+
+
+                //  Log.e("cc",city_id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        eventHolder.binding.spinnerType.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        if(context instanceof  CartActivity){
-            cartActivity=(CartActivity)context;
-            cartActivity.additem(eventHolder.getLayoutPosition());
-        }
-    }
-});
-eventHolder.binding.imageDecrease.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        if(context instanceof  CartActivity){
-            cartActivity=(CartActivity)context;
-            cartActivity.minusitem(eventHolder.getLayoutPosition());
-        }
+
     }
 });
     }

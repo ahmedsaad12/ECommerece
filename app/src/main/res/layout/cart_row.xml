@@ -163,6 +163,48 @@ android:layout_marginLeft="8dp"
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:layout_gravity="end"
+        app:el_duration="500"
+        app:el_expanded="false"
+        app:el_parallax=".5"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/delete"
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/imageDelete"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="7dp"
+                android:src="@drawable/ic_delete"
+                android:tint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
