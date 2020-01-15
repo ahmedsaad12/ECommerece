@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
 import com.elkhelj.ecommerece.databinding.ColorRowBinding;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 
@@ -31,15 +32,15 @@ public class ColorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    int index = -1;
-
-    public ColorsAdapter(List<Single_Adversiment_Model.Colors> orderModelList, Context context, Fragment fragment) {
+    int index = 0;
+private AdsDetialsActivity adsDetialsActivity;
+    public ColorsAdapter(List<Single_Adversiment_Model.Colors> orderModelList, Context context) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
+adsDetialsActivity=(AdsDetialsActivity)context;
     }
 
     @NonNull
@@ -65,6 +66,22 @@ public class ColorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             draw.setShape(GradientDrawable.OVAL);
             draw.setColor(Color.parseColor(order_orderModel.getColor().replace(" ","")));
             eventHolder.binding.image.setBackground(draw);
+            eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    index=eventHolder.getLayoutPosition();
+                    adsDetialsActivity.setcolor(orderModelList.get(index));
+                    notifyDataSetChanged();
+                }
+            });
+            if(index==position){
+                eventHolder.binding.image.setBackground(context.getResources().getDrawable(R.drawable.ic_check));
+
+            }else {
+                draw.setShape(GradientDrawable.OVAL);
+                draw.setColor(Color.parseColor(order_orderModel.getColor().replace(" ","")));
+                eventHolder.binding.image.setBackground(draw);
+            }
         }
     }
 

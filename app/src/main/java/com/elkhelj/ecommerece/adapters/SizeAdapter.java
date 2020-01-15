@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
 import com.elkhelj.ecommerece.databinding.ColorRowBinding;
 import com.elkhelj.ecommerece.databinding.SizeRowBinding;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
@@ -26,15 +28,15 @@ public class SizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    int index = -1;
-
-    public SizeAdapter(List<Single_Adversiment_Model.Sizes> orderModelList, Context context, Fragment fragment) {
+    int index = 0;
+private AdsDetialsActivity adsDetialsActivity;
+    public SizeAdapter(List<Single_Adversiment_Model.Sizes> orderModelList, Context context) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
+adsDetialsActivity=(AdsDetialsActivity)context;
     }
 
     @NonNull
@@ -55,7 +57,16 @@ public class SizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         {
         EventHolder eventHolder = (EventHolder) holder;
         eventHolder.binding.setSizemodel(order_orderModel);
-
+eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        index=eventHolder.getLayoutPosition();
+        notifyDataSetChanged();
+    }
+});
+if(index==position){
+adsDetialsActivity.setsize(orderModelList.get(index));
+}
         }
     }
 

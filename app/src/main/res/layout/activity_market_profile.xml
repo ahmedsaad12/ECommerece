@@ -253,7 +253,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_user"
+                            android:src="@drawable/ic_userplus"
                             android:layout_gravity="center"
                             />
 
@@ -276,7 +276,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_share"
+                            android:src="@drawable/ic_like"
                             android:layout_gravity="center"
                             />
 
@@ -300,7 +300,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                         <ImageView
                             android:layout_width="35dp"
                             android:layout_height="45dp"
-                            android:src="@drawable/ic_share"
+                            android:src="@drawable/ic_comment"
                             android:layout_gravity="center"
                             />
 

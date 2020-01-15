@@ -162,7 +162,7 @@ app:layout_constraintBottom_toBottomOf="parent"
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <FrameLayout
-                    android:id="@+id/fr_logout"
+                    android:id="@+id/fr_addcart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"

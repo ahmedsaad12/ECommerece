@@ -81,16 +81,16 @@ binding.tvForget.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public void checkDataLogin( String phone, String password) {
-        phone=     String.format(Locale.ENGLISH, "%d", Integer.parseInt(phone));
 
-        if (phone.startsWith("0")) {
-            phone = phone.replaceFirst("0", "");
-        }
-        loginModel = new LoginModel(phone,password);
-        binding.setLoginModel(loginModel);
 
        if (loginModel.isDataValid(activity))
-        {
+        {  phone=     String.format(Locale.ENGLISH, "%d", Integer.parseInt(phone));
+
+            if (phone.startsWith("0")) {
+                phone = phone.replaceFirst("0", "");
+            }
+            loginModel = new LoginModel(phone,password);
+            binding.setLoginModel(loginModel);
 
             login(phone,password);
         }

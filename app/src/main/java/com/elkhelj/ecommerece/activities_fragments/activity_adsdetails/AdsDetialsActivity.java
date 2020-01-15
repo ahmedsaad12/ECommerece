@@ -27,6 +27,7 @@ import com.elkhelj.ecommerece.adapters.SizeAdapter;
 import com.elkhelj.ecommerece.databinding.ActivityProductDetialsBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
+import com.elkhelj.ecommerece.models.Orders_Cart_Model;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -65,6 +66,9 @@ private SizeAdapter sizeAdapter;
     private Single_Adversiment_Model single_adversiment_model;
 private List<Single_Adversiment_Model.Colors> colorsList;
 private List<Single_Adversiment_Model.Sizes> sizesList;
+    private Single_Adversiment_Model.Colors colors;
+    private Single_Adversiment_Model.Sizes sizes;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -118,8 +122,8 @@ sizesList=new ArrayList<>();
         binding.setLang(lang);
         binding.setBackListener(this);
 
-colorsAdapter=new ColorsAdapter(colorsList,this,null);
-sizeAdapter=new SizeAdapter(sizesList,this,null);
+colorsAdapter=new ColorsAdapter(colorsList,this);
+sizeAdapter=new SizeAdapter(sizesList,this);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         binding.progBar.setVisibility(View.GONE);
@@ -127,6 +131,35 @@ binding.recColor.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HOR
 binding.recColor.setAdapter(colorsAdapter);
 binding.recSize.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
 binding.recSize.setAdapter(sizeAdapter);
+binding.frAddcart.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        if(colors!=null&&sizes!=null){
+            addtocart();
+        }
+    }
+});
+    }
+
+    private void addtocart() {
+        List<Orders_Cart_Model> orders_cart_models;
+        if(preferences.getUserOrder(this)!=null){
+            orders_cart_models=preferences.getUserOrder(this);
+        }
+        else {
+            orders_cart_models=new ArrayList<>();
+        }
+        Orders_Cart_Model orders_cart_model=new Orders_Cart_Model();
+        orders_cart_model.setColor_id(colors.getId());
+        orders_cart_model.setColor_name(colors.getName());
+        orders_cart_model.setSize_id(sizes.getId());
+        orders_cart_model.setSize_name(sizes.getName());
+        orders_cart_model.setImage(single_adversiment_model.getProducts().getImage());
+orders_cart_model.setPrice(single_adversiment_model.getProducts().getPrice());
+orders_cart_model.setName(single_adversiment_model.getProducts().getName());
+orders_cart_model.setProduct_id(single_adversiment_model.getProducts().getId());
+orders_cart_models.add(orders_cart_model);
+preferences.create_update_order(this,orders_cart_models);
     }
 
 
@@ -213,4 +246,11 @@ dialog.dismiss();
         finish();
     }
 
+    public void setcolor(Single_Adversiment_Model.Colors colors) {
+        this.colors=colors;
+    }
+
+    public void setsize(Single_Adversiment_Model.Sizes sizes) {
+        this.sizes=sizes;
+    }
 }
