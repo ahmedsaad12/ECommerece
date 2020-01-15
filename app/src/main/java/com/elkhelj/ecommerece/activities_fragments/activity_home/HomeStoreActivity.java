@@ -46,11 +46,6 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private Fragment_Wishlist fragment_wishlist;
     private Preferences preferences;
     private UserModel userModel;
-    private BottomSheetBehavior behavior;
-    private View root;
-    private Button btnNearby, btnFurthest, btnWithImage, btcancel, btfilter;
-    private Spinner spinner;
-    private String lat="0.0", lng="0.0";
     private Fragment_Shop_Profile fragment_shop_profile;
 
     @Override
