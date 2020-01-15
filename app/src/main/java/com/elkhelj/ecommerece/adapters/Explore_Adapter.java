@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Explore;
 import com.elkhelj.ecommerece.databinding.HomeBrandRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 
@@ -27,13 +28,14 @@ public class Explore_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private LayoutInflater inflater;
     private String lang;
     private int i = 0;
-    public Explore_Adapter(List<Home_Model> orderlist, Context context) {
+    private Fragment_Explore fragment_explore;
+    public Explore_Adapter(List<Home_Model> orderlist, Context context, Fragment_Explore fragment_explore) {
         this.orderlist = orderlist;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
+this.fragment_explore=fragment_explore;
     }
 
     @NonNull
@@ -55,6 +57,12 @@ public class Explore_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 Explore_Product_Adapter explore_product_adapter=new Explore_Product_Adapter(orderlist.get(position).getProducts(),context);
         ((EventHolder) eventHolder).binding.recview1.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
         ((EventHolder) eventHolder).binding.recview1.setAdapter(explore_product_adapter);
+        eventHolder.binding.tvView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+fragment_explore.DisplayDepartmentMarket(orderlist.get(eventHolder.getLayoutPosition()));
+            }
+        });
     }
 
     @Override

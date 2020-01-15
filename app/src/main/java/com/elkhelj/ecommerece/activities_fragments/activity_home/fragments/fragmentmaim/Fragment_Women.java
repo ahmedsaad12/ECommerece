@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.Catogry_Adapter;
-import com.elkhelj.ecommerece.adapters.Markets_Adapter;
 import com.elkhelj.ecommerece.adapters.MenAds_Adapter;
 import com.elkhelj.ecommerece.adapters.Women_Catogry_Adapter;
 import com.elkhelj.ecommerece.adapters.Women_Product_Adapter;

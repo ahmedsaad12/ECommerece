@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_showall_products.AllProductActivity;
 import com.elkhelj.ecommerece.adapters.Explore_Adapter;
 import com.elkhelj.ecommerece.databinding.FragmentExploreBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
@@ -65,7 +67,7 @@ homeModelList=new ArrayList<>();
         Paper.init(activity);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-        explore_adapter=new Explore_Adapter(homeModelList,activity);
+        explore_adapter=new Explore_Adapter(homeModelList,activity,this);
 binding.recView.setLayoutManager(new GridLayoutManager(activity,1));
 binding.recView.setAdapter(explore_adapter);
 
@@ -128,5 +130,9 @@ binding.recView.setAdapter(explore_adapter);
                     }
                 });
     }
-
+    public void DisplayDepartmentMarket(Home_Model data) {
+        Intent intent=new Intent(activity, AllProductActivity.class);
+        intent.putExtra("cat",data);
+        startActivity(intent);
+    }
 }

@@ -76,4 +76,6 @@
     <string name="followers">Followers</string>
     <string name="rating">Rating</string>
     <string name="total">Total</string>
+    <string name="no_products_to_display">No Products To Display</string>
+    <string name="products">Products</string>
 </resources>
