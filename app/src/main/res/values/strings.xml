@@ -78,4 +78,20 @@
     <string name="total">Total</string>
     <string name="no_products_to_display">No Products To Display</string>
     <string name="products">Products</string>
+    <string name="color1">Color</string>
+    <string name="size1">Size</string>
+    <string name="complete">Complete</string>
+    <string name="cart">Cart</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="more">More</string>
+    <string name="please_sign_in_or_sign_up">Please Sign In or Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_color">Choose Color</string>
+    <string name="choose_size">Choose Size</string>
+
 </resources>

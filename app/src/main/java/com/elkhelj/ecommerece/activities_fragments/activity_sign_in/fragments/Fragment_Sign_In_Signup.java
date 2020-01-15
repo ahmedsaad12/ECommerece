@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class Fragment_Sign_In_Signup extends Fragment  {
         Paper.init(activity);
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(current_language);
+        binding.tvsignup.setPaintFlags(binding.tvsignup.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
 binding.btnLogin.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -50,6 +52,7 @@ binding.btnLogin.setOnClickListener(new View.OnClickListener() {
         activity.DisplayFragmentSignIn();
     }
 });
+
 binding.tvsignup.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {

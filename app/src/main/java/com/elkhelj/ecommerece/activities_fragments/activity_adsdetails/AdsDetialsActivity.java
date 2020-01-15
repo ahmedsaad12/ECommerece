@@ -137,6 +137,13 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
         if(colors!=null&&sizes!=null){
             addtocart();
         }
+        else {
+            if(colors==null){
+                Toast.makeText(AdsDetialsActivity.this,getResources().getString(R.string.choose_color),Toast.LENGTH_LONG).show();
+            }
+         if(sizes==null){
+            Toast.makeText(AdsDetialsActivity.this,getResources().getString(R.string.choose_size),Toast.LENGTH_LONG).show();
+        }}
     }
 });
     }

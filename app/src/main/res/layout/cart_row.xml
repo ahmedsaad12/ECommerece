@@ -57,7 +57,7 @@ android:layout_marginLeft="8dp"
                     android:layout_width="90dp"
                     android:layout_height="95dp"
                     android:src="@drawable/logo"
-                    serviceImage="@{model.image}"
+                    image="@{model.image}"
 
                     />
 
@@ -129,7 +129,7 @@ android:layout_marginLeft="8dp"
                         android:textSize="14sp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text='@{@string/size(model.size_name)+"   "+"|"+@string/color(model.color_name)}'
+                        android:text='@{@string/size1(model.size_name)+"   "+"|"+@string/color1(model.color_name)}'
 
                         />
 

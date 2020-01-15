@@ -159,6 +159,8 @@ binding.recMarket.setAdapter(explore_adapter);
                     public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {
                         binding.progBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null ) {
+                            Log.e("error", response.code() + "_" + response.body().size());
+
                             homeModelList.clear();
                             homeModelList.addAll(response.body());
                             explore_adapter.notifyDataSetChanged();

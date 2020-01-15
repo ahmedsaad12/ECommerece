@@ -84,12 +84,12 @@ private Home_Model data;
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
 markets_adapter=new Explore_Product_Adapter(usersList,this);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-
+binding.progBar.setVisibility(View.GONE);
 binding.recMarket.setItemViewCacheSize(25);
 binding.recMarket.setDrawingCacheEnabled(true);
 binding.recMarket.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-        binding.recMarket.setLayoutManager(new GridLayoutManager(this,1));
+        binding.recMarket.setLayoutManager(new GridLayoutManager(this,2));
         binding.recMarket.setAdapter(markets_adapter);
 binding.setLang(lang);
 binding.setBackListener(this);

@@ -1,12 +1,10 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +18,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_CallUs;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_More;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Main;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Wishlist;
@@ -30,18 +28,24 @@ import com.elkhelj.ecommerece.databinding.ActivityHomeBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.elkhelj.ecommerece.remote.Api;
+import com.elkhelj.ecommerece.share.Common;
+import com.elkhelj.ecommerece.tags.Tags;
 
 import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeStoreActivity extends AppCompatActivity  {
     private ActivityHomeBinding binding;
     private FragmentManager fragmentManager;
     private Fragment_Main fragment_main;
-    private Fragment_CallUs fragment_callUs;
+    private Fragment_More fragment_more;
     private Fragment_Following fragment_following;
     private Fragment_Wishlist fragment_wishlist;
     private Preferences preferences;
@@ -89,8 +93,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.search), R.drawable.ic_search);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.wish), R.drawable.ic_nav_wish);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.call_us), R.drawable.ic_nav_web);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 
         binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
         binding.ahBottomNav.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.white));
@@ -119,7 +123,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
                     }
                     else {
-                       // Common.CreateNoSignAlertDialog(this);
+                        Common.CreateNoSignAlertDialog(this);
                     }
                     break;
                 case 2:
@@ -128,22 +132,24 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     if(userModel!=null){
                     }
                     else {
-                       // Common.CreateNoSignAlertDialog(this);
+                       Common.CreateNoSignAlertDialog(this);
 
                     }
                     break;
                 case 3:
-                    displayFragmentCallus();
-                    break;
-                case 4:
-                    displayFragmentprofile();
 
                     if(userModel!=null){
-                    }
-                    else {
-                        // Common.CreateNoSignAlertDialog(this);
+                        displayFragmentprofile();
 
                     }
+                    else {
+                        Common.CreateNoSignAlertDialog(this);
+
+                    }
+                    break;
+                case 4:
+                    displayFragmentMore();
+
                     break;
 
             }
@@ -164,8 +170,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 fragment_main = Fragment_Main.newInstance();
             }
 
-            if (fragment_callUs != null && fragment_callUs.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            if (fragment_more != null && fragment_more.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
             if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
@@ -188,10 +194,10 @@ public class HomeStoreActivity extends AppCompatActivity  {
         }
     }
 
-    private void displayFragmentCallus() {
+    private void displayFragmentMore() {
         try {
-            if (fragment_callUs == null) {
-                fragment_callUs = Fragment_CallUs.newInstance();
+            if (fragment_more == null) {
+                fragment_more = Fragment_More.newInstance();
             }
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
@@ -205,14 +211,14 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
             }
-            if (fragment_callUs.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_callUs).commit();
+            if (fragment_more.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_more).commit();
 
             } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_callUs, "fragment_callUs").addToBackStack("fragment_callUs").commit();
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_more, "fragment_more").addToBackStack("fragment_more").commit();
 
             }
-            updateBottomNavigationPosition(3);
+            updateBottomNavigationPosition(4);
         } catch (Exception e) {
         }
     }
@@ -228,8 +234,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
             }
-            if (fragment_callUs != null && fragment_callUs.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            if (fragment_more != null && fragment_more.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
             if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
@@ -257,8 +263,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
             }
-            if (fragment_callUs != null && fragment_callUs.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            if (fragment_more != null && fragment_more.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
             if (fragment_following != null && fragment_following.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_following).commit();
@@ -285,8 +291,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
             }
-            if (fragment_callUs != null && fragment_callUs.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_callUs).commit();
+            if (fragment_more != null && fragment_more.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
             if (fragment_following != null && fragment_following.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_following).commit();
@@ -298,7 +304,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_shop_profile, "fragment_shop_profile").addToBackStack("fragment_shop_profile").commit();
 
             }
-            updateBottomNavigationPosition(4);
+            updateBottomNavigationPosition(3);
         } catch (Exception e) {
         }
     }
@@ -323,11 +329,46 @@ public class HomeStoreActivity extends AppCompatActivity  {
         if (userModel == null) {
             NavigateToSignInActivity();
         } else {
-           // Logout();
+           Logout();
         }
     }
 
 
+    public void Logout() {
+        final ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+
+        dialog.show();
+        Api.getService(Tags.base_url)
+                .Logout(userModel.getId() + "")
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful()) {
+                            /*new Handler()
+                                    .postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                            manager.cancelAll();
+                                        }
+                                    },1);
+                            userSingleTone.clear(ClientHomeActivity.this);*/
+                            preferences.create_update_userdata(HomeStoreActivity.this, null);
+                            preferences.create_update_session(HomeStoreActivity.this, Tags.session_logout);
+                            Intent intent = new Intent(HomeStoreActivity.this, SignInActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+    }
 
 
     @SuppressLint("RestrictedApi")

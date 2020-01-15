@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.services;
 
 
 import com.elkhelj.ecommerece.models.Add_Order_Model;
+import com.elkhelj.ecommerece.models.App_Data_Model;
 import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
@@ -64,6 +65,11 @@ public interface Service {
                                    @Field("message") String message
     );
     @FormUrlEncoded
+    @POST("api/logout")
+    Call<ResponseBody> Logout(@Field("id") String id
+
+    );
+    @FormUrlEncoded
     @POST("api/single_product")
     Call<Single_Adversiment_Model> getSingleAds(
 
@@ -71,4 +77,9 @@ public interface Service {
     );
     @POST("api/order/add")
     Call<ResponseBody> accept_orders(@Body Add_Order_Model add_order_model);
+    @GET("api/condtions")
+    Call<App_Data_Model> getterms();
+
+    @GET("api/aboutUs")
+    Call<App_Data_Model> getabout();
 }

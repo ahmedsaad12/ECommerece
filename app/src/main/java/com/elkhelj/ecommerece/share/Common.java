@@ -1,10 +1,12 @@
 package com.elkhelj.ecommerece.share;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -13,14 +15,20 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.elkhelj.ecommerece.databinding.DialogCustomBinding;
 
 import java.io.File;
 
@@ -44,6 +52,52 @@ public class Common {
 
 
     }
+    public static void CreateNoSignAlertDialog(Context context) {
+        final AlertDialog dialog = new AlertDialog.Builder(context)
+                .create();
+
+        AppCompatActivity activity = (AppCompatActivity) context;
+        DialogCustomBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_custom, null, false);
+
+        binding.btnSignUp.setOnClickListener((v) -> {
+            dialog.dismiss();
+
+            if (activity instanceof HomeStoreActivity) {
+                HomeStoreActivity homeActivity = (HomeStoreActivity) activity;
+                homeActivity.NavigateToSignInActivity(false);
+            } else {
+                Intent intent = new Intent(context, SignInActivity.class);
+                intent.putExtra("sign_up", false);
+                context.startActivity(intent);
+                ((AppCompatActivity) context).finish();
+            }
+        });
+        binding.btnSignIn.setOnClickListener((v) -> {
+            dialog.dismiss();
+
+            if (activity instanceof HomeStoreActivity) {
+                HomeStoreActivity homeActivity = (HomeStoreActivity) activity;
+                homeActivity.NavigateToSignInActivity(true);
+            } else {
+                Intent intent = new Intent(context, SignInActivity.class);
+                intent.putExtra("sign_up", true);
+                context.startActivity(intent);
+                ((AppCompatActivity) context).finish();
+
+
+            }
+
+        });
+
+        binding.btnCancel.setOnClickListener((v) ->
+                dialog.dismiss()
+
+        );
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setView(binding.getRoot());
+        dialog.show();
+    }
+
 
 
 

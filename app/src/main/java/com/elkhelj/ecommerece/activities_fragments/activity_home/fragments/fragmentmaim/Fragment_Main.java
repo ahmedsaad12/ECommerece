@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_cart.CartActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.ViewPagerAdapter;
 import com.elkhelj.ecommerece.databinding.FragmentMainBinding;
@@ -65,7 +67,13 @@ public class Fragment_Main extends Fragment {
         adapter.addTitles(titles);
         binding.pager.setAdapter(adapter);
 
-
+binding.imageCart.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent  intent=new Intent(activity, CartActivity.class);
+        startActivity(intent);
+    }
+});
         binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
