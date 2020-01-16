@@ -61,7 +61,6 @@ private CartActivity cartActivity;
         eventHolder.binding.setModel(orderlist.get(position));
          List<TypeDataModel.TypeModel> numbModelList;
         numbModelList = new ArrayList<>();
-        numbModelList.add(new TypeDataModel.TypeModel("اختر عدد دورات المياه"));
         Spinner_Type_Adapter numAdapter = new Spinner_Type_Adapter(numbModelList, context);
 
         numbModelList.add(new TypeDataModel.TypeModel("1"));
@@ -98,12 +97,6 @@ private CartActivity cartActivity;
             }
         });
 
-        eventHolder.binding.spinnerType.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-
-    }
-});
     }
 
     @Override
