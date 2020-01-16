@@ -30,6 +30,7 @@ public class Cart_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private LayoutInflater inflater;
     private String lang;
 private CartActivity cartActivity;
+    private ArrayList<TypeDataModel.TypeModel> numbModelList;
 
     public Cart_Adapter(List<Orders_Cart_Model> orderlist, Context context) {
         this.orderlist = orderlist;
@@ -59,7 +60,6 @@ private CartActivity cartActivity;
         EventHolder eventHolder = (EventHolder) holder;
        eventHolder.binding.setLang(lang);
         eventHolder.binding.setModel(orderlist.get(position));
-         List<TypeDataModel.TypeModel> numbModelList;
         numbModelList = new ArrayList<>();
         Spinner_Type_Adapter numAdapter = new Spinner_Type_Adapter(numbModelList, context);
 
