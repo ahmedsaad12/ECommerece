@@ -21,8 +21,7 @@ import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetial
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_More;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Main;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Wishlist;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Following;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Chat;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.elkhelj.ecommerece.databinding.ActivityHomeBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
@@ -46,8 +45,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private FragmentManager fragmentManager;
     private Fragment_Main fragment_main;
     private Fragment_More fragment_more;
-    private Fragment_Following fragment_following;
-    private Fragment_Wishlist fragment_wishlist;
+    private Fragment_Chat fragment_chat;
     private Preferences preferences;
     private UserModel userModel;
     private Fragment_Shop_Profile fragment_shop_profile;
@@ -91,10 +89,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private void setUpBottomNavigation() {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.search), R.drawable.ic_search);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.wish), R.drawable.ic_nav_wish);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_nav_user);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 
         binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
         binding.ahBottomNav.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.white));
@@ -107,7 +104,6 @@ public class HomeStoreActivity extends AppCompatActivity  {
         binding.ahBottomNav.addItem(item2);
         binding.ahBottomNav.addItem(item3);
         binding.ahBottomNav.addItem(item4);
-        binding.ahBottomNav.addItem(item5);
 
 
         updateBottomNavigationPosition(0);
@@ -119,7 +115,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     break;
                 case 1:
                     if(userModel!=null){
-                        displayFragmentFollowing();
+                        displayFragmentprofile();
 
                     }
                     else {
@@ -139,7 +135,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 case 3:
 
                     if(userModel!=null){
-                        displayFragmentprofile();
+                        displayFragmentMore();
 
                     }
                     else {
@@ -147,10 +143,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
                     }
                     break;
-                case 4:
-                    displayFragmentMore();
 
-                    break;
 
             }
             return false;
@@ -176,11 +169,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
             }
-            if (fragment_following != null && fragment_following.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_following).commit();
-            }
-            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+
+            if (fragment_chat != null && fragment_chat.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_chat).commit();
             }
             if (fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().show(fragment_main).commit();
@@ -205,11 +196,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
             }
-            if (fragment_following != null && fragment_following.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_following).commit();
-            }
-            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+
+            if (fragment_chat != null && fragment_chat.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_chat).commit();
             }
             if (fragment_more.isAdded()) {
                 fragmentManager.beginTransaction().show(fragment_more).commit();
@@ -218,44 +207,16 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_more, "fragment_more").addToBackStack("fragment_more").commit();
 
             }
-            updateBottomNavigationPosition(4);
+            updateBottomNavigationPosition(3);
         } catch (Exception e) {
         }
     }
 
-    private void displayFragmentFollowing() {
-        try {
-            if (fragment_following == null) {
-                fragment_following = Fragment_Following.newInstance();
-            }
-            if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
-            }
-            if (fragment_main != null && fragment_main.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_main).commit();
-            }
-            if (fragment_more != null && fragment_more.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_more).commit();
-            }
-            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
-            }
-            if (fragment_following.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_following).commit();
-
-            } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_following, "fragment_following").addToBackStack("fragment_following").commit();
-
-            }
-            updateBottomNavigationPosition(1);
-        } catch (Exception e) {
-        }
-    }
 
     private void displayFragmentWishlist() {
         try {
-            if (fragment_wishlist == null) {
-                fragment_wishlist = Fragment_Wishlist.newInstance();
+            if (fragment_chat == null) {
+                fragment_chat = Fragment_Chat.newInstance();
             }
             if (fragment_shop_profile != null && fragment_shop_profile.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_shop_profile).commit();
@@ -266,14 +227,12 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_more != null && fragment_more.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
-            if (fragment_following != null && fragment_following.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_following).commit();
-            }
-            if (fragment_wishlist.isAdded()) {
-                fragmentManager.beginTransaction().show(fragment_wishlist).commit();
+
+            if (fragment_chat.isAdded()) {
+                fragmentManager.beginTransaction().show(fragment_chat).commit();
 
             } else {
-                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_wishlist, "fragment_wishlist").addToBackStack("fragment_wishlist").commit();
+                fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_chat, "fragment_chat").addToBackStack("fragment_chat").commit();
 
             }
             updateBottomNavigationPosition(2);
@@ -285,8 +244,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_shop_profile == null) {
                 fragment_shop_profile = Fragment_Shop_Profile.newInstance();
             }
-            if (fragment_wishlist != null && fragment_wishlist.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_wishlist).commit();
+            if (fragment_chat != null && fragment_chat.isAdded()) {
+                fragmentManager.beginTransaction().hide(fragment_chat).commit();
             }
             if (fragment_main != null && fragment_main.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_main).commit();
@@ -294,9 +253,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_more != null && fragment_more.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_more).commit();
             }
-            if (fragment_following != null && fragment_following.isAdded()) {
-                fragmentManager.beginTransaction().hide(fragment_following).commit();
-            }
+
             if (fragment_shop_profile.isAdded()) {
                 fragmentManager.beginTransaction().show(fragment_shop_profile).commit();
 
@@ -304,7 +261,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
                 fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_shop_profile, "fragment_shop_profile").addToBackStack("fragment_shop_profile").commit();
 
             }
-            updateBottomNavigationPosition(3);
+            updateBottomNavigationPosition(1);
         } catch (Exception e) {
         }
     }

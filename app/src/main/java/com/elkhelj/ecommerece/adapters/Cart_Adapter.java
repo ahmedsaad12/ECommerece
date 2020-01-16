@@ -32,6 +32,9 @@ public class Cart_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private String lang;
 private CartActivity cartActivity;
     private ArrayList<TypeDataModel.TypeModel> numbModelList;
+    private Spinner_Type_Adapter numAdapter;
+    private ArrayAdapter<String> spinnerArrayAdapter;
+private int index=-1;
 
     public Cart_Adapter(List<Orders_Cart_Model> orderlist, Context context) {
         this.orderlist = orderlist;
@@ -57,43 +60,59 @@ private CartActivity cartActivity;
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
         EventHolder eventHolder = (EventHolder) holder;
        eventHolder.binding.setLang(lang);
         eventHolder.binding.setModel(orderlist.get(position));
+        int index2 [] = new int[orderlist.size()];
+
         numbModelList = new ArrayList<>();
-        Spinner_Type_Adapter numAdapter = new Spinner_Type_Adapter(numbModelList, context);
+        numAdapter = new Spinner_Type_Adapter(numbModelList, context);
 
         numbModelList.add(new TypeDataModel.TypeModel("1"));
         numbModelList.add(new TypeDataModel.TypeModel("2"));
         numbModelList.add(new TypeDataModel.TypeModel("3"));
         String[] array = {"1", "2", "3"};
-
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, array); //selected item will look like a spinner set from XML
+        for (int i = 0; i<numbModelList.size(); i++){
+    if(array[i].equals(orderlist.get(position).getAmount()+"")){
+        index2[position] =i;
+        break;
+    }
+}
+      spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, array); //selected item will look like a spinner set from XML
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        eventHolder.binding.spinnerType.setAdapter(spinnerArrayAdapter);
+        eventHolder.binding.spinnerType.setAdapter(numAdapter);
+        eventHolder.binding.spinnerType.setSelection(index2[position]);
         eventHolder.binding.imageDelete.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if(context instanceof  CartActivity){
             cartActivity=(CartActivity)context;
             cartActivity.removeitem(eventHolder.getLayoutPosition());
+
         }
     }
 });
+        eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                index=eventHolder.getLayoutPosition();
+                notifyDataSetChanged();
+            }
+        });
         eventHolder.binding.spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+if(index2[eventHolder.getLayoutPosition()]!=i){
 
-                if(context instanceof  CartActivity){
-                    cartActivity=(CartActivity)context;
-                    cartActivity.additem(eventHolder.getLayoutPosition(),i+1);
-                }
+    if(context instanceof  CartActivity){
+        cartActivity=(CartActivity)context;
+        cartActivity.additem(eventHolder.getLayoutPosition(),i+1);
+    }
+    index2[eventHolder.getLayoutPosition()] =i;
 
-
+}
 
                 //  Log.e("cc",city_id);
             }
@@ -104,6 +123,17 @@ private CartActivity cartActivity;
             }
         });
 
+
+
+   if(position==index){
+       if(eventHolder.binding.expandLayout.isExpanded())
+       {
+       eventHolder.binding.expandLayout.collapse(true);
+       }
+       else {
+           eventHolder.binding.expandLayout.expand(true);
+       }
+   }
     }
 
     @Override

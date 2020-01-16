@@ -56,7 +56,6 @@ android:background="@color/gray3"
             app:layout_anchorGravity="center_horizontal"
             app:elevation="3dp"
             app:borderWidth="2dp"
-android:visibility="gone"
             />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

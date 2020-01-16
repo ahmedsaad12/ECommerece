@@ -120,7 +120,7 @@
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_map"
+                    android:src="@drawable/ic_nav_wish"
 android:padding="5dp"
                     android:tint="@color/gray3"
 
@@ -134,7 +134,7 @@ android:padding="5dp"
                     android:gravity="start|center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="@string/my_address"
+                    android:text="@string/wish"
                     android:textColor="@color/black"
                     android:textSize="15sp"
 
@@ -184,7 +184,7 @@ android:padding="5dp"
                     android:gravity="start|center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="@string/account"
+                    android:text="@string/my_information"
                     android:textColor="@color/black"
                     android:textSize="15sp"
 
@@ -219,8 +219,82 @@ android:padding="5dp"
         android:layout_height="match_parent"
         android:background="@color/gray2"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp">
 
-        <androidx.cardview.widget.CardView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_user"
+                    android:tint="@color/gray3"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/following"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/gray3"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+
+                    />
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -338,46 +412,7 @@ android:padding="5dp"
                     android:layout_height="1dp"
                     android:background="@color/gray3" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/cons_shape2"
-                    app:layout_constraintTop_toTopOf="parent"
 
-                    >
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="center_vertical" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:gravity="start|center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="@string/user_password"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-
-                        />
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center_vertical"
-                        android:clickable="false"
-                        android:longClickable="false"
-                        android:padding="15dp"
-                        android:src="@drawable/ic_arrow_right"
-                        android:tint="@color/gray3"
-                        android:rotation='@{lang.equals("ar")?180:0}'
-
-                        />
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -421,7 +456,126 @@ android:padding="5dp"
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_nav_notification"
+                    android:tint="@color/gray3"
+                    android:padding="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/mypage"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/gray3"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+
+                    />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/cons_shape2"
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_phone_call"
+                    android:padding="5dp"
+                    android:tint="@color/gray3"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/add_product"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="@color/gray3"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

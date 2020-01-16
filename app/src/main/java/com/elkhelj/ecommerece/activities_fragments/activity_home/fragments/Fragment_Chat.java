@@ -13,28 +13,29 @@ import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.databinding.FragmentChatBinding;
 import com.elkhelj.ecommerece.databinding.FragmentWishlistBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 
-public class Fragment_Wishlist extends Fragment {
+public class Fragment_Chat extends Fragment {
 
     private HomeStoreActivity activity;
-    private FragmentWishlistBinding binding;
+    private FragmentChatBinding binding;
     private Preferences preferences;
     private UserModel userModel;
     private String lang;
 
 
-    public static Fragment_Wishlist newInstance() {
+    public static Fragment_Chat newInstance() {
 
-        return new Fragment_Wishlist();
+        return new Fragment_Chat();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_wishlist, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false);
         initView();
         return binding.getRoot();
     }

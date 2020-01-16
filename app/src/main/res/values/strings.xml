@@ -93,5 +93,10 @@
     <string name="cancel">Cancel</string>
     <string name="choose_color">Choose Color</string>
     <string name="choose_size">Choose Size</string>
+    <string name="Chat">Chat</string>
+    <string name="type_a_message">type a message....</string>
+    <string name="my_information">My InFormation</string>
+    <string name="mypage">My Page</string>
+    <string name="add_product">Add Product</string>
 
 </resources>

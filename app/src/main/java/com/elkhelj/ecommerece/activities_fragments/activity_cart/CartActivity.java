@@ -150,7 +150,7 @@ accept_order(order_model);
     public void additem(int layoutPosition, int i) {
         Orders_Cart_Model products1 =order_details.get(layoutPosition);
 products1.setPrice(((Double.parseDouble(products1.getPrice())/ products1.getAmount())*(i))+"");
-        products1.setAmount(products1.getAmount()+1);
+        products1.setAmount(i);
         order_details.remove(layoutPosition);
         order_details.add(layoutPosition, products1);
 
