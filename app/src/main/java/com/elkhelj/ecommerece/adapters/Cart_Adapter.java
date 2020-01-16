@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -66,7 +67,13 @@ private CartActivity cartActivity;
         numbModelList.add(new TypeDataModel.TypeModel("1"));
         numbModelList.add(new TypeDataModel.TypeModel("2"));
         numbModelList.add(new TypeDataModel.TypeModel("3"));
-        eventHolder.binding.spinnerType.setAdapter(numAdapter);
+        String[] array = {"1", "2", "3"};
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, array); //selected item will look like a spinner set from XML
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        eventHolder.binding.spinnerType.setAdapter(spinnerArrayAdapter);
         eventHolder.binding.imageDelete.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
