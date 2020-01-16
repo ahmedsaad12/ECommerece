@@ -24,13 +24,13 @@ import io.paperdb.Paper;
 public class SizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int ITEM_DATA = 1;
     private final int LOAD = 2;
-    private List<Single_Adversiment_Model.Sizes> orderModelList;
+    private List<Single_Adversiment_Model.Products.Sizes> orderModelList;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
     int index = 0;
 private AdsDetialsActivity adsDetialsActivity;
-    public SizeAdapter(List<Single_Adversiment_Model.Sizes> orderModelList, Context context) {
+    public SizeAdapter(List<Single_Adversiment_Model.Products.Sizes> orderModelList, Context context) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -52,7 +52,7 @@ adsDetialsActivity=(AdsDetialsActivity)context;
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Single_Adversiment_Model.Sizes order_orderModel = orderModelList.get(position);
+        Single_Adversiment_Model.Products.Sizes order_orderModel = orderModelList.get(position);
         if (holder instanceof EventHolder)
         {
         EventHolder eventHolder = (EventHolder) holder;
@@ -88,7 +88,7 @@ adsDetialsActivity.setsize(orderModelList.get(index));
 
     @Override
     public int getItemViewType(int position) {
-        Single_Adversiment_Model.Sizes order_Model = orderModelList.get(position);
+        Single_Adversiment_Model.Products.Sizes order_Model = orderModelList.get(position);
         if (order_Model!=null)
         {
             return ITEM_DATA;

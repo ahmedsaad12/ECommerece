@@ -8,7 +8,7 @@
 
         <variable
             name="sizemodel"
-            type="com.elkhelj.ecommerece.models.Single_Adversiment_Model.Sizes" />
+            type="com.elkhelj.ecommerece.models.Single_Adversiment_Model.Products.Sizes" />
     </data>
 
 

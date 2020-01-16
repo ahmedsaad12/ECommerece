@@ -2,15 +2,11 @@ package com.elkhelj.ecommerece.activities_fragments.activity_adsdetails;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.InputType;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +31,6 @@ import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.share.Common;
 import com.elkhelj.ecommerece.tags.Tags;
 
-import org.androidannotations.annotations.sharedpreferences.Pref;
-import org.intellij.lang.annotations.Language;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +39,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import io.paperdb.Paper;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,10 +56,10 @@ private ColorsAdapter colorsAdapter;
 private SizeAdapter sizeAdapter;
     private SingleAdsSlidingImage_Adapter singleslidingImage__adapter;
     private Single_Adversiment_Model single_adversiment_model;
-private List<Single_Adversiment_Model.Colors> colorsList;
-private List<Single_Adversiment_Model.Sizes> sizesList;
-    private Single_Adversiment_Model.Colors colors;
-    private Single_Adversiment_Model.Sizes sizes;
+private List<Single_Adversiment_Model.Products.Colors> colorsList;
+private List<Single_Adversiment_Model.Products.Sizes> sizesList;
+    private Single_Adversiment_Model.Products.Colors colors;
+    private Single_Adversiment_Model.Products.Sizes sizes;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -161,10 +153,10 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
         orders_cart_model.setColor_name(colors.getName());
         orders_cart_model.setSize_id(sizes.getId());
         orders_cart_model.setSize_name(sizes.getName());
-        orders_cart_model.setImage(single_adversiment_model.getProducts().getImage());
-orders_cart_model.setPrice(single_adversiment_model.getProducts().getPrice());
-orders_cart_model.setName(single_adversiment_model.getProducts().getName());
-orders_cart_model.setProduct_id(single_adversiment_model.getProducts().getId());
+        orders_cart_model.setImage(single_adversiment_model.getProduct().getImage());
+orders_cart_model.setPrice(single_adversiment_model.getProduct().getPrice());
+orders_cart_model.setName(single_adversiment_model.getProduct().getName());
+orders_cart_model.setProduct_id(single_adversiment_model.getProduct().getId());
 orders_cart_model.setAmount(1);
 orders_cart_models.add(orders_cart_model);
 preferences.create_update_order(this,orders_cart_models);
@@ -229,20 +221,20 @@ dialog.dismiss();
 
 
 
-        if(body.getProduct_images()!=null&&body.getProduct_images().size()>0){
-            Log.e("lll",body.getProduct_images().size()+"");
-            NUM_PAGES = body.getProduct_images().size();
-            singleslidingImage__adapter = new SingleAdsSlidingImage_Adapter(this, body.getProduct_images());
+        if(body.getProduct().getProduct_images()!=null&&body.getProduct().getProduct_images().size()>0){
+            Log.e("lll",body.getProduct().getProduct_images().size()+"");
+            NUM_PAGES = body.getProduct().getProduct_images().size();
+            singleslidingImage__adapter = new SingleAdsSlidingImage_Adapter(this, body.getProduct().getProduct_images());
             binding.pager.setAdapter(singleslidingImage__adapter);
         }
-        if(body.getColors()!=null){
+        if(body.getProduct().getColors()!=null){
             colorsList.clear();
-            colorsList.addAll(body.getColors());
+            colorsList.addAll(body.getProduct().getColors());
             colorsAdapter.notifyDataSetChanged();
         }
-        if(body.getSizes()!=null){
+        if(body.getProduct().getSizes()!=null){
             sizesList.clear();
-            sizesList.addAll(body.getSizes());
+            sizesList.addAll(body.getProduct().getSizes());
             sizeAdapter.notifyDataSetChanged();
         }
     }
@@ -254,11 +246,11 @@ dialog.dismiss();
         finish();
     }
 
-    public void setcolor(Single_Adversiment_Model.Colors colors) {
+    public void setcolor(Single_Adversiment_Model.Products.Colors colors) {
         this.colors=colors;
     }
 
-    public void setsize(Single_Adversiment_Model.Sizes sizes) {
+    public void setsize(Single_Adversiment_Model.Products.Sizes sizes) {
         this.sizes=sizes;
     }
 }

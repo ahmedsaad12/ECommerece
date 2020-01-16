@@ -6,7 +6,7 @@
     <data>
         <variable
             name="colormodel"
-            type="com.elkhelj.ecommerece.models.Single_Adversiment_Model.Colors" />
+            type="com.elkhelj.ecommerece.models.Single_Adversiment_Model.Products.Colors" />
 
     </data>
 <LinearLayout

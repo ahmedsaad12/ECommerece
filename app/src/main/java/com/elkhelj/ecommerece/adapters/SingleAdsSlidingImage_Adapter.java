@@ -26,12 +26,12 @@ import java.util.List;
 public class SingleAdsSlidingImage_Adapter extends PagerAdapter {
 
 
-    List<Single_Adversiment_Model.Images> IMAGES;
+    List<Single_Adversiment_Model.Products.Images> IMAGES;
     private LayoutInflater inflater;
      Context context;
 
 private AdsDetialsActivity adsDetialsActivity;
-    public SingleAdsSlidingImage_Adapter(Context context, List<Single_Adversiment_Model.Images> IMAGES) {
+    public SingleAdsSlidingImage_Adapter(Context context, List<Single_Adversiment_Model.Products.Images> IMAGES) {
         this.context = context;
         this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);
