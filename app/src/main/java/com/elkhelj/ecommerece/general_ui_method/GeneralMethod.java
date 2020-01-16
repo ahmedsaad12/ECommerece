@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
+import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.tags.Tags;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -73,10 +74,18 @@ public class GeneralMethod {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MMM", Locale.ENGLISH);
         String m_date = dateFormat.format(new Date(date*1000));
 
+        textView.setText(R.string.date+String.format("%s",m_date));
+
+    }
+    @BindingAdapter({"time"})
+    public static void displayDate2 (TextView textView,long date)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
+        String m_date = dateFormat.format(new Date(date*1000));
+
         textView.setText(String.format("%s",m_date));
 
     }
-
 
     @BindingAdapter("rate")
     public static void rate (SimpleRatingBar simpleRatingBar, double rate)

@@ -53,9 +53,7 @@ binding.setUsermodel(userModel);}
 
 binding.setLang(lang);
 
-if(userModel.getUser_type().equals("1")){
-    binding.card1.setVisibility(View.GONE);
-}
+
     }
 
 

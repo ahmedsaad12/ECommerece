@@ -98,5 +98,9 @@
     <string name="my_information">My InFormation</string>
     <string name="mypage">My Page</string>
     <string name="add_product">Add Product</string>
+    <string name="no_shop_found">No Shop Found</string>
+    <string name="date">Data :</string>
+    <string name="my_orders">My Orders</string>
+    <string name="no_order_to_display">No Order to Display</string>
 
 </resources>

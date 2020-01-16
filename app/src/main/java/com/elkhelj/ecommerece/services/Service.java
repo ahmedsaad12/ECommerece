@@ -5,6 +5,7 @@ import com.elkhelj.ecommerece.models.Add_Order_Model;
 import com.elkhelj.ecommerece.models.App_Data_Model;
 import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
+import com.elkhelj.ecommerece.models.NotificationDataModel;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 
@@ -82,4 +83,9 @@ public interface Service {
 
     @GET("api/aboutUs")
     Call<App_Data_Model> getabout();
+    @FormUrlEncoded
+    @POST("api/my-notifications")
+    Call<NotificationDataModel> getNotifications(@Field("user_id") int user_id,
+                                                 @Field("page") int page
+    );
 }

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="notificationModel"
+            type="com.elkhelj.ecommerece.models.NotificationDataModel.NotificationModel" />
 
     </data>
 <LinearLayout
@@ -66,8 +68,7 @@
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_default="spread"
-            android:text="@string/user_name"
-            />
+date="@{notificationModel.notification_date}"            />
 
         <TextView
             android:id="@+id/tv_msg"
@@ -75,7 +76,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:text="@string/user_phone"
+            time="@{notificationModel.notification_date}"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:gravity="center"
