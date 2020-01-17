@@ -42,6 +42,12 @@
 
             />
         <activity
+            android:name=".activities_fragments.activity_search.FilterActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
             android:name=".activities_fragments.activity_add_ads.CompleteOrderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"

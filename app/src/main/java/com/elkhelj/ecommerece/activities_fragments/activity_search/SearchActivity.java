@@ -38,6 +38,7 @@ import com.elkhelj.ecommerece.tags.Tags;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
@@ -89,7 +90,13 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
         binding.recView.setLayoutManager(new GridLayoutManager(this,1));
         binding.recView.setAdapter(explore_adapter);
 
-
+binding.imfilter.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent(SearchActivity.this,FilterActivity.class);
+        startActivityForResult(intent,1);
+    }
+});
 
         binding.edtSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -167,7 +174,13 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
                 });
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode, resultCode, intent);
+        Bundle extras = intent.getExtras();
+        assert extras != null;
+        homeModelList.addAll((Collection<? extends Wish_Model>) extras.getSerializable("returnKey"));
+    }
 
     @Override
     public void back() {

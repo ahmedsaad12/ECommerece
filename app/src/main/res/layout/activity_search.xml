@@ -102,6 +102,15 @@ android:background="@color/white"
                 </LinearLayout>
 
 
+                <ImageView
+                    android:id="@+id/imfilter"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:clickable="false"
+                    android:longClickable="false"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_filter"
+                    android:tint="@color/colorPrimary" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recView"

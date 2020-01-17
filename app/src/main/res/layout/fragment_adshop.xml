@@ -13,11 +13,13 @@
             type="String" />
 
     </data>
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-android:fillViewport="true"        >
+android:fillViewport="true"
+
+        >
 
 
         <LinearLayout
@@ -217,5 +219,5 @@ android:fillViewport="true"        >
         </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

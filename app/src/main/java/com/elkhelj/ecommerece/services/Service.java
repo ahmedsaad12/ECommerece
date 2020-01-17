@@ -81,6 +81,16 @@ public interface Service {
     Call<List<Wish_Model>> search(@Field("key_word") String key_word
     );
     @FormUrlEncoded
+    @POST("api/search")
+    Call<List<Wish_Model>> search(@Field("brand") String brand,
+                                  @Field("size") String size
+                                  ,
+                                  @Field("price_from") String price_from,
+                                  @Field("price_to") String price_to,
+                                  @Field("category") String category,
+                                  @Field("category_type") String category_type
+    );
+    @FormUrlEncoded
     @POST("api/contact_us")
     Call<ResponseBody> sendContact(@Field("name") String name,
                                    @Field("email") String email,
@@ -98,7 +108,7 @@ public interface Service {
 
             @Field("product_id") String product_id
     );
-    @POST("api/order/add")
+    @POST("api/add_order")
     Call<ResponseBody> accept_orders(@Body Add_Order_Model add_order_model);
     @GET("api/condtions")
     Call<App_Data_Model> getterms();

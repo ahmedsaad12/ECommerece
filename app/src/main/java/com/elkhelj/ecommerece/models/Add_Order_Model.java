@@ -6,19 +6,19 @@ import java.util.List;
 public class Add_Order_Model implements Serializable {
 
 
-    private int user_id;
+    private int form_id;
 
 private String name;
 private String address;
 private String des;
-  private List<Orders_Cart_Model> order_detials;
+  private List<Orders_Cart_Model> orderDetalis;
 
-    public int getUser_id() {
-        return user_id;
+    public int getForm_id() {
+        return form_id;
     }
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        this.form_id = user_id;
     }
 
     public String getName() {
@@ -45,11 +45,11 @@ private String des;
         this.des = des;
     }
 
-    public List<Orders_Cart_Model> getOrder_detials() {
-        return order_detials;
+    public List<Orders_Cart_Model> getOrderDetalis() {
+        return orderDetalis;
     }
 
     public void setOrder_detials(List<Orders_Cart_Model> order_detials) {
-        this.order_detials = order_detials;
+        this.orderDetalis = order_detials;
     }
 }

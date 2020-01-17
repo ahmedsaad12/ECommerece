@@ -68,7 +68,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
     }
 
     private void initView() {
-        //advesriment_data_list=new ArrayList<>();
+        advesriment_data_list=new ArrayList<>();
         preferences= Preferences.newInstance();
         userModel=preferences.getUserData(this);
         Paper.init(this);
