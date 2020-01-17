@@ -106,5 +106,6 @@
     <string name="detials">Detials</string>
     <string name="shop">Shop</string>
     <string name="review">Review</string>
+    <string name="comment">Comment</string>
 
 </resources>

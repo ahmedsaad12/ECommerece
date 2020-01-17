@@ -109,7 +109,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             />
                     </LinearLayout>
@@ -139,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
@@ -158,15 +158,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/likes"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/share"
-                            android:textSize="17sp"
+                            android:text="@string/comment"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
@@ -186,7 +186,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/followers"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
@@ -195,7 +195,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
@@ -218,7 +218,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/rating"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
                             />
@@ -263,7 +263,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/following"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             />
                     </LinearLayout>
@@ -286,7 +286,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             />
                     </LinearLayout>
@@ -310,7 +310,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
-                            android:textSize="17sp"
+                            android:textSize="13sp"
                             android:textColor="@color/black"
                             />
                     </LinearLayout>
