@@ -28,7 +28,7 @@ public class SizeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    int index = 0;
+    int index = -1;
 private AdsDetialsActivity adsDetialsActivity;
     public SizeAdapter(List<Single_Adversiment_Model.Products.Sizes> orderModelList, Context context) {
         this.orderModelList = orderModelList;

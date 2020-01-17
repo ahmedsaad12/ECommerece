@@ -25,6 +25,7 @@ import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragm
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Chat;
 import com.elkhelj.ecommerece.activities_fragments.activity_search.SearchActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.elkhelj.ecommerece.activities_fragments.marktprofile.MarketProfileActivity;
 import com.elkhelj.ecommerece.databinding.ActivityHomeBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.UserModel;
@@ -132,9 +133,10 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     }
                     break;
                 case 2:
-                    displayFragmentWishlist();
 
                     if(userModel!=null){
+                        displayFragmentWishlist();
+
                     }
                     else {
                        Common.CreateNoSignAlertDialog(this);
@@ -143,14 +145,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
                     break;
                 case 3:
 
-                    if(userModel!=null){
-                        displayFragmentMore();
+                    displayFragmentMore();
 
-                    }
-                    else {
-                        Common.CreateNoSignAlertDialog(this);
-
-                    }
                     break;
 
 
@@ -395,5 +391,12 @@ public class HomeStoreActivity extends AppCompatActivity  {
         Intent intent=new Intent(HomeStoreActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
+    }
+
+    public void Displaymarktprofile(int id) {
+        Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
+        intent.putExtra("id",id+"");
+        startActivity(intent);
+        finish();
     }
 }

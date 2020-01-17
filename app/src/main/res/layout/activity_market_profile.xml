@@ -124,6 +124,7 @@
                         android:padding="15dp"
                         >
                         <com.makeramen.roundedimageview.RoundedImageView
+                          android:id="@+id/image"
                             android:layout_width="130dp"
                             android:layout_height="100dp"
                             android:layout_gravity="center"
@@ -190,6 +191,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             android:layout_gravity="center"
                             />
                         <TextView
+                            android:id="@+id/tvfollow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/share"
@@ -326,6 +328,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
 
                     />
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recttrends"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

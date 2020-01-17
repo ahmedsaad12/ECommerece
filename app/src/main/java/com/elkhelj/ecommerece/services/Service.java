@@ -5,6 +5,7 @@ import com.elkhelj.ecommerece.models.Add_Order_Model;
 import com.elkhelj.ecommerece.models.App_Data_Model;
 import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
+import com.elkhelj.ecommerece.models.Market_Profile_Model;
 import com.elkhelj.ecommerece.models.NotificationDataModel;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 import com.elkhelj.ecommerece.models.UserModel;
@@ -87,5 +88,13 @@ public interface Service {
     @POST("api/my-notifications")
     Call<NotificationDataModel> getNotifications(@Field("user_id") int user_id,
                                                  @Field("page") int page
+    );
+    @FormUrlEncoded
+    @POST("api/profile")
+    Call<Market_Profile_Model> getmyprofile(
+            @Field("register_id") String register_id,
+            @Field("user_id") String user_id
+
+
     );
 }

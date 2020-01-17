@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +22,8 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_AdShop;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Detials;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Review;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Explore;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Men;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Shops;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Women;
 import com.elkhelj.ecommerece.adapters.ColorsAdapter;
+import com.elkhelj.ecommerece.adapters.MaLike_Product_Adapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
 import com.elkhelj.ecommerece.adapters.SizeAdapter;
 import com.elkhelj.ecommerece.adapters.ViewPagerAdapter;
@@ -63,6 +61,8 @@ private String search_id;
     private int current_page = 0, NUM_PAGES;
 private ColorsAdapter colorsAdapter;
 private SizeAdapter sizeAdapter;
+private List<Single_Adversiment_Model.Products.Youmaylike> youmaylikeList;
+private MaLike_Product_Adapter maLike_product_adapter;
     private SingleAdsSlidingImage_Adapter singleslidingImage__adapter;
     private Single_Adversiment_Model single_adversiment_model;
 private List<Single_Adversiment_Model.Products.Colors> colorsList;
@@ -117,6 +117,7 @@ if(getIntent().getIntExtra("search",-1)!=0){
 }
 colorsList=new ArrayList<>();
 sizesList=new ArrayList<>();
+youmaylikeList=new ArrayList<>();
         single_adversiment_model=new Single_Adversiment_Model();
         preferences=  Preferences.newInstance();
         userModel=preferences.getUserData(this);
@@ -127,6 +128,7 @@ sizesList=new ArrayList<>();
 
 colorsAdapter=new ColorsAdapter(colorsList,this);
 sizeAdapter=new SizeAdapter(sizesList,this);
+maLike_product_adapter=new MaLike_Product_Adapter(youmaylikeList,this);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
         binding.progBar.setVisibility(View.GONE);
@@ -134,6 +136,9 @@ binding.recColor.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HOR
 binding.recColor.setAdapter(colorsAdapter);
 binding.recSize.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
 binding.recSize.setAdapter(sizeAdapter);
+binding.recmay.setLayoutManager(new
+        GridLayoutManager(this,3));
+binding.recmay.setAdapter(maLike_product_adapter);
 binding.frAddcart.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -259,6 +264,11 @@ dialog.dismiss();
             sizesList.clear();
             sizesList.addAll(body.getProduct().getSizes());
             sizeAdapter.notifyDataSetChanged();
+        }
+        if(single_adversiment_model.getProduct().getYoumaylike()!=null){
+            youmaylikeList.clear();
+            youmaylikeList.addAll(body.getProduct().getYoumaylike());
+            maLike_product_adapter.notifyDataSetChanged();
         }
     }
 

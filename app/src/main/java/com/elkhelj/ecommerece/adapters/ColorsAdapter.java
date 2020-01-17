@@ -32,7 +32,7 @@ public class ColorsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    int index = 0;
+    int index = -1;
 private AdsDetialsActivity adsDetialsActivity;
     public ColorsAdapter(List<Single_Adversiment_Model.Products.Colors> orderModelList, Context context) {
         this.orderModelList = orderModelList;

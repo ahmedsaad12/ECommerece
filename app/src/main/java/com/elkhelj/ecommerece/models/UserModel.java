@@ -13,6 +13,7 @@ public class UserModel implements Serializable {
     private String full_name;
     private String membership_code;
     private String logo;
+    private String image;
     private String banner;
     private String twitter;
     private String facebook;
@@ -80,6 +81,10 @@ public class UserModel implements Serializable {
 
     public String getLogo() {
         return logo;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getBanner() {
