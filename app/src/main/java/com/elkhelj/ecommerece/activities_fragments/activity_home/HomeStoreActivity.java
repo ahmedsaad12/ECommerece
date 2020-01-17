@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragm
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Shop_Profile;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Main;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.Fragment_Chat;
+import com.elkhelj.ecommerece.activities_fragments.activity_search.SearchActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.elkhelj.ecommerece.databinding.ActivityHomeBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
@@ -82,6 +84,13 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
 
         setUpBottomNavigation();
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeStoreActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -89,8 +98,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private void setUpBottomNavigation() {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_nav_user);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_nav_user);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_user);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_user);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 
         binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);

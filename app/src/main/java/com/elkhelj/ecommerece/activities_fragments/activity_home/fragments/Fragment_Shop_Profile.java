@@ -1,5 +1,6 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_notification.NotificationActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_search.SearchActivity;
 import com.elkhelj.ecommerece.databinding.FragmentShopProfileBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -52,7 +55,13 @@ public class Fragment_Shop_Profile extends Fragment {
 binding.setUsermodel(userModel);}
 
 binding.setLang(lang);
-
+binding.llnotif.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent(activity, NotificationActivity.class);
+        startActivity(intent);
+    }
+});
 
     }
 

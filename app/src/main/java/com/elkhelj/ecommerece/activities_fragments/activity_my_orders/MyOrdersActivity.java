@@ -18,7 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import com.elkhelj.ecommerece.R;
-import com.elkhelj.ecommerece.adapters.My_Orders_Adapter;
+//import com.elkhelj.ecommerece.adapters.My_Orders_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityMyOrdersBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
@@ -40,8 +40,8 @@ import retrofit2.Response;
 public class MyOrdersActivity extends AppCompatActivity implements Listeners.BackListener {
     private ActivityMyOrdersBinding binding;
     private String lang;
-    private My_Orders_Adapter ads_adapter;
-    private List<Adversiment_Model.Data> advesriment_data_list;
+   // private My_Orders_Adapter ads_adapter;
+  //  private List<Adversiment_Model.Data> advesriment_data_list;
     private LinearLayoutManager manager;
     private boolean isLoading = false;
     private int current_page2 = 1;
@@ -60,12 +60,13 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_orders);
         initView();
         if(userModel!=null){
-        getAds();}
+        //getAds();
+            }
 
     }
 
     private void initView() {
-        advesriment_data_list=new ArrayList<>();
+        //advesriment_data_list=new ArrayList<>();
         preferences= Preferences.newInstance();
         userModel=preferences.getUserData(this);
         Paper.init(this);
@@ -76,7 +77,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
 
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         binding.recView.setLayoutManager(manager);
-        ads_adapter = new My_Orders_Adapter(advesriment_data_list,this);
+        //ads_adapter = new My_Orders_Adapter(advesriment_data_list,this);
         binding.recView.setItemViewCacheSize(25);
         binding.recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         binding.recView.setDrawingCacheEnabled(true);
@@ -85,14 +86,14 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
         binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getAds();
+                //getAds();
             }
         });
 
-        binding.recView.setAdapter(ads_adapter);
+        //binding.recView.setAdapter(ads_adapter);
 
     }
-    public void getAds() {
+  /*  public void getAds() {
         //   Common.CloseKeyBoard(homeActivity, edt_name);
         advesriment_data_list.clear();
         ads_adapter.notifyDataSetChanged();
@@ -161,7 +162,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
             binding.llNoStore.setVisibility(View.VISIBLE);
 
         }
-    }
+    }*/
 
 
     @Override

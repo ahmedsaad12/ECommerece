@@ -102,5 +102,9 @@
     <string name="date">Data :</string>
     <string name="my_orders">My Orders</string>
     <string name="no_order_to_display">No Order to Display</string>
+    <string name="no_notification_found">No Notification Found</string>
+    <string name="detials">Detials</string>
+    <string name="shop">Shop</string>
+    <string name="review">Review</string>
 
 </resources>

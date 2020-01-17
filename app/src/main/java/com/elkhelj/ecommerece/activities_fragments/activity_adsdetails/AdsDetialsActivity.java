@@ -12,14 +12,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_AdShop;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Detials;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Review;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Explore;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Men;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Shops;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Women;
 import com.elkhelj.ecommerece.adapters.ColorsAdapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
 import com.elkhelj.ecommerece.adapters.SizeAdapter;
+import com.elkhelj.ecommerece.adapters.ViewPagerAdapter;
 import com.elkhelj.ecommerece.databinding.ActivityProductDetialsBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
@@ -60,7 +69,9 @@ private List<Single_Adversiment_Model.Products.Colors> colorsList;
 private List<Single_Adversiment_Model.Products.Sizes> sizesList;
     private Single_Adversiment_Model.Products.Colors colors;
     private Single_Adversiment_Model.Products.Sizes sizes;
-
+    private List<Fragment> fragmentList;
+    private List<String> titles;
+    private ViewPagerAdapter adapter;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -138,6 +149,17 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
         }}
     }
 });
+        fragmentList = new ArrayList<>();
+        titles = new ArrayList<>();
+        binding.tab.setupWithViewPager(binding.pager2);
+        addFragments_Titles();
+        binding.pager2.setOffscreenPageLimit(fragmentList.size());
+
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragments(fragmentList);
+        adapter.addTitles(titles);
+        binding.pager2.setAdapter(adapter);
+
     }
 
     private void addtocart() {
@@ -160,6 +182,7 @@ orders_cart_model.setProduct_id(single_adversiment_model.getProduct().getId());
 orders_cart_model.setAmount(1);
 orders_cart_models.add(orders_cart_model);
 preferences.create_update_order(this,orders_cart_models);
+Toast.makeText(AdsDetialsActivity.this,getResources().getString(R.string.suc),Toast.LENGTH_LONG).show();
     }
 
 
@@ -252,5 +275,16 @@ dialog.dismiss();
 
     public void setsize(Single_Adversiment_Model.Products.Sizes sizes) {
         this.sizes=sizes;
+    }
+    private void addFragments_Titles() {
+        fragmentList.add(Fragment_Detials.newInstance());
+        fragmentList.add(Fragment_AdShop.newInstance());
+        fragmentList.add(Fragment_Review.newInstance());
+
+        titles.add(getString(R.string.detials));
+        titles.add(getString(R.string.shop));
+        titles.add(getString(R.string.review));
+
+
     }
 }

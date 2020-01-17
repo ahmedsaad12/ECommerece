@@ -54,6 +54,7 @@ this.fragment_explore=fragment_explore;
 
         EventHolder eventHolder = (EventHolder) holder;
         ((EventHolder) eventHolder).binding.tvName1.setText(orderlist.get(position).getName());
+        eventHolder.binding.tv1.setText(orderlist.get(position).getProducts().size()+"");
 Explore_Product_Adapter explore_product_adapter=new Explore_Product_Adapter(orderlist.get(position).getProducts(),context);
         ((EventHolder) eventHolder).binding.recview1.setLayoutManager(new LinearLayoutManager(context,RecyclerView.HORIZONTAL,false));
         ((EventHolder) eventHolder).binding.recview1.setAdapter(explore_product_adapter);

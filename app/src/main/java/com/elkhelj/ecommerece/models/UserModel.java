@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class UserModel implements Serializable {
 
     private int id;
-    private String user_type;
+    private String type;
     private String name;
     private String phone_code;
     private String phone;
@@ -50,8 +50,8 @@ public class UserModel implements Serializable {
         this.id = id;
     }
 
-    public String getUser_type() {
-        return user_type;
+    public String getType() {
+        return type;
     }
 
     public String getName() {
