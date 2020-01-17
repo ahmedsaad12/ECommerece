@@ -107,5 +107,7 @@
     <string name="shop">Shop</string>
     <string name="review">Review</string>
     <string name="comment">Comment</string>
+    <string name="check_out">Check Out</string>
+    <string name="congrats">Congrats</string>
 
 </resources>

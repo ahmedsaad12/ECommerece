@@ -42,6 +42,18 @@
 
             />
         <activity
+            android:name=".activities_fragments.activity_add_ads.CompleteOrderActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
+            android:name=".activities_fragments.activity_add_ads.CongActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
             android:name=".activities_fragments.marktprofile.MarketProfileActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"

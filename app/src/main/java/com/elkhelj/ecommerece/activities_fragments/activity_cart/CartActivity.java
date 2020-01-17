@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_add_ads.CompleteOrderActivity;
 import com.elkhelj.ecommerece.adapters.Cart_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityCartBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
@@ -107,26 +108,19 @@ binding.btCom.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if(userModel!=null){
-            checkdata();
+            Intent intent=new Intent(CartActivity.this, CompleteOrderActivity.class);
+            startActivity(intent);
+            finish();
+
         }
         else {
-           // Common.CreateNoSignAlertDialog(CartActivity.this);
+            Common.CreateNoSignAlertDialog(CartActivity.this);
         }
     }
 });
 
     }
 
-    private void checkdata() {
-        Add_Order_Model order_model=new Add_Order_Model();
-
-if(preferences.getUserOrder(this)!=null){
-    order_model.setUser_id(userModel.getId());
-    order_model.setOrder_detials(preferences.getUserOrder(this));
-}
-
-accept_order(order_model);
-    }
 
 
     public void removeitem(int layoutPosition) {
@@ -164,43 +158,6 @@ products1.setPrice(((Double.parseDouble(products1.getPrice())/ products1.getAmou
         finish();
     }
 
-    private void accept_order(Add_Order_Model order_model) {
-
-        final ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
-        dialog.setCancelable(false);
-        dialog.show();
-        Api.getService(Tags.base_url).accept_orders(order_model).enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                dialog.dismiss();
-                if (response.isSuccessful()) {
-showorders();
-                    // Common.CreateSignAlertDialog(activity, getResources().getString(R.string.sucess));
-
-                  //  activity.refresh(Send_Data.getType());
-                } else {
-                  //  Common.CreateDialogAlert(CartActivity.this, getString(R.string.failed));
-
-                    try {
-                        Log.e("Error_code", response.code() + "_" + response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                try {
-                    dialog.dismiss();
-                    Toast.makeText(CartActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
-                    Log.e("Error", t.getMessage());
-                } catch (Exception e) {
-                }
-            }
-        });
-    }
 
     private void showorders() {
 
