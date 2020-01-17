@@ -165,7 +165,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/comment"
+                            android:text="0"
                             android:textSize="13sp"
                             android:textColor="@color/black"
                             android:layout_gravity="center"
@@ -309,7 +309,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/share"
+                            android:text="@string/comment"
                             android:textSize="13sp"
                             android:textColor="@color/black"
                             />
