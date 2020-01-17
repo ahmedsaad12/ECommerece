@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ECommerece</string>
     <string name="field_req">Field required</string>
@@ -109,5 +110,12 @@
     <string name="comment">Comment</string>
     <string name="check_out">Check Out</string>
     <string name="congrats">Congrats</string>
-
-</resources>
+    <string name="product_name">Product name</string>
+    <string name="price">Price</string>
+    <string name="gender">Gender</string>
+    <string name="select_product_images">Select Product Images</string>
+    <string name="perm_image_denied">Permission image denied</string>
+    <string name="select_a_picture_to_upload">select a picture to upload</string>
+    <string name="camera">camera</string>
+    <string name="gallery">gallery</string>
+    <string name="upload_image">upload image</string></resources>

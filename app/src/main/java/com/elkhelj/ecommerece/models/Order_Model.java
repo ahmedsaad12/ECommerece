@@ -1,0 +1,32 @@
+package com.elkhelj.ecommerece.models;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class Order_Model implements Serializable {
+
+        private int id;
+        private String address;
+        private String seller_name;
+        private String created_at;
+private String seller_image;
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getSeller_name() {
+        return seller_name;
+    }
+
+    public String getSeller_image() {
+        return seller_image;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+}

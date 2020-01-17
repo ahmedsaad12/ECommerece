@@ -46,7 +46,7 @@ public class Fragment_AdShop extends Fragment {
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
-        binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+      //  binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
 
 

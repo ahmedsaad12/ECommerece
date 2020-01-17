@@ -301,6 +301,7 @@ android:text="+974"
                     android:src="@drawable/ic_arrow_right"
                     android:padding="10dp"
                     android:tint="@color/black"
+                    android:visibility="gone"
                     android:rotation='@{lang.equals("ar")?180:0}'
                     android:onClick="@{()->showDialogListener.showDialog()}"
 

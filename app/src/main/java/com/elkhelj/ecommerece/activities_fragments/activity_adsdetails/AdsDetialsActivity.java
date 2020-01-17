@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.activities_fragments.activity_adsdetails;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_AdShop;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Detials;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Review;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.ColorsAdapter;
 import com.elkhelj.ecommerece.adapters.MaLike_Product_Adapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
@@ -37,6 +39,7 @@ import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.share.Common;
 import com.elkhelj.ecommerece.tags.Tags;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -164,6 +167,22 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
         adapter.addFragments(fragmentList);
         adapter.addTitles(titles);
         binding.pager2.setAdapter(adapter);
+        binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                binding.pager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -295,6 +314,14 @@ dialog.dismiss();
         titles.add(getString(R.string.shop));
         titles.add(getString(R.string.review));
 
+
+    }
+
+    public void showdetials(int id) {
+
+            Intent intent=new Intent(this, AdsDetialsActivity.class);
+            intent.putExtra("search",id);
+            startActivity(intent);
 
     }
 }

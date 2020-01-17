@@ -99,7 +99,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private void setUpBottomNavigation() {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_user);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_userplus);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_user);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 

@@ -109,6 +109,7 @@
 
             >
             <LinearLayout
+                android:id="@+id/llwish"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -364,6 +365,7 @@ android:padding="5dp"
                     android:background="@color/gray3" />
 
                 <LinearLayout
+                    android:id="@+id/llorder"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/cons_shape2"
@@ -477,6 +479,7 @@ android:padding="5dp"
             >
 
             <LinearLayout
+                android:id="@+id/llpage"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/white"
@@ -527,6 +530,7 @@ android:padding="5dp"
                 android:background="@color/gray3" />
 
             <LinearLayout
+                android:id="@+id/lladd"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/cons_shape2"

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_showall_products.AllProductActivity;
 import com.elkhelj.ecommerece.databinding.HomeBrandRowBinding;
 import com.elkhelj.ecommerece.databinding.ProductsRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
@@ -29,6 +30,7 @@ public class Explore_Product_Adapter extends RecyclerView.Adapter<RecyclerView.V
     private String lang;
     private int i = 0;
     private HomeStoreActivity homeStoreActivity;
+    private AllProductActivity allProductActivity;
     public Explore_Product_Adapter(List<Home_Model.Products> orderlist, Context context) {
         this.orderlist = orderlist;
         this.context = context;
@@ -63,6 +65,10 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
         if(context instanceof HomeStoreActivity){
             homeStoreActivity=(HomeStoreActivity)context;
             homeStoreActivity.showdetials(orderlist.get(eventHolder.getLayoutPosition()).getId());
+        }
+        else if(context instanceof  AllProductActivity){
+            allProductActivity=(AllProductActivity)context;
+            allProductActivity.showdetials(orderlist.get(eventHolder.getLayoutPosition()).getId());
         }
     }
 });

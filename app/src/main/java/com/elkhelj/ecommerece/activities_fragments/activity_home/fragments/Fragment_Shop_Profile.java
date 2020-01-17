@@ -13,9 +13,12 @@ import androidx.fragment.app.Fragment;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_addproduct.AddPoductActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_my_orders.MyOrdersActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_notification.NotificationActivity;
-import com.elkhelj.ecommerece.activities_fragments.activity_search.SearchActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_wishlist.WishlistActivity;
+import com.elkhelj.ecommerece.activities_fragments.marktprofile.MarketProfileActivity;
 import com.elkhelj.ecommerece.databinding.FragmentShopProfileBinding;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -53,7 +56,9 @@ public class Fragment_Shop_Profile extends Fragment {
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         if(userModel!=null){
 binding.setUsermodel(userModel);}
-
+if(userModel.getType().equals("1")){
+    binding.card1.setVisibility(View.GONE);
+}
 binding.setLang(lang);
 binding.llnotif.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -62,7 +67,36 @@ binding.llnotif.setOnClickListener(new View.OnClickListener() {
         startActivity(intent);
     }
 });
-
+        binding.lladd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activity, AddPoductActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llwish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activity, WishlistActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activity, MyOrdersActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llpage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, MarketProfileActivity.class);
+                intent.putExtra("id",userModel.getId()+"");
+                startActivity(intent);
+                activity.finish();
+            }
+        });
     }
 
 

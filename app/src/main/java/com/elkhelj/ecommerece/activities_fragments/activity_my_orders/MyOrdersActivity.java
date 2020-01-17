@@ -19,9 +19,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.elkhelj.ecommerece.R;
 //import com.elkhelj.ecommerece.adapters.My_Orders_Adapter;
+import com.elkhelj.ecommerece.adapters.Order_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityMyOrdersBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
+import com.elkhelj.ecommerece.models.Order_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
@@ -40,8 +42,8 @@ import retrofit2.Response;
 public class MyOrdersActivity extends AppCompatActivity implements Listeners.BackListener {
     private ActivityMyOrdersBinding binding;
     private String lang;
-   // private My_Orders_Adapter ads_adapter;
-  //  private List<Adversiment_Model.Data> advesriment_data_list;
+    private Order_Adapter ads_adapter;
+    private List<Order_Model> advesriment_data_list;
     private LinearLayoutManager manager;
     private boolean isLoading = false;
     private int current_page2 = 1;
@@ -60,7 +62,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_orders);
         initView();
         if(userModel!=null){
-        //getAds();
+        getAds();
             }
 
     }
@@ -86,14 +88,14 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
         binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //getAds();
+                getAds();
             }
         });
 
         //binding.recView.setAdapter(ads_adapter);
 
     }
-  /*  public void getAds() {
+    public void getAds() {
         //   Common.CloseKeyBoard(homeActivity, edt_name);
         advesriment_data_list.clear();
         ads_adapter.notifyDataSetChanged();
@@ -104,17 +106,17 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
 
 
             Api.getService( Tags.base_url)
-                    .getMyAds(1,userModel.getId()+"")
-                    .enqueue(new Callback<Adversiment_Model>() {
+                    .getMyAds(userModel.getId()+"",userModel.getType()+"")
+                    .enqueue(new Callback<List<Order_Model>>() {
                         @Override
-                        public void onResponse(Call<Adversiment_Model> call, Response<Adversiment_Model> response) {
+                        public void onResponse(Call<List<Order_Model>> call, Response<List<Order_Model>> response) {
                             binding.swipeRefresh.setRefreshing(false);
 
                             binding.progBar.setVisibility(View.GONE);
-                            if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
                                 advesriment_data_list.clear();
-                                advesriment_data_list.addAll(response.body().getData());
-                                if (response.body().getData().size() > 0) {
+                                advesriment_data_list.addAll(response.body());
+                                if (response.body().size() > 0) {
                                     // rec_sent.setVisibility(View.VISIBLE);
                                     //  Log.e("data",response.body().getData().get(0).getAr_title());
 
@@ -143,7 +145,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
                         }
 
                         @Override
-                        public void onFailure(Call<Adversiment_Model> call, Throwable t) {
+                        public void onFailure(Call<List<Order_Model>> call, Throwable t) {
                             try {
                                 binding.swipeRefresh.setRefreshing(false);
 
@@ -151,7 +153,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
                                 binding.llNoStore.setVisibility(View.VISIBLE);
 
 
-                                Toast.makeText(MyAdsActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MyOrdersActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
                                 Log.e("error", t.getMessage());
                             } catch (Exception e) {
                             }
@@ -162,7 +164,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
             binding.llNoStore.setVisibility(View.VISIBLE);
 
         }
-    }*/
+    }
 
 
     @Override

@@ -23,11 +23,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.adapters.Markets_Adapter;
+import com.elkhelj.ecommerece.adapters.Wish_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivitySearchBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.models.Wish_Model;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.share.Common;
@@ -53,8 +55,9 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
     private String query="";
     private UserModel userModel;
     private Preferences preferences;
-    private List<Home_Model> homeModelList;
-    private Markets_Adapter explore_adapter;
+    private List<Wish_Model> homeModelList;
+    private Wish_Adapter explore_adapter;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -82,8 +85,8 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
 
         binding.recView.setLayoutManager(new LinearLayoutManager(this));
       //  binding.recView.setAdapter(searchAdapter);
-        explore_adapter=new Markets_Adapter(homeModelList,this);
-        binding.recView.setLayoutManager(new GridLayoutManager(this,2));
+        explore_adapter=new Wish_Adapter(homeModelList,this);
+        binding.recView.setLayoutManager(new GridLayoutManager(this,1));
         binding.recView.setAdapter(explore_adapter);
 
 
@@ -111,10 +114,10 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
     //    binding.progBar.setVisibility(View.VISIBLE);
 
         Api.getService(Tags.base_url)
-                .getSHOPS(search)
-                .enqueue(new Callback<List<Home_Model>>() {
+                .search(search)
+                .enqueue(new Callback<List<Wish_Model>>() {
                     @Override
-                    public void onResponse(Call<List<Home_Model>> call, Response<List<Home_Model>> response) {
+                    public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
                   //      binding.progBar.setVisibility(View.GONE);
                         if (response.isSuccessful() && response.body() != null ) {
                             Log.e("error", response.code() + "_" + response.body().size());
@@ -124,9 +127,9 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
                             explore_adapter.notifyDataSetChanged();
 
                             if (homeModelList.size() > 0) {
-                                binding.tvNoSearch.setVisibility(View.GONE);
+                              //  binding.llSearchResult.setVisibility(View.GONE);
                             } else {
-                                binding.tvNoSearch.setVisibility(View.VISIBLE);
+                                //binding.llSearchResult.setVisibility(View.VISIBLE);
 
                             }
                         } else {
@@ -147,7 +150,7 @@ public class SearchActivity extends AppCompatActivity implements Listeners.BackL
                     }
 
                     @Override
-                    public void onFailure(Call<List<Home_Model>> call, Throwable t) {
+                    public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
                         try {
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());

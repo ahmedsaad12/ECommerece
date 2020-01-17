@@ -3,27 +3,44 @@ package com.elkhelj.ecommerece.services;
 
 import com.elkhelj.ecommerece.models.Add_Order_Model;
 import com.elkhelj.ecommerece.models.App_Data_Model;
+import com.elkhelj.ecommerece.models.Brand_Model;
+import com.elkhelj.ecommerece.models.Catogry_Model;
 import com.elkhelj.ecommerece.models.Cities_Model;
+import com.elkhelj.ecommerece.models.Color_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.Market_Profile_Model;
 import com.elkhelj.ecommerece.models.NotificationDataModel;
+import com.elkhelj.ecommerece.models.Order_Model;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
+import com.elkhelj.ecommerece.models.Size_Model;
 import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.models.Wish_Model;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface Service {
     @GET("api/all_cities")
     Call<List<Cities_Model>> getCity();
-
+    @GET("api/all_sizes")
+    Call<List<Size_Model>> getSize();
+    @GET("api/all_colors")
+    Call<List<Color_Model>> getColor();
+    @GET("api/brands")
+    Call<List<Brand_Model>> getBrabnd();
+    @GET("api/all_categories")
+    Call<List<Catogry_Model>> getCatogry();
     @FormUrlEncoded
     @POST("api/login")
     Call<UserModel> login(
@@ -60,6 +77,10 @@ public interface Service {
     Call<List<Home_Model>> getSHOPS(@Field("key_word") String key_word
     );
     @FormUrlEncoded
+    @POST("api/search")
+    Call<List<Wish_Model>> search(@Field("key_word") String key_word
+    );
+    @FormUrlEncoded
     @POST("api/contact_us")
     Call<ResponseBody> sendContact(@Field("name") String name,
                                    @Field("email") String email,
@@ -85,9 +106,12 @@ public interface Service {
     @GET("api/aboutUs")
     Call<App_Data_Model> getabout();
     @FormUrlEncoded
-    @POST("api/my-notifications")
-    Call<NotificationDataModel> getNotifications(@Field("user_id") int user_id,
-                                                 @Field("page") int page
+    @POST("api/my_notification")
+    Call<NotificationDataModel> getNotifications(@Field("user_id") int user_id
+    );
+    @FormUrlEncoded
+    @POST("api/my_like")
+    Call<List<Wish_Model>> getmylike(@Field("user_id") int user_id
     );
     @FormUrlEncoded
     @POST("api/profile")
@@ -97,4 +121,27 @@ public interface Service {
 
 
     );
+    @FormUrlEncoded
+    @POST("api/my_orders")
+    Call<List<Order_Model>> getMyAds(
+            @Field("user_id") String user_id,
+            @Field("type") String type
+
+
+    );
+    @Multipart
+    @POST("api/add_product")
+    Call<ResponseBody> createcv
+            (@Part("user_id") RequestBody user_id,
+             @Part("name") RequestBody name,
+             @Part("price") RequestBody phone,
+             @Part("gender") RequestBody gender,
+             @Part("category_id") RequestBody category_id,
+             @Part("brand_id") RequestBody brand_id,
+             @Part("colors_id[]") List<RequestBody> colors_id,
+             @Part("sizes_id[]") List<RequestBody> sizes_id,
+             @Part List<MultipartBody.Part> partimageInsideList
+
+//
+            );
 }

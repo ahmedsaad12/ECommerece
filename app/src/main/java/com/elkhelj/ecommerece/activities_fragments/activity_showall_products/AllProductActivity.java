@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.Explore_Product_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityMarketsBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
@@ -98,7 +100,11 @@ if(data!=null) {
 }
     }
 
-
+    public void showdetials(int id) {
+        Intent intent=new Intent(AllProductActivity.this, AdsDetialsActivity.class);
+        intent.putExtra("search",id);
+        startActivity(intent);
+    }
 
 
 

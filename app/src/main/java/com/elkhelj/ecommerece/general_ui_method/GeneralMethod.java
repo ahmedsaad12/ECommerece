@@ -64,7 +64,12 @@ public class GeneralMethod {
     }
 
 
+    @BindingAdapter("url")
+    public static void imageUrl(RoundedImageView imageView,String url)
+    {
+        Picasso.with(imageView.getContext()).load(Uri.parse(url)).fit().into(imageView);
 
+    }
 
 
 

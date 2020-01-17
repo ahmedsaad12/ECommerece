@@ -61,7 +61,7 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
         Log.e("datas",context.getApplicationContext().toString());
         if(context instanceof AdsDetialsActivity){
             homeStoreActivity=(AdsDetialsActivity) context;
-           // homeStoreActivity.showdetials(orderlist.get(eventHolder.getLayoutPosition()).getId());
+            homeStoreActivity.showdetials(orderlist.get(eventHolder.getLayoutPosition()).getId());
         }
     }
 });

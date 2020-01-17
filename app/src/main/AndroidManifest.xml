@@ -54,6 +54,24 @@
 
             />
         <activity
+            android:name=".activities_fragments.activity_addproduct.AddPoductActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
+            android:name=".activities_fragments.activity_wishlist.WishlistActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
+            android:name=".activities_fragments.activity_my_orders.MyOrdersActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+
+            />
+        <activity
             android:name=".activities_fragments.marktprofile.MarketProfileActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
