@@ -54,14 +54,15 @@ android:fillViewport="true"
                         app:riv_corner_radius="20dp"
                         android:background="@color/gray3"
                         />
+
                     <TextView
+                        android:id="@+id/tvname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/share"
-                        android:textSize="13sp"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
-                        />
+                        android:text="@string/share"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/likes"

@@ -267,7 +267,10 @@ dialog.dismiss();
         this.single_adversiment_model=body;
 
 
-
+Fragment_Detials fragment_detials= (Fragment_Detials) fragmentList.get(0);
+fragment_detials.setdesc(body.getProduct().getDes());
+        Fragment_AdShop fragment_adShop= (Fragment_AdShop) fragmentList.get(1);
+        fragment_adShop.setdesc(body.getProduct());
         if(body.getProduct().getProduct_images()!=null&&body.getProduct().getProduct_images().size()>0){
             Log.e("lll",body.getProduct().getProduct_images().size()+"");
             NUM_PAGES = body.getProduct().getProduct_images().size();

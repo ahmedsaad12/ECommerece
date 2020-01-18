@@ -81,7 +81,7 @@ public interface Service {
     Call<List<Wish_Model>> search(@Field("key_word") String key_word
     );
     @FormUrlEncoded
-    @POST("api/search")
+    @POST("api/filter_all")
     Call<List<Wish_Model>> search(@Field("brand") String brand,
                                   @Field("size") String size
                                   ,

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +17,12 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.databinding.FragmentAdshopBinding;
+import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
+import com.elkhelj.ecommerece.tags.Tags;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
+import com.squareup.picasso.Picasso;
 
 import io.paperdb.Paper;
 
@@ -54,4 +59,9 @@ public class Fragment_AdShop extends Fragment {
     }
 
 
+    public void setdesc(Single_Adversiment_Model.Products product) {
+       binding.tvname.setText(product.getName());
+        Picasso.with(activity).load(Tags.base_url+product.getImage()).fit().into(binding.image);
+        
+    }
 }

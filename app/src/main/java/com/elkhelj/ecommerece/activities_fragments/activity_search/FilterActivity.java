@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_addproduct.AddPoductActivity;
 import com.elkhelj.ecommerece.adapters.BrandsAdapter;
+import com.elkhelj.ecommerece.adapters.SizefAdapter;
 import com.elkhelj.ecommerece.adapters.Wish_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityFilterBinding;
 import com.elkhelj.ecommerece.databinding.ActivitySearchBinding;
@@ -53,8 +54,10 @@ public class FilterActivity extends AppCompatActivity implements Listeners.BackL
     private UserModel userModel;
     private Preferences preferences;
     private List<Brand_Model> homeModelList;
-    private List<Wish_Model> wish_models;
+    private List<Size_Model> size_modelList;
 
+    private List<Wish_Model> wish_models;
+private SizefAdapter sizefAdapter;
     private BrandsAdapter brandsAdapter;
     private String sizeid="all";
 
@@ -76,6 +79,8 @@ public class FilterActivity extends AppCompatActivity implements Listeners.BackL
 
         homeModelList=new ArrayList<>();
 wish_models=new ArrayList<>();
+size_modelList=new ArrayList<>();
+
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(this);
         Paper.init(this);
@@ -84,8 +89,10 @@ wish_models=new ArrayList<>();
         binding.setLang(lang);
 binding.recbrand.setLayoutManager(new LinearLayoutManager(this));
 brandsAdapter=new BrandsAdapter(homeModelList,this);
+sizefAdapter=new SizefAdapter(size_modelList,this);
         binding.recbrand.setAdapter(brandsAdapter);
-
+        binding.recmay.setLayoutManager(new LinearLayoutManager(this));
+binding.recmay.setAdapter(sizefAdapter);
 getBrand();
 getSize();
 binding.btnDone.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +185,9 @@ getECPLORE();
                             if (response.isSuccessful() && response.body() != null) {
                                 if (response.body() != null) {
                                     //updatSizeAdapter(response.body());
+                                    size_modelList.clear();
+                                    size_modelList.addAll(response.body());
+                                    sizefAdapter.notifyDataSetChanged();
                                 } else {
                                     Log.e("error", response.code() + "_" + response.errorBody());
 

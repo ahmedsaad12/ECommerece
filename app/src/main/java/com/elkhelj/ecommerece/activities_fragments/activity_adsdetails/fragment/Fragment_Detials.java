@@ -51,4 +51,10 @@ public class Fragment_Detials extends Fragment {
     }
 
 
+    public void setdesc(String desc) {
+       binding.tvdesc.setText(desc);
+
+    }
+
+
 }

@@ -175,13 +175,15 @@ binding.imfilter.setOnClickListener(new View.OnClickListener() {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        Bundle extras = intent.getExtras();
-        assert extras != null;
-        homeModelList.addAll((Collection<? extends Wish_Model>) extras.getSerializable("returnKey"));
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                homeModelList.addAll((Collection<? extends Wish_Model>) extras.getSerializable("returnKey"));
+            }
+        }
     }
-
     @Override
     public void back() {
         finish();
