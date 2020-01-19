@@ -115,7 +115,7 @@ binding.imageCart.setOnClickListener(new View.OnClickListener() {
     private void addFragments_Titles() {
         fragmentList.add(Fragment_Explore.newInstance());
         fragmentList.add(Fragment_Shops.newInstance());
-        fragmentList.add(Fragment_Men.newInstance());
+        fragmentList.add(Fragment_Mens.newInstance());
         fragmentList.add(Fragment_Women.newInstance());
 
         titles.add(getString(R.string.explore));
