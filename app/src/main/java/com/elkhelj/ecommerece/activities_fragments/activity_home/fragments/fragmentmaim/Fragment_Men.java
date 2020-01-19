@@ -40,7 +40,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Fragment_Men extends Fragment {
-    private static Dialog dialog;
     private HomeStoreActivity activity;
     private FragmentMenBinding binding;
     private Preferences preferences;
@@ -64,17 +63,19 @@ getECPLORE();
 
 
     private void initView() {
-categoriesList=new ArrayList<>();
-productsList=new ArrayList<>();
         activity = (HomeStoreActivity) getActivity();
+
+        categoriesList=new ArrayList<>();
+productsList=new ArrayList<>();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(activity,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-        catogry_adapter=new Catogry_Adapter(categoriesList,activity,null);
+        catogry_adapter=new Catogry_Adapter(categoriesList,activity,this);
         menAds_adapter=new MenAds_Adapter(productsList,activity);
 binding.recviewdepart.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
+binding.recviewdepart.setHasFixedSize(true);
 binding.recviewdepart.setAdapter(catogry_adapter);
         binding.recMarket.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
 binding.recMarket.setAdapter(menAds_adapter);
@@ -98,7 +99,7 @@ binding.recMarket.setAdapter(menAds_adapter);
 
                             try {
 
-                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                                Log.e("errorss", response.code() + "_" + response.errorBody().string());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -181,22 +182,12 @@ binding.recMarket.setAdapter(menAds_adapter);
     private void update(Home_Model body) {
 
         if(body.getCategories()!=null){
-        //    Log.e("datas",body.getCategories().get(0).getName());
         categoriesList.clear();
         categoriesList.addAll(body.getCategories());
-        catogry_adapter.notifyDataSetChanged();
 
       }
-        if(body.getAds()!=null){
-           // productsList.clear();
-           // productsList.addAll(body.getAds());
-            //menAds_adapter.notifyDataSetChanged();
-        if (productsList.size() > 0) {
-            binding.tvNoEvents.setVisibility(View.GONE);
-        } else {
-            binding.tvNoEvents.setVisibility(View.VISIBLE);
+        catogry_adapter.notifyDataSetChanged();
 
-        }}
 
     }
 

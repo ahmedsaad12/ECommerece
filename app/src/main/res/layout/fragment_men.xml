@@ -13,11 +13,7 @@
             type="String" />
 
     </data>
-    <androidx.core.widget.NestedScrollView
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-android:fillViewport="true"        >
 
 
         <LinearLayout
@@ -30,16 +26,15 @@ android:fillViewport="true"        >
                 android:id="@+id/recviewdepart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-
+                android:padding="15dp"
                 >
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
 
                 >
                 <LinearLayout
@@ -74,7 +69,6 @@ android:fillViewport="true"        >
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="15dp"
-
                     >
 
                 </androidx.recyclerview.widget.RecyclerView>
@@ -94,5 +88,4 @@ android:fillViewport="true"        >
         </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
 </layout>

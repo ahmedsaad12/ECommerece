@@ -1,6 +1,7 @@
 package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +32,15 @@ public class Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private String lang;
     int index = -1;
 private Fragment_Men fragment_men;
+private Fragment fragment;
     public Catogry_Adapter(List<Home_Model.Categories> orderModelList, Context context, Fragment fragment) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-fragment_men=(Fragment_Men)fragment;
+//fragment_men=(Fragment_Men)fragment;
+        this.fragment=fragment;
     }
 
     @NonNull
@@ -59,9 +62,17 @@ fragment_men=(Fragment_Men)fragment;
         EventHolder eventHolder = (EventHolder) holder;
         eventHolder.binding.setLang(lang);
         eventHolder.binding.setCatogrymodel(order_orderModel);
+        try {
+            Log.e("da",order_orderModel.getName());
+
+        }
+        catch (Exception e){
+
+        }
 eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+        fragment_men=(Fragment_Men)fragment;
         fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
     }
 });

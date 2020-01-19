@@ -156,6 +156,8 @@ public interface Service {
              @Part("brand_id") RequestBody brand_id,
              @Part("colors_id[]") List<RequestBody> colors_id,
              @Part("sizes_id[]") List<RequestBody> sizes_id,
+             @Part("des") RequestBody des,
+
              @Part List<MultipartBody.Part> partimageInsideList
 
 //

@@ -451,6 +451,5 @@ public class HomeStoreActivity extends AppCompatActivity  {
         Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
         intent.putExtra("id",id+"");
         startActivity(intent);
-        finish();
     }
 }

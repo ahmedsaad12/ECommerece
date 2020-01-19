@@ -3,6 +3,7 @@ package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.frag
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,7 @@ binding.imageCart.setOnClickListener(new View.OnClickListener() {
         binding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                Log.e("kkkkk",tab.getPosition()+"");
           if(tab.getPosition()==0){
               binding.scroll.setBackground(activity.getResources().getDrawable(R.drawable.exploerbackground));
           }
@@ -85,7 +87,7 @@ binding.imageCart.setOnClickListener(new View.OnClickListener() {
 
           }
           else if(tab.getPosition()==2){
-              binding.scroll.setBackgroundColor(activity.getResources().getColor(R.color.white));
+             binding.scroll.setBackgroundColor(activity.getResources().getColor(R.color.white));
 
           }
           else if(tab.getPosition()==3){

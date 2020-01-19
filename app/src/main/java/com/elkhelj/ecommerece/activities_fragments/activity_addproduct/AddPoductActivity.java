@@ -772,6 +772,7 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
         RequestBody cat_part = Common.getRequestBodyText(catid);
         RequestBody brand_part = Common.getRequestBodyText(brandid);
         RequestBody gender_part = Common.getRequestBodyText(gender + "");
+        RequestBody des_part = Common.getRequestBodyText("new");
 
         List<RequestBody> skill_part = new ArrayList<>();
         List<RequestBody> collor_part = new ArrayList<>();
@@ -786,7 +787,7 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
         List<MultipartBody.Part> partimageList = getMultipartBodyList(urlList, "image[]");
         try {
             Api.getService(Tags.base_url)
-                    .createcv(user_part, name_part, price_part, gender_part, cat_part, brand_part, collor_part, skill_part, partimageList).enqueue(new Callback<ResponseBody>() {
+                    .createcv(user_part, name_part, price_part, gender_part, cat_part, brand_part, collor_part, skill_part,des_part,partimageList).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     dialog.dismiss();
