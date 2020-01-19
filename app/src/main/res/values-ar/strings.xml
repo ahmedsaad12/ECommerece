@@ -110,13 +110,14 @@
     <string name="we_have_sent_you_an_sms_with_acode_to_the_number">"لقد أرسلنا لك رسالة قصيرة برمز إلى الرقم "</string>
     <string name="wish">قائمة الاعجابات</string>
     <string name="you_also_like_this">ستحب ذلك بالتاكيد</string>
-    <string name="product_name">Product name</string>
-    <string name="price">Price</string>
-    <string name="gender">Gender</string>
-    <string name="select_product_images">Select Product Images</string>
-    <string name="perm_image_denied">Permission image denied</string>
-    <string name="select_a_picture_to_upload">select a picture to upload</string>
-    <string name="camera">camera</string>
-    <string name="gallery">gallery</string>
-    <string name="upload_image">upload image</string>
+    <string name="product_name">اسم المنتج</string>
+    <string name="price">السعر </string>
+    <string name="gender">النوع</string>
+    <string name="select_product_images">اختر صورة المنتج</string>
+    <string name="perm_image_denied">لا يمكنك الوصول للصور</string>
+    <string name="select_a_picture_to_upload">اختر صوره لرفعها </string>
+    <string name="camera">كاميرا</string>
+    <string name="gallery">صور</string>
+    <string name="upload_image">رفع صوره</string>
+    <string name="language_setting">اعدادات اللغه</string>
 </resources>

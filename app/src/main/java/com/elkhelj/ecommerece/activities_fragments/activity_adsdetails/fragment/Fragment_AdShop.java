@@ -62,6 +62,5 @@ public class Fragment_AdShop extends Fragment {
     public void setdesc(Single_Adversiment_Model.Products product) {
        binding.tvname.setText(product.getName());
         Picasso.with(activity).load(Tags.base_url+product.getImage()).fit().into(binding.image);
-        
     }
 }

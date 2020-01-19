@@ -7,7 +7,7 @@
 
         <variable
             name="admodel"
-            type="com.elkhelj.ecommerece.models.Wish_Model" />
+            type="com.elkhelj.ecommerece.models.Market_Profile_Model.CategoriesBoth" />
     </data>
 
 
@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
+            android:padding="2dp"
             >
 
 
@@ -27,40 +27,39 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical"
+                android:padding="2dp"
                 >
 
 
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/im_offer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:contentPadding="5dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                       app:cardBackgroundColor="@color/gray5"
+                        >
                     <com.makeramen.roundedimageview.RoundedImageView
                         image="@{admodel.image}"
-                        android:layout_width="250dp"
-                        android:layout_height="300dp"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
+
                         app:riv_border_color="@color/black"
                         app:riv_corner_radius="10dp"
-                        android:background="@color/gray3"
                         />
+                    </androidx.cardview.widget.CardView>
 
 
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@{admodel.name}"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-
-                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

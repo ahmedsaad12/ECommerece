@@ -118,4 +118,6 @@
     <string name="select_a_picture_to_upload">select a picture to upload</string>
     <string name="camera">camera</string>
     <string name="gallery">gallery</string>
-    <string name="upload_image">upload image</string></resources>
+    <string name="upload_image">upload image</string>
+    <string name="language_setting">Language Setting</string>
+</resources>

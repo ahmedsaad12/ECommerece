@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.services;
 
 
 import com.elkhelj.ecommerece.models.Add_Order_Model;
+import com.elkhelj.ecommerece.models.AllMessageModel;
 import com.elkhelj.ecommerece.models.App_Data_Model;
 import com.elkhelj.ecommerece.models.Brand_Model;
 import com.elkhelj.ecommerece.models.Catogry_Model;
@@ -9,6 +10,7 @@ import com.elkhelj.ecommerece.models.Cities_Model;
 import com.elkhelj.ecommerece.models.Color_Model;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.Market_Profile_Model;
+import com.elkhelj.ecommerece.models.MessageModel;
 import com.elkhelj.ecommerece.models.NotificationDataModel;
 import com.elkhelj.ecommerece.models.Order_Model;
 import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
@@ -71,6 +73,10 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/home")
     Call<Home_Model> getproductss(@Field("key_word") String key_word
+    );
+    @FormUrlEncoded
+    @POST("api/filter_by_cat")
+    Call<List<Wish_Model>> getproductsscat(@Field("category_id") String category_id
     );
     @FormUrlEncoded
     @POST("api/filter_shop_name")
@@ -154,4 +160,19 @@ public interface Service {
 
 //
             );
+    @FormUrlEncoded
+    @POST("api/send_admin_message")
+    Call<MessageModel> sendmessagetext
+            (
+                    @Field("user_id") String user_id,
+                    @Field("admin_id") String admin_id,
+                    @Field("message") String message
+
+//
+            );
+    @FormUrlEncoded
+    @POST("api/single_admin_room")
+    Call<List<AllMessageModel>> getMessge(
+            @Field("room_id") String room_id
+    );
 }

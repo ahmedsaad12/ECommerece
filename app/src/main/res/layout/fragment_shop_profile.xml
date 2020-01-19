@@ -417,6 +417,7 @@ android:padding="5dp"
 
 
                 <LinearLayout
+                    android:id="@+id/lllang"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/cons_shape2"
@@ -427,7 +428,9 @@ android:padding="5dp"
                     <ImageView
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:layout_gravity="center_vertical" />
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_phone_call"
+                        />
 
                     <TextView
                         android:layout_width="0dp"

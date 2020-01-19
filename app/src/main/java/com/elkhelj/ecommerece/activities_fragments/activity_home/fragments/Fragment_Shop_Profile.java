@@ -67,6 +67,12 @@ binding.llnotif.setOnClickListener(new View.OnClickListener() {
         startActivity(intent);
     }
 });
+binding.lllang.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        activity.CreateLanguageDialog();
+    }
+});
         binding.lladd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

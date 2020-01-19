@@ -2,7 +2,6 @@ package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,40 +10,39 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Men;
-import com.elkhelj.ecommerece.databinding.CatogryRowBinding;
-import com.elkhelj.ecommerece.databinding.SizeRowBinding;
+import com.elkhelj.ecommerece.databinding.ProfilecatogryRowBinding;
+import com.elkhelj.ecommerece.databinding.WomencatogryRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
-import com.elkhelj.ecommerece.models.Single_Adversiment_Model;
+import com.elkhelj.ecommerece.models.Market_Profile_Model;
 
 import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
 
-public class Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class Profile_Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int ITEM_DATA = 1;
     private final int LOAD = 2;
-    private List<Home_Model.Categories> orderModelList;
+    private List<Market_Profile_Model.CategoriesBoth> orderModelList;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
     int index = -1;
-private Fragment_Men fragment_men;
-    public Catogry_Adapter(List<Home_Model.Categories> orderModelList, Context context, Fragment fragment) {
+
+    public Profile_Catogry_Adapter(List<Market_Profile_Model.CategoriesBoth> orderModelList, Context context, Fragment fragment) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-fragment_men=(Fragment_Men)fragment;
+
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-            CatogryRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.catogry_row, parent, false);
+            ProfilecatogryRowBinding binding = DataBindingUtil.inflate(inflater, R.layout.profilecatogry_row, parent, false);
             return new EventHolder(binding);
 
 
@@ -53,18 +51,12 @@ fragment_men=(Fragment_Men)fragment;
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Home_Model.Categories order_orderModel = orderModelList.get(position);
+        Market_Profile_Model.CategoriesBoth order_orderModel = orderModelList.get(position);
         if (holder instanceof EventHolder)
         {
         EventHolder eventHolder = (EventHolder) holder;
-        eventHolder.binding.setLang(lang);
-        eventHolder.binding.setCatogrymodel(order_orderModel);
-eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
-    }
-});
+        eventHolder.binding.setAdmodel(order_orderModel);
+
         }
     }
 
@@ -74,9 +66,9 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
     }
 
     public class EventHolder extends RecyclerView.ViewHolder {
-        public CatogryRowBinding binding;
+        public ProfilecatogryRowBinding binding;
 
-        public EventHolder(CatogryRowBinding binding) {
+        public EventHolder(ProfilecatogryRowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
 
@@ -86,7 +78,7 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public int getItemViewType(int position) {
-        Home_Model.Categories order_Model = orderModelList.get(position);
+      Market_Profile_Model.CategoriesBoth order_Model = orderModelList.get(position);
         if (order_Model!=null)
         {
             return ITEM_DATA;

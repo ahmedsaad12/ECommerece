@@ -1,5 +1,7 @@
 package com.elkhelj.ecommerece.models;
 
+import android.widget.LinearLayout;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -206,4 +208,28 @@ private List<Products> trends;
             return sub_category_name;
         }
     }
+    private List<CategoriesBoth> categoriesBoths;
+
+    public List<CategoriesBoth> getCategoriesBoths() {
+        return categoriesBoths;
+    }
+
+    public class CategoriesBoth implements Serializable {
+        private int id;
+            private String name;
+
+            private String image;
+
+         public int getId() {
+             return id;
+         }
+
+         public String getName() {
+             return name;
+         }
+
+         public String getImage() {
+             return image;
+         }
+     }
 }

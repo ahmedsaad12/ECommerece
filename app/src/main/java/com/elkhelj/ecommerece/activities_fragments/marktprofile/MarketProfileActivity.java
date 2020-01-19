@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.adapters.Profile_Catogry_Adapter;
 import com.elkhelj.ecommerece.adapters.Trends_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityMarketProfileBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
@@ -48,8 +49,8 @@ public class MarketProfileActivity extends AppCompatActivity implements Listener
     private UserModel userModel;
     private Preferences preferences;
 private String other_id;
-//private List<UserModel.AdModel> adModels;
-//private MyAdsAdapter myAdsAdapter;
+private List<Market_Profile_Model.CategoriesBoth> adModels;
+private Profile_Catogry_Adapter myAdsAdapter;
     private List<Market_Profile_Model.Products> maProductsList;
     private Trends_Adapter trends_adapter;
     @Override
@@ -83,7 +84,7 @@ getdatafromintent();
 userModel=new UserModel();
 maProductsList=new ArrayList<>();
 
-
+adModels=new ArrayList<>();
 
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -93,7 +94,9 @@ trends_adapter=new Trends_Adapter(maProductsList,this);
 binding.recttrends.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
 binding.recttrends.setAdapter(trends_adapter);
        // binding.setUsermodel(userModel.getUser());
-
+myAdsAdapter=new Profile_Catogry_Adapter(adModels,this,null);
+binding.reccat.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
+binding.reccat.setAdapter(myAdsAdapter);
 
         if(userModel!=null){
         getprofiledata();}
@@ -164,6 +167,10 @@ binding.recttrends.setAdapter(trends_adapter);
     }
 
     private void updateprofile(Market_Profile_Model body) {
+        if(body.getCategoriesBoths()!=null){
+            adModels.addAll(body.getCategoriesBoths());
+            myAdsAdapter.notifyDataSetChanged();
+        }
         if(body.getFollowers()!=null){
             binding.tvfollow.setText(body.getFollowers().size()+"");
         }

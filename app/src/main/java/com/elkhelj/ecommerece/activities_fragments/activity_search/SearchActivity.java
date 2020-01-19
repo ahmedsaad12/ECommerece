@@ -119,13 +119,16 @@ binding.imfilter.setOnClickListener(new View.OnClickListener() {
     private void getECPLORE(String search)
     {
     //    binding.progBar.setVisibility(View.VISIBLE);
-
+        ProgressDialog dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
         Api.getService(Tags.base_url)
                 .search(search)
                 .enqueue(new Callback<List<Wish_Model>>() {
                     @Override
                     public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
                   //      binding.progBar.setVisibility(View.GONE);
+                        dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null ) {
                             Log.e("error", response.code() + "_" + response.body().size());
 
@@ -159,6 +162,7 @@ binding.imfilter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
                         try {
+                            dialog.dismiss();
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {

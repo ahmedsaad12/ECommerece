@@ -83,6 +83,7 @@ android:fillViewport="true"
                         android:layout_gravity="center"
                         />
                     <TextView
+                        android:id="@+id/tvlike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"

@@ -801,7 +801,7 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
                         try {
 
                             Toast.makeText(AddPoductActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-                            Log.e("Error", response.toString() + " " + response.code() + "" + response.message() + "" + response.errorBody() + response.raw() + response.body() + response.headers() + " " + response.errorBody().toString());
+                            Log.e("Error", response.toString() + " " + response.code() + "" + response.message() + "" + response.errorBody().string() + response.raw() + response.body() + response.headers() + " " + response.errorBody().toString());
                         } catch (Exception e) {
 
 

@@ -25,6 +25,7 @@ import com.elkhelj.ecommerece.adapters.MenAds_Adapter;
 import com.elkhelj.ecommerece.databinding.FragmentMenBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.models.Wish_Model;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.tags.Tags;
@@ -46,7 +47,7 @@ public class Fragment_Men extends Fragment {
     private UserModel userModel;
 private List<Home_Model.Categories> categoriesList;
 private Catogry_Adapter catogry_adapter;
-private List<Home_Model.Products> productsList;
+private List<Wish_Model> productsList;
 private MenAds_Adapter menAds_adapter;
     public static Fragment_Men newInstance() {
         return new Fragment_Men();
@@ -127,20 +128,69 @@ binding.recMarket.setAdapter(menAds_adapter);
                     }
                 });
     }
+    public void getproduct(int cat)
+    {
+        binding.progBar.setVisibility(View.VISIBLE);
+
+        Api.getService(Tags.base_url)
+                .getproductsscat(cat+"")
+                .enqueue(new Callback<List<Wish_Model>>() {
+                    @Override
+                    public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
+                        binding.progBar.setVisibility(View.GONE);
+                        if (response.isSuccessful() && response.body() != null ) {
+                         //   update(response.body());
+                            productsList.clear();
+                            productsList.addAll(response.body());
+                            menAds_adapter.notifyDataSetChanged();
+                        } else {
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 500) {
+                                Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+    }
 
     private void update(Home_Model body) {
 
         if(body.getCategories()!=null){
-            Log.e("datas",body.getCategories().get(0).getName());
+        //    Log.e("datas",body.getCategories().get(0).getName());
         categoriesList.clear();
         categoriesList.addAll(body.getCategories());
         catogry_adapter.notifyDataSetChanged();
 
       }
         if(body.getAds()!=null){
-            productsList.clear();
-            productsList.addAll(body.getAds());
-            menAds_adapter.notifyDataSetChanged();
+           // productsList.clear();
+           // productsList.addAll(body.getAds());
+            //menAds_adapter.notifyDataSetChanged();
         if (productsList.size() > 0) {
             binding.tvNoEvents.setVisibility(View.GONE);
         } else {

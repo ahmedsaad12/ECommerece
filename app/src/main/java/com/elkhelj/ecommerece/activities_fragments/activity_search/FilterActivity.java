@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_addproduct.AddPoductActivity;
@@ -91,7 +92,7 @@ binding.recbrand.setLayoutManager(new LinearLayoutManager(this));
 brandsAdapter=new BrandsAdapter(homeModelList,this);
 sizefAdapter=new SizefAdapter(size_modelList,this);
         binding.recbrand.setAdapter(brandsAdapter);
-        binding.recmay.setLayoutManager(new LinearLayoutManager(this));
+        binding.recmay.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
 binding.recmay.setAdapter(sizefAdapter);
 getBrand();
 getSize();
@@ -110,13 +111,16 @@ getECPLORE();
     private void getECPLORE()
     {
         //    binding.progBar.setVisibility(View.VISIBLE);
-
+        ProgressDialog dialog = Common.createProgressDialog(this,getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
         Api.getService(Tags.base_url)
                 .search(cat_id,sizeid,binding.rangeSeekbar3.getSelectedMinValue()+"",binding.rangeSeekbar3.getSelectedMaxValue()+"","all","all")
                 .enqueue(new Callback<List<Wish_Model>>() {
                     @Override
                     public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
                         //      binding.progBar.setVisibility(View.GONE);
+                        dialog.dismiss();
                         if (response.isSuccessful() && response.body() != null ) {
                             Log.e("error", response.code() + "_" + response.body().size());
 
@@ -152,6 +156,7 @@ getECPLORE();
                     @Override
                     public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
                         try {
+                            dialog.dismiss();
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {

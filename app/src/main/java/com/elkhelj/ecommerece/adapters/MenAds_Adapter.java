@@ -12,6 +12,7 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.databinding.MarketRowBinding;
 import com.elkhelj.ecommerece.databinding.MenadRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
+import com.elkhelj.ecommerece.models.Wish_Model;
 
 import java.util.List;
 import java.util.Locale;
@@ -20,12 +21,12 @@ import io.paperdb.Paper;
 
 public class MenAds_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Home_Model.Products> orderlist;
+    private List<Wish_Model> orderlist;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
     private int i = 0;
-    public MenAds_Adapter(List<Home_Model.Products> orderlist, Context context) {
+    public MenAds_Adapter(List<Wish_Model> orderlist, Context context) {
         this.orderlist = orderlist;
         this.context = context;
         inflater = LayoutInflater.from(context);

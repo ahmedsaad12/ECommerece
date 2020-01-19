@@ -1,10 +1,12 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -27,6 +29,7 @@ import com.elkhelj.ecommerece.activities_fragments.activity_search.SearchActivit
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.elkhelj.ecommerece.activities_fragments.marktprofile.MarketProfileActivity;
 import com.elkhelj.ecommerece.databinding.ActivityHomeBinding;
+import com.elkhelj.ecommerece.databinding.DialogLanguageBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
@@ -52,6 +55,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
     private Preferences preferences;
     private UserModel userModel;
     private Fragment_Shop_Profile fragment_shop_profile;
+    private String current_lang;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -80,7 +84,8 @@ public class HomeStoreActivity extends AppCompatActivity  {
         userModel = preferences.getUserData(this);
         fragmentManager = getSupportFragmentManager();
 
-
+        Paper.init(this);
+        current_lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
 
 
 
@@ -278,14 +283,63 @@ public class HomeStoreActivity extends AppCompatActivity  {
         finish();
     }
 
-    public void refreshActivity(String lang) {
+    public void CreateLanguageDialog() {
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setCancelable(true)
+                .create();
+
+        DialogLanguageBinding binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_language, null, false);
+
+
+        if (current_lang.equals("ar")) {
+            binding.rbAr.setChecked(true);
+
+        } else if (current_lang.equals("en")) {
+            binding.rbEn.setChecked(true);
+
+        }
+        binding.rbAr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                refreshActivity("ar");
+
+
+            }
+        });
+
+        binding.rbEn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                refreshActivity("en");
+
+
+            }
+        });
+
+
+        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        //  dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_congratulation_animation;
+        dialog.setView(binding.getRoot());
+        dialog.show();
+    }
+
+    private void refreshActivity(String lang) {
+        preferences.create_update_language(this, lang);
         Paper.book().write("lang", lang);
         LanguageHelper.setNewLocale(this, lang);
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-
     }
+
 
     public void logout() {
         if (userModel == null) {

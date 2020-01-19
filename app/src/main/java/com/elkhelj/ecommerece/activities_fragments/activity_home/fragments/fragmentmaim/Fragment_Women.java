@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
-import com.elkhelj.ecommerece.adapters.Catogry_Adapter;
 import com.elkhelj.ecommerece.adapters.MenAds_Adapter;
 import com.elkhelj.ecommerece.adapters.Women_Catogry_Adapter;
 import com.elkhelj.ecommerece.adapters.Women_Product_Adapter;
@@ -88,7 +87,7 @@ getECPLORE();
         binding.progBar.setVisibility(View.VISIBLE);
 
         Api.getService(Tags.base_url)
-                .getproductss("men")
+                .getproductss("women")
                 .enqueue(new Callback<Home_Model>() {
                     @Override
                     public void onResponse(Call<Home_Model> call, Response<Home_Model> response) {
