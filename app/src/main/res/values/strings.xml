@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ECommerece</string>
+    <string name="app_name">V Store </string>
     <string name="field_req">Field required</string>
     <string name="pass_short">Password to short</string>
     <string name="sign_up2">Create Account</string>

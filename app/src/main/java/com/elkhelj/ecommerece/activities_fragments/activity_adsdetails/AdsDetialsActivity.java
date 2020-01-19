@@ -23,7 +23,6 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_AdShop;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Detials;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Review;
-import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.ColorsAdapter;
 import com.elkhelj.ecommerece.adapters.MaLike_Product_Adapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
@@ -199,10 +198,10 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
         orders_cart_model.setColor_name(colors.getName());
         orders_cart_model.setSize_id(sizes.getId());
         orders_cart_model.setSize_name(sizes.getName());
-        orders_cart_model.setImage(single_adversiment_model.getProduct().getImage());
-orders_cart_model.setPrice(single_adversiment_model.getProduct().getPrice());
-orders_cart_model.setName(single_adversiment_model.getProduct().getName());
-orders_cart_model.setProduct_id(single_adversiment_model.getProduct().getId());
+        orders_cart_model.setImage(single_adversiment_model.getSingelproduct().getImage());
+orders_cart_model.setPrice(single_adversiment_model.getSingelproduct().getPrice());
+orders_cart_model.setName(single_adversiment_model.getSingelproduct().getName());
+orders_cart_model.setProduct_id(single_adversiment_model.getSingelproduct().getId());
 orders_cart_model.setAmount(1);
 orders_cart_models.add(orders_cart_model);
 preferences.create_update_order(this,orders_cart_models);
@@ -268,28 +267,28 @@ dialog.dismiss();
 
 
 Fragment_Detials fragment_detials= (Fragment_Detials) fragmentList.get(0);
-fragment_detials.setdesc(body.getProduct().getDes());
+fragment_detials.setdesc(body.getSingelproduct().getDes());
         Fragment_AdShop fragment_adShop= (Fragment_AdShop) fragmentList.get(1);
-        fragment_adShop.setdesc(body.getProduct());
-        if(body.getProduct().getProduct_images()!=null&&body.getProduct().getProduct_images().size()>0){
-            Log.e("lll",body.getProduct().getProduct_images().size()+"");
-            NUM_PAGES = body.getProduct().getProduct_images().size();
-            singleslidingImage__adapter = new SingleAdsSlidingImage_Adapter(this, body.getProduct().getProduct_images());
+        fragment_adShop.setdesc(body.getSingelproduct());
+        if(body.getSingelproduct().getProduct_images()!=null&&body.getSingelproduct().getProduct_images().size()>0){
+            Log.e("lll",body.getSingelproduct().getProduct_images().size()+"");
+            NUM_PAGES = body.getSingelproduct().getProduct_images().size();
+            singleslidingImage__adapter = new SingleAdsSlidingImage_Adapter(this, body.getSingelproduct().getProduct_images());
             binding.pager.setAdapter(singleslidingImage__adapter);
         }
-        if(body.getProduct().getColors()!=null){
+        if(body.getSingelproduct().getColors()!=null){
             colorsList.clear();
-            colorsList.addAll(body.getProduct().getColors());
+            colorsList.addAll(body.getSingelproduct().getColors());
             colorsAdapter.notifyDataSetChanged();
         }
-        if(body.getProduct().getSizes()!=null){
+        if(body.getSingelproduct().getSizes()!=null){
             sizesList.clear();
-            sizesList.addAll(body.getProduct().getSizes());
+            sizesList.addAll(body.getSingelproduct().getSizes());
             sizeAdapter.notifyDataSetChanged();
         }
-        if(single_adversiment_model.getProduct().getYoumaylike()!=null){
+        if(single_adversiment_model.getSingelproduct().getYoumaylike()!=null){
             youmaylikeList.clear();
-            youmaylikeList.addAll(body.getProduct().getYoumaylike());
+            youmaylikeList.addAll(body.getSingelproduct().getYoumaylike());
             maLike_product_adapter.notifyDataSetChanged();
         }
     }

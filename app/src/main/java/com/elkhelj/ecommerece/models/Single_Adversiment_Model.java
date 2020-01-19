@@ -8,9 +8,9 @@ public class Single_Adversiment_Model implements Serializable {
 
 
 
-private Products product;
-    public Products getProduct() {
-        return product;
+private Products singelproduct;
+    public Products getSingelproduct() {
+        return singelproduct;
     }
 
 
