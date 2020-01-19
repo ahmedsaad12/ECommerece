@@ -1,6 +1,5 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim;
 
-import android.app.Dialog;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -74,8 +73,7 @@ productsList=new ArrayList<>();
 
         catogry_adapter=new Catogry_Adapter(categoriesList,activity,this);
         menAds_adapter=new MenAds_Adapter(productsList,activity);
-binding.recviewdepart.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
-binding.recviewdepart.setHasFixedSize(true);
+binding.recviewdepart.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,true));
 binding.recviewdepart.setAdapter(catogry_adapter);
         binding.recMarket.setLayoutManager(new LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false));
 binding.recMarket.setAdapter(menAds_adapter);
@@ -115,6 +113,8 @@ binding.recMarket.setAdapter(menAds_adapter);
                     @Override
                     public void onFailure(Call<Home_Model> call, Throwable t) {
                         try {
+                            binding.progBar.setVisibility(View.GONE);
+
                             if (t.getMessage() != null) {
                                 Log.e("error", t.getMessage());
                                 if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
@@ -184,7 +184,7 @@ binding.recMarket.setAdapter(menAds_adapter);
         if(body.getCategories()!=null){
         categoriesList.clear();
         categoriesList.addAll(body.getCategories());
-
+            getproduct(categoriesList.get(0).getId());
       }
         catogry_adapter.notifyDataSetChanged();
 

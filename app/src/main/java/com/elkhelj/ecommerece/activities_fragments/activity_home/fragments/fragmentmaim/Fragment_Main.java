@@ -59,11 +59,12 @@ public class Fragment_Main extends Fragment {
         Paper.init(activity);
         fragmentList = new ArrayList<>();
         titles = new ArrayList<>();
-        binding.tab.setupWithViewPager(binding.pager);
         addFragments_Titles();
+        binding.tab.setupWithViewPager(binding.pager);
+
         binding.pager.setOffscreenPageLimit(fragmentList.size());
 
-        adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragments(fragmentList);
         adapter.addTitles(titles);
         binding.pager.setAdapter(adapter);
@@ -94,6 +95,7 @@ binding.imageCart.setOnClickListener(new View.OnClickListener() {
               binding.scroll.setBackground(activity.getResources().getDrawable(R.drawable.womenbackground));
 
           }
+          binding.pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
