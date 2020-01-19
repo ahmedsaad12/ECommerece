@@ -442,10 +442,11 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
     }
     public void showdetials(int id) {
+        if(userModel!=null){
         Intent intent=new Intent(HomeStoreActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
-    }
+    }}
 
     public void Displaymarktprofile(int id) {
         Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);

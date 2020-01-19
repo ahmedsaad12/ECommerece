@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Forgetpass;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Phone;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In_Signup;
@@ -36,6 +37,7 @@ public class SignInActivity extends AppCompatActivity {
     private Fragment_Sign_In_Signup fragment_sign_in_signup;
     private Fragment_Phone fragment_phone;
     private Fragment_Verfiy fragment_verfiy;
+    private Fragment_Forgetpass fragment_forgetpass;
 
 
     @Override
@@ -101,6 +103,15 @@ public class SignInActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().show(fragment_phone).commit();
         } else {
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_phone, "fragment_phone").addToBackStack("fragment_phone").commit();
+        }
+    }
+    public void DisplayFragmentpass() {
+        fragment_count += 1;
+        fragment_forgetpass= Fragment_Forgetpass.newInstance();
+        if (fragment_forgetpass.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_forgetpass).commit();
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_forgetpass, "fragment_forgetpass").addToBackStack("fragment_forgetpass").commit();
         }
     }
     public void DisplayFragmentVerfiy(String phone) {

@@ -64,7 +64,7 @@ public class Fragment_Sign_In extends Fragment implements Listeners.LoginListene
 binding.tvForget.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-       // activity.displayFragmentForgetpass();
+     activity.DisplayFragmentpass();
     }
 });
 

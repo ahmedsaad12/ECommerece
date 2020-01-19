@@ -32,19 +32,6 @@
 
 
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/im_offer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:contentPadding="5dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                       app:cardBackgroundColor="@color/gray5"
-                        >
                     <com.makeramen.roundedimageview.RoundedImageView
                         image="@{admodel.image}"
                         android:layout_width="90dp"
@@ -57,7 +44,6 @@
                         app:riv_corner_radius="10dp"
 
                         />
-                    </androidx.cardview.widget.CardView>
 
 
 

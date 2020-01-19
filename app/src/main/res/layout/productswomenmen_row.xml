@@ -37,7 +37,7 @@
                         android:layout_height="230dp"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:background="@color/gray3"
                         image="@{productsmodel.image}"
                         app:layout_constraintBottom_toBottomOf="parent"

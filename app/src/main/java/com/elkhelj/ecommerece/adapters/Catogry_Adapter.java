@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Men;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Mens;
 import com.elkhelj.ecommerece.databinding.CatogryRowBinding;
 import com.elkhelj.ecommerece.databinding.SizeRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
@@ -31,7 +32,7 @@ public class Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private LayoutInflater inflater;
     private String lang;
     int index = -1;
-private Fragment_Men fragment_men;
+private Fragment_Mens fragment_men;
 private Fragment fragment;
     public Catogry_Adapter(List<Home_Model.Categories> orderModelList, Context context, Fragment fragment) {
         this.orderModelList = orderModelList;
@@ -72,7 +73,7 @@ private Fragment fragment;
 eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        fragment_men=(Fragment_Men)fragment;
+        fragment_men=(Fragment_Mens)fragment;
         fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
     }
 });

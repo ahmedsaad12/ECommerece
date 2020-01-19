@@ -64,7 +64,7 @@ public class Fragment_Main extends Fragment {
 
         binding.pager.setOffscreenPageLimit(fragmentList.size());
 
-        adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
         adapter.addFragments(fragmentList);
         adapter.addTitles(titles);
         binding.pager.setAdapter(adapter);
