@@ -270,8 +270,9 @@ Fragment_Detials fragment_detials= (Fragment_Detials) fragmentList.get(0);
 fragment_detials.setdesc(body.getSingelproduct().getDes());
         Fragment_AdShop fragment_adShop= (Fragment_AdShop) fragmentList.get(1);
         fragment_adShop.setdesc(body.getSingelproduct());
+        if(body.getSingelproduct().getRates()!=null){
         Fragment_Review fragment_review= (Fragment_Review) fragmentList.get(2);
-        fragment_review.setdesc(body.getSingelproduct().getRates(),body.getSingelproduct().getPrice());
+        fragment_review.setdesc(body.getSingelproduct().getRates(),body.getSingelproduct().getPrice());}
         if(body.getSingelproduct().getProduct_images()!=null&&body.getSingelproduct().getProduct_images().size()>0){
             Log.e("lll",body.getSingelproduct().getProduct_images().size()+"");
             NUM_PAGES = body.getSingelproduct().getProduct_images().size();

@@ -66,6 +66,12 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
 });
 if(index==position){
 adsDetialsActivity.setsize(orderModelList.get(index));
+    eventHolder.binding.tvTitle.setBackground(context.getResources().getDrawable(R.drawable.linear_bg_white));
+
+}
+else {
+    eventHolder.binding.tvTitle.setBackground(context.getResources().getDrawable(R.drawable.edt_bg));
+
 }
         }
     }
