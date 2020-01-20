@@ -39,94 +39,114 @@
             android:name=".activities_fragments.activity_showall_products.AllProductActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_search.FilterActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_add_ads.CompleteOrderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_add_ads.CongActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_addproduct.AddPoductActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_wishlist.WishlistActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_my_orders.MyOrdersActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.marktprofile.MarketProfileActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_cart.CartActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_about.AboutActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_terms.TermsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_search.SearchActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_notification.NotificationActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name=".activities_fragments.activity_contact.ContactActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
 
             />
         <activity
             android:name="com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".activities_fragments.activity_adsdetails.AdsDetialsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
+
+            />
 
 
 
@@ -134,7 +154,10 @@
         <activity
             android:name=".activities_fragments.activity_splash.Splash_Activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:screenOrientation="portrait"
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
