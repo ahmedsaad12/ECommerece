@@ -25,6 +25,7 @@ import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.Home_Model;
 import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
+import com.elkhelj.ecommerece.share.Common;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -105,7 +106,11 @@ if(data!=null) {
         Intent intent=new Intent(AllProductActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
-    }}
+    }
+        else {
+            Common.CreateNoSignAlertDialog(this);
+        }
+    }
 
 
 

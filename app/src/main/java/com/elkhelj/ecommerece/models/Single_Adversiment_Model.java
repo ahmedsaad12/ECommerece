@@ -18,7 +18,7 @@ private Products singelproduct;
     public class Products implements Serializable
     {
         private List<Youmaylike> youmaylike;
-
+private List<Rates> rates;
         public List<Youmaylike> getYoumaylike() {
             return youmaylike;
         }
@@ -106,6 +106,10 @@ private Products singelproduct;
         }
         public List<Colors> getColors() {
             return colors;
+        }
+
+        public List<Rates> getRates() {
+            return rates;
         }
 
         public class Images implements Serializable
@@ -245,6 +249,33 @@ private Products singelproduct;
 
             public String getSub_category_name() {
                 return sub_category_name;
+            }
+        }
+        public class Rates implements Serializable
+        {
+           private double rate;
+           private String comment;
+           private String from_name;
+           private String from_image;
+private String created_at;
+            public double getRate() {
+                return rate;
+            }
+
+            public String getComment() {
+                return comment;
+            }
+
+            public String getFrom_name() {
+                return from_name;
+            }
+
+            public String getFrom_image() {
+                return from_image;
+            }
+
+            public String getCreated_at() {
+                return created_at;
             }
         }
 }

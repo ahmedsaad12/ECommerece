@@ -3,7 +3,7 @@
     <data>
         <variable
             name="model"
-            type="com.elkhelj.ecommerece.models.Wish_Model" />
+            type="com.elkhelj.ecommerece.models.Single_Adversiment_Model.Products.Rates" />
         <variable
             name="lang"
             type="String" />
@@ -57,7 +57,7 @@ android:layout_marginLeft="8dp"
                     android:layout_width="90dp"
                     android:layout_height="95dp"
                     android:src="@drawable/logo"
-                    image="@{model.image}"
+                    image="@{model.from_image}"
 
                     />
 
@@ -83,7 +83,7 @@ android:layout_marginLeft="8dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                       android:padding="5dp"
-                        android:text='@{lang.equals("ar")?model.name:model.name}'
+                        android:text='@{lang.equals("ar")?model.from_name:model.from_name}'
 
                         />
 
@@ -114,6 +114,7 @@ android:layout_marginLeft="8dp"
                         app:srb_stepSize=".5"
                         android:background="@drawable/rec_shape"
                         android:padding="5dp"
+                        rate="@{model.rate}"
                         />
 
                     <TextView
@@ -125,7 +126,7 @@ android:layout_marginLeft="8dp"
                         android:textSize="14sp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text='@{"$"+model.shop_name}'
+                        android:text='@{"$"+model.comment}'
 
                         />
 
@@ -148,7 +149,7 @@ android:layout_marginLeft="8dp"
                         android:textSize="14sp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text='@{"$"+model.price}'
+                        android:text='@{"$"+model.created_at}'
 
                         />
 

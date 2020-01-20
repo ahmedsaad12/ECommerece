@@ -100,7 +100,7 @@ binding.lllang.setOnClickListener(new View.OnClickListener() {
                 Intent intent = new Intent(activity, MarketProfileActivity.class);
                 intent.putExtra("id",userModel.getId()+"");
                 startActivity(intent);
-                activity.finish();
+               // activity.finish();
             }
         });
     }

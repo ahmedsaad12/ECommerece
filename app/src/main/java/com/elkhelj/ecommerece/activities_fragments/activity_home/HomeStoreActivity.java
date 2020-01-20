@@ -446,7 +446,11 @@ public class HomeStoreActivity extends AppCompatActivity  {
         Intent intent=new Intent(HomeStoreActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
-    }}
+    }
+        else {
+            Common.CreateNoSignAlertDialog(this);
+        }
+    }
 
     public void Displaymarktprofile(int id) {
         Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
