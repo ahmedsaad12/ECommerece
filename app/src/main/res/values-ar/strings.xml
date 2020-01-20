@@ -120,4 +120,5 @@
     <string name="gallery">صور</string>
     <string name="upload_image">رفع صوره</string>
     <string name="language_setting">اعدادات اللغه</string>
+    <string name="your_order_is_complete">لقد اكتمل طلبك</string>
 </resources>
