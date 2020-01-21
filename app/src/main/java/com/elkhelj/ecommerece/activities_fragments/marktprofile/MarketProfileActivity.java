@@ -195,9 +195,12 @@ binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChan
             adModels.addAll(body.getCategoriesBoths());
             myAdsAdapter.notifyDataSetChanged();
         }
-        if(body.getFollowers()!=null){
+        if(body.getFollowers()!=null) {
+            binding.tvfollow.setText(body.getFollowers().size()+body.getUser().getIs_following()+"");
+        }
+        else {
+            binding.tvfollow.setText(body.getUser().getIs_following());
 
-            binding.tvfollow.setText(body.getFollowers().size()+"");
         }
         if(body.getUser().getIs_following()==1){
             binding.tvfollow2.setText("unfollow");
@@ -346,13 +349,7 @@ Log.e("ffh",userModel.getId()+" "+other_id);
                                 else {
                                     marketprofile.getUser().setIs_following(1);
                                 }
-if(marketprofile.getFollowers()!=null) {
-    binding.tvfollow.setText(marketprofile.getFollowers().size()+marketprofile.getUser().getIs_following()+"");
-}
-else {
-    binding.tvfollow.setText(marketprofile.getUser().getIs_following());
 
-}
 updateprofile(marketprofile);
                             } else {
 
