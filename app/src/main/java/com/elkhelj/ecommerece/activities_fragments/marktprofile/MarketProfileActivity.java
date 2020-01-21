@@ -120,6 +120,12 @@ binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChan
         if(marketprofile.getUser().getCan_rate()==1){
         rateuser((int) rating);}
         else {
+            SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
+                    .setRatingTarget((float) 0.0)
+                    .setDuration(1000)
+                    .setRepeatCount(0)
+                    .setInterpolator(new LinearInterpolator());
+            builder.start();
             Toast.makeText(MarketProfileActivity.this,"You cannot rate",Toast.LENGTH_LONG).show();
         }
     }

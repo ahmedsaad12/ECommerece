@@ -180,7 +180,7 @@ public interface Service {
             @Field("room_id") String room_id
     );
     @FormUrlEncoded
-    @POST("api/user_profile_update")
+    @POST("api/update_profile")
     Call<UserModel> editprofile(@Field("name") String name,
                                 @Field("mobile") String mobile,
 
