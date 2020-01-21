@@ -108,7 +108,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_user);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 
-        binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_HIDE);
+        binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         binding.ahBottomNav.setDefaultBackgroundColor(ContextCompat.getColor(this, R.color.white));
         binding.ahBottomNav.setTitleTextSizeInSp(14, 12);
         binding.ahBottomNav.setForceTint(true);

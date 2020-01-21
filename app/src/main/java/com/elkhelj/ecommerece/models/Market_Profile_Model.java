@@ -49,6 +49,7 @@ private List<Products> trends;
             private String user_name;
             private String user_image;
 
+
         public int getId() {
             return id;
         }

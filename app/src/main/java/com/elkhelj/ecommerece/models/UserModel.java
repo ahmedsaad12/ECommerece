@@ -42,7 +42,21 @@ public class UserModel implements Serializable {
     private String email_verified_at;
     private String is_deleted;
     private String default_theme;
+    private int is_following;
+    private int is_like;
+    private int can_rate;
 
+    public int getIs_following() {
+        return is_following;
+    }
+
+    public int getIs_like() {
+        return is_like;
+    }
+
+    public int getCan_rate() {
+        return can_rate;
+    }
     public int getId() {
         return id;
     }
@@ -197,5 +211,13 @@ public class UserModel implements Serializable {
 
     public String getDefault_theme() {
         return default_theme;
+    }
+
+    public void setIs_following(int is_following) {
+        this.is_following = is_following;
+    }
+
+    public void setIs_like(int is_like) {
+        this.is_like = is_like;
     }
 }

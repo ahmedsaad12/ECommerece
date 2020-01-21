@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_addproduct.AddPoductActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_edit_profile.Edit_Profile_Activity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_my_orders.MyOrdersActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_notification.NotificationActivity;
@@ -60,6 +61,13 @@ if(userModel.getType().equals("1")){
     binding.card1.setVisibility(View.GONE);
 }
 binding.setLang(lang);
+        binding.llInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(activity, Edit_Profile_Activity.class);
+                startActivity(intent);
+            }
+        });
 binding.llnotif.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {

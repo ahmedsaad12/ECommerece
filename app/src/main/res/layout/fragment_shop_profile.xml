@@ -160,7 +160,8 @@ android:padding="5dp"
     android:background="@color/gray3"
     />
             <LinearLayout
-                android:id="@+id/ll_name"
+
+                android:id="@+id/ll_info"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -422,7 +423,7 @@ android:padding="5dp"
                     android:layout_height="50dp"
                     android:background="@drawable/cons_shape2"
                     app:layout_constraintTop_toTopOf="parent"
-
+android:visibility="gone"
                     >
 
                     <ImageView

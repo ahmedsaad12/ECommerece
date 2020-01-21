@@ -8,6 +8,11 @@ public interface Listeners {
     interface LoginListener {
         void checkDataLogin(String phone, String password);
     }
+    interface EditprofileListener
+    {
+        void Editprofile(String name,  String phone,String email);
+
+    }
     interface ForgetpasswordListner {
         void checkDataForget(String emial);
     }
@@ -35,11 +40,7 @@ public interface Listeners {
 
     }
 
-    interface EditProfileListener
-    {
-        void checkDataEditProfile(String name);
 
-    }
     interface RatingListener
     {
         void checkDataRating(String desc);

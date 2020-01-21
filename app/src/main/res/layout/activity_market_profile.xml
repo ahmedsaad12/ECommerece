@@ -163,6 +163,7 @@
                             android:layout_gravity="center"
                             />
                         <TextView
+                            android:id="@+id/tvlike"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
@@ -260,6 +261,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
                             />
 
                         <TextView
+                            android:id="@+id/tvfollow2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/following"
@@ -285,7 +287,7 @@ app:layout_constraintStart_toEndOf="@+id/follow"                        android:
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/share"
+                            android:text="@string/like"
                             android:textSize="13sp"
                             android:textColor="@color/black"
                             />

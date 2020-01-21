@@ -29,14 +29,12 @@ public class Order_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private LayoutInflater inflater;
     private String lang;
     private int i = 0;
-    private Fragment_Explore fragment_explore;
-    public Order_Adapter(List<Order_Model> orderlist, Context context, Fragment_Explore fragment_explore) {
+    public Order_Adapter(List<Order_Model> orderlist, Context context) {
         this.orderlist = orderlist;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-this.fragment_explore=fragment_explore;
     }
 
     @NonNull

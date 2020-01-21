@@ -9,8 +9,8 @@
     <string name="add_to_bag">اضافه الى الحقيبه</string>
     <string name="address">عنوان</string>
     <string name="are_you_forgot_password">هل نسيت كلمة المرور</string>
-    <string name="as_buyer">كمشترى</string>
-    <string name="as_seller">كبائع</string>
+    <string name="as_buyer">مشترى</string>
+    <string name="as_seller">بائع</string>
     <string name="back">رجوع</string>
     <string name="call_us">اتصل بنا</string>
     <string name="cancel">الغاء</string>
@@ -121,4 +121,7 @@
     <string name="upload_image">رفع صوره</string>
     <string name="language_setting">اعدادات اللغه</string>
     <string name="your_order_is_complete">لقد اكتمل طلبك</string>
+    <string name="editpr">Edit Profile</string>
+    <string name="like">Like</string>
+    <string name="you_rate_this_user_before">You Rate This Before</string>
 </resources>

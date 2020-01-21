@@ -179,4 +179,35 @@ public interface Service {
     Call<List<AllMessageModel>> getMessge(
             @Field("room_id") String room_id
     );
+    @FormUrlEncoded
+    @POST("api/user_profile_update")
+    Call<UserModel> editprofile(@Field("name") String name,
+                                @Field("mobile") String mobile,
+
+                                @Field("email") String email,
+                                @Field("city") String city,
+                                @Field("user_id") int user_id
+    );
+    @FormUrlEncoded
+    @POST("api/like")
+    Call<ResponseBody> Like(
+
+            @Field("to_id") String to_id,
+            @Field("form_id") String form_id
+    );
+    @FormUrlEncoded
+    @POST("api/follow")
+    Call<ResponseBody> follow(
+
+            @Field("to_id") String to_id,
+            @Field("form_id") String form_id
+    );
+    @FormUrlEncoded
+    @POST("api/follow")
+    Call<ResponseBody> rate(
+            @Field("form_id") String form_id,
+
+            @Field("to_id") String to_id,
+            @Field("rate")int rate
+    );
 }

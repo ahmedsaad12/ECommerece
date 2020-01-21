@@ -23,8 +23,8 @@
     <string name="country">Country</string>
     <string name="city">City</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="as_buyer">As  Buyer</string>
-    <string name="as_seller">As Seller</string>
+    <string name="as_buyer">Buyer</string>
+    <string name="as_seller">Seller</string>
     <string name="guest">Guest</string>
     <string name="back">Back</string>
     <string name="email_or_phone">Email Or Phone</string>
@@ -94,7 +94,7 @@
     <string name="cancel">Cancel</string>
     <string name="choose_color">Choose Color</string>
     <string name="choose_size">Choose Size</string>
-    <string name="Chat">Chat</string>
+    <string name="Chat">Connect US</string>
     <string name="type_a_message">type a message....</string>
     <string name="my_information">My InFormation</string>
     <string name="mypage">My Page</string>
@@ -121,4 +121,7 @@
     <string name="upload_image">upload image</string>
     <string name="language_setting">Language Setting</string>
     <string name="your_order_is_complete">Your Order is Complete</string>
+    <string name="editpr">Edit Profile</string>
+    <string name="like">Like</string>
+    <string name="you_rate_this_user_before">You Rate This Before</string>
 </resources>

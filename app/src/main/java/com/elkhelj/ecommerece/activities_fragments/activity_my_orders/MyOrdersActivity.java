@@ -79,7 +79,7 @@ public class MyOrdersActivity extends AppCompatActivity implements Listeners.Bac
 
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         binding.recView.setLayoutManager(manager);
-        //ads_adapter = new My_Orders_Adapter(advesriment_data_list,this);
+        ads_adapter = new Order_Adapter(advesriment_data_list,this);
         binding.recView.setItemViewCacheSize(25);
         binding.recView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         binding.recView.setDrawingCacheEnabled(true);

@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +54,8 @@ private List<Market_Profile_Model.CategoriesBoth> adModels;
 private Profile_Catogry_Adapter myAdsAdapter;
     private List<Market_Profile_Model.Products> maProductsList;
     private Trends_Adapter trends_adapter;
+    private Market_Profile_Model marketprofile;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -97,10 +100,26 @@ binding.recttrends.setAdapter(trends_adapter);
 myAdsAdapter=new Profile_Catogry_Adapter(adModels,this,null);
 binding.reccat.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
 binding.reccat.setAdapter(myAdsAdapter);
-
+binding.follow.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        followads();
+    }
+});
+binding.like.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Likeads();
+    }
+});
         if(userModel!=null){
         getprofiledata();}
-
+binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {
+    @Override
+    public void onRatingChanged(SimpleRatingBar simpleRatingBar, float rating, boolean fromUser) {
+        rateuser((int) rating);
+    }
+});
 
     }
 
@@ -167,12 +186,21 @@ binding.reccat.setAdapter(myAdsAdapter);
     }
 
     private void updateprofile(Market_Profile_Model body) {
+        this.marketprofile=body;
         if(body.getCategoriesBoths()!=null){
             adModels.addAll(body.getCategoriesBoths());
             myAdsAdapter.notifyDataSetChanged();
         }
         if(body.getFollowers()!=null){
+
             binding.tvfollow.setText(body.getFollowers().size()+"");
+        }
+        if(body.getUser().getIs_following()==1){
+            binding.tvfollow2.setText("unfollow");
+        }
+        else {
+            binding.tvfollow2.setText(getResources().getString(R.string.following));
+
         }
         Picasso.with(this).load(body.getUser().getImage()).fit().into(binding.image);
 if(body.getMyLastRate()!=null){
@@ -186,6 +214,21 @@ if(body.getTrends()!=null){
     maProductsList.clear();
     maProductsList.addAll(body.getTrends());
     trends_adapter.notifyDataSetChanged();
+}
+if(body.getUser().getIs_like()==1){
+    binding.tvlike.setText("1");
+}
+else {
+    binding.tvlike.setText("2");
+
+}
+if(body.getMyLastRate()!=null){
+    SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
+            .setRatingTarget((float) body.getMyLastRate().getRate())
+            .setDuration(1000)
+            .setRepeatCount(0)
+            .setInterpolator(new LinearInterpolator());
+    builder.start();
 }
     }
 
@@ -211,6 +254,188 @@ if(body.getTrends()!=null){
           //  getprofiledata();
         }
     }
+    public void Likeads() {
+        //   Common.CloseKeyBoard(homeActivity, edt_name);
+
+        ProgressDialog dialog = Common.createProgressDialog(MarketProfileActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        // rec_sent.setVisibility(View.GONE);
+        try {
+
+
+            Api.getService( Tags.base_url)
+                    .Like(other_id,userModel.getId()+"")
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+
+                            //  binding.progBar.setVisibility(View.GONE);
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                                //binding.coord1.scrollTo(0,0);
+
+//getsingleads();
+
+                                if(marketprofile.getUser().getIs_like()==1){
+                                    marketprofile.getUser().setIs_like(0);
+                                }
+                                else {
+                                    marketprofile.getUser().setIs_like(1);
+                                }
+                                updateprofile(marketprofile);
+                            } else {
+
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                try {
+                                    Log.e("Error_code", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+
+                                dialog.dismiss();
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                Log.e("error", t.getMessage());
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+            dialog.dismiss();
+        }
+    }
+    public void followads() {
+        //   Common.CloseKeyBoard(homeActivity, edt_name);
+
+        ProgressDialog dialog = Common.createProgressDialog(MarketProfileActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        // rec_sent.setVisibility(View.GONE);
+        try {
+
+
+            Api.getService( Tags.base_url)
+                    .follow(other_id,userModel.getId()+"")
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+
+                            //  binding.progBar.setVisibility(View.GONE);
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                                //binding.coord1.scrollTo(0,0);
+
+//getsingleads();
+
+                                if(marketprofile.getUser().getIs_following()==1){
+                                    marketprofile.getUser().setIs_following(0);
+                                }
+                                else {
+                                    marketprofile.getUser().setIs_following(1);
+                                }
+if(marketprofile.getFollowers()!=null) {
+    binding.tvfollow.setText(marketprofile.getFollowers().size()+marketprofile.getUser().getIs_following());
+}
+else {
+    binding.tvfollow.setText(marketprofile.getUser().getIs_following());
+
+}
+                            } else {
+
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                try {
+                                    Log.e("Error_code", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+
+                                dialog.dismiss();
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                Log.e("error", t.getMessage());
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+            dialog.dismiss();
+        }
+    }
+    private void rateuser(int rate) {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+
+        // rec_sent.setVisibility(View.GONE);
+        try {
+
+
+            Api.getService(Tags.base_url)
+                    .rate( userModel.getId() + "",other_id,rate)
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+
+                            //  binding.progBar.setVisibility(View.GONE);
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                                //binding.coord1.scrollTo(0,0);
+                                SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
+                                        .setRatingTarget((float) rate)
+                                        .setDuration(1000)
+                                        .setRepeatCount(0)
+                                        .setInterpolator(new LinearInterpolator());
+                                builder.start();
+                            } else {
+
+                                if(response.code()==422){
+                                    Toast.makeText(MarketProfileActivity.this, getString(R.string.you_rate_this_user_before), Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(MarketProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();}
+                                try {
+                                    Log.e("Error_code", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+
+                                dialog.dismiss();
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                Log.e("error", t.getMessage());
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+
+            dialog.dismiss();
+        }
+    }
+
 
 
 }
