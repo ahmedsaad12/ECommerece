@@ -21,7 +21,8 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:layout_marginTop="5dp"
-
+android:paddingRight="8dp"
+    android:paddingLeft="8dp"
     >
     <TextView
         android:id="@+id/tv_title"
@@ -34,9 +35,7 @@ android:paddingLeft="10dp"
         android:gravity="center"
         android:singleLine="true"
         android:text="@{catogrymodel.name}"
-        android:layout_marginLeft="3dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="3dp"
         android:layout_marginBottom="5dp"
         android:textColor="@color/black"
         android:textSize="13sp"

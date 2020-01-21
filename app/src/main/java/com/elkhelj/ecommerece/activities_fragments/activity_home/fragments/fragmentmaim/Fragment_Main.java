@@ -63,8 +63,8 @@ public class Fragment_Main extends Fragment {
         binding.tab.setupWithViewPager(binding.pager);
 
         binding.pager.setOffscreenPageLimit(fragmentList.size());
-        binding.pager.setPageMargin(0);
-        binding.pager.setPadding(0,0,0,0);
+       // binding.pager.setPageMargin(0);
+        //binding.pager.setPadding(0,0,0,0);
         binding.pager.beginFakeDrag();
 
         adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
