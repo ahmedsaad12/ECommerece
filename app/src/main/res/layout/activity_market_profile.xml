@@ -279,6 +279,7 @@ app:layout_constraintStart_toEndOf="@+id/ll_logo"
 app:layout_constraintStart_toEndOf="@+id/follow"                        android:padding="15dp"
                         >
                         <ImageView
+                            android:id="@+id/imlike"
                             android:layout_width="35dp"
                             android:layout_height="45dp"
                             android:src="@drawable/ic_like"

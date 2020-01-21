@@ -210,6 +210,13 @@ binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChan
             adModels.addAll(body.getCategoriesBoths());
             myAdsAdapter.notifyDataSetChanged();
         }
+        if(body.getUser().getIs_like()==1){
+            binding.imlike.setImageDrawable(getResources().getDrawable(R.drawable.ic_like2));
+        }
+        else {
+            binding.imlike.setImageDrawable(getResources().getDrawable(R.drawable.ic_like));
+
+        }
         if(body.getFollowers()!=null) {
             binding.tvfollow.setText(body.getFollowers().size()+body.getUser().getIs_following()+"");
         }
