@@ -105,7 +105,7 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(getResources().getString(R.string.home), R.drawable.ic_nav_home);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(getResources().getString(R.string.profile), R.drawable.ic_userplus);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.ic_user);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem(getResources().getString(R.string.Chat), R.drawable.coneectus);
         AHBottomNavigationItem item4 = new AHBottomNavigationItem(getResources().getString(R.string.more), R.drawable.ic_more);
 
         binding.ahBottomNav.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
@@ -453,8 +453,14 @@ public class HomeStoreActivity extends AppCompatActivity  {
     }
 
     public void Displaymarktprofile(int id) {
-        Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
+        if(userModel!=null){
+
+            Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
         intent.putExtra("id",id+"");
         startActivity(intent);
+        }
+        else {
+            Common.CreateNoSignAlertDialog(this);
+        }
     }
 }

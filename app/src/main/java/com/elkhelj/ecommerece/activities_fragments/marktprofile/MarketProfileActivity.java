@@ -112,6 +112,15 @@ binding.like.setOnClickListener(new View.OnClickListener() {
         Likeads();
     }
 });
+binding.share.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, other_id);
+        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+    }
+});
         if(userModel!=null){
         getprofiledata();}
 binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {

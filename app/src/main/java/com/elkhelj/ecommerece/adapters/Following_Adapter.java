@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_follower.FollowingActivity;
 import com.elkhelj.ecommerece.databinding.FollowRowBinding;
 import com.elkhelj.ecommerece.databinding.WishRowBinding;
 import com.elkhelj.ecommerece.models.Wish_Model;
@@ -25,6 +27,7 @@ public class Following_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private LayoutInflater inflater;
     private String lang;
     private int i = 0;
+   private FollowingActivity followingActivity;
 
     public Following_Adapter(List<Wish_Model> orderlist, Context context) {
         this.orderlist = orderlist;
@@ -32,6 +35,7 @@ public class Following_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
+        followingActivity=(FollowingActivity)context;
     }
 
     @NonNull
@@ -50,7 +54,18 @@ public class Following_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         EventHolder eventHolder = (EventHolder) holder;
     eventHolder.binding.setModel(orderlist.get(position));
-
+eventHolder.binding.follow.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        followingActivity.followads(orderlist.get(eventHolder.getLayoutPosition()).getId()+"",eventHolder.getLayoutPosition());
+    }
+});
+eventHolder.binding.share.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        followingActivity.share(orderlist.get(eventHolder.getLayoutPosition()));
+    }
+});
     }
 
     @Override

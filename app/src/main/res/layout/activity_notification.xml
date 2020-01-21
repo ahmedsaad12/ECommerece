@@ -31,7 +31,7 @@
             app:contentInsetStart="0dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:onClick="@{()->backListener.back()}"
@@ -51,16 +51,18 @@
 
                 <TextView
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
                     android:clickable="false"
                     android:longClickable="false"
-                    android:text="@string/back"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp" />
+                    android:text="@string/notifications"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
         <FrameLayout

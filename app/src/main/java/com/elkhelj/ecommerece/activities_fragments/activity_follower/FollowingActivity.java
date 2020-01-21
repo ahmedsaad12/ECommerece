@@ -1,6 +1,8 @@
 package com.elkhelj.ecommerece.activities_fragments.activity_follower;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.marktprofile.MarketProfileActivity;
 import com.elkhelj.ecommerece.adapters.Following_Adapter;
 import com.elkhelj.ecommerece.adapters.Wish_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityFollowingBinding;
@@ -23,6 +26,7 @@ import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.models.Wish_Model;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
+import com.elkhelj.ecommerece.share.Common;
 import com.elkhelj.ecommerece.tags.Tags;
 
 import org.checkerframework.checker.units.qual.A;
@@ -33,6 +37,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -140,11 +145,74 @@ public class FollowingActivity extends AppCompatActivity implements Listeners.Ba
 
         }
     }
+    public void followads(String other_id,int idex) {
+        //   Common.CloseKeyBoard(homeActivity, edt_name);
+        Log.e("ffh",userModel.getId()+" "+other_id);
+        ProgressDialog dialog = Common.createProgressDialog(FollowingActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        // rec_sent.setVisibility(View.GONE);
+        try {
+
+
+            Api.getService( Tags.base_url)
+                    .follow(other_id,userModel.getId()+"")
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+
+                            //  binding.progBar.setVisibility(View.GONE);
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                                //binding.coord1.scrollTo(0,0);
+
+//getsingleads();
+                                notificationModelList.remove(idex);
+                                adapter.notifyDataSetChanged();
+
+
+
+                            } else {
+
+
+                                Toast.makeText(FollowingActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                try {
+                                    Log.e("Error_code", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+
+                                dialog.dismiss();
+
+                                Toast.makeText(FollowingActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                Log.e("error", t.getMessage());
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+            dialog.dismiss();
+        }
+    }
 
 
 
     @Override
     public void back() {
         finish();
+    }
+
+    public void share(Wish_Model wish_model) {
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, wish_model.getId()+"");
+        startActivity(Intent.createChooser(sharingIntent, "Share using"));
     }
 }
