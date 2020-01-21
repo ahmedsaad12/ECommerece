@@ -23,10 +23,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private final int LOAD = 2;
 
     private Context context;
-    private List<NotificationDataModel.NotificationModel>  notificationModelList;
+    private List<NotificationDataModel>  notificationModelList;
 
 
-    public NotificationAdapter(Context context, List<NotificationDataModel.NotificationModel>  notificationModelList) {
+    public NotificationAdapter(Context context, List<NotificationDataModel>  notificationModelList) {
         this.context = context;
         this.notificationModelList = notificationModelList;
 
@@ -52,7 +52,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        NotificationDataModel.NotificationModel notificationModel = notificationModelList.get(position);
+        NotificationDataModel notificationModel = notificationModelList.get(position);
 
         if (holder instanceof Holder1)
         {

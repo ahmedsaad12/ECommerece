@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_addproduct.AddPoductActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_edit_profile.Edit_Profile_Activity;
+import com.elkhelj.ecommerece.activities_fragments.activity_follower.FollowingActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_my_orders.MyOrdersActivity;
 import com.elkhelj.ecommerece.activities_fragments.activity_notification.NotificationActivity;
@@ -44,61 +45,69 @@ public class Fragment_Shop_Profile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop_profile,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_shop_profile, container, false);
         initView();
         return binding.getRoot();
     }
 
     private void initView() {
         activity = (HomeStoreActivity) getActivity();
-        preferences=Preferences.newInstance();
-        userModel=preferences.getUserData(activity);
+        preferences = Preferences.newInstance();
+        userModel = preferences.getUserData(activity);
         Paper.init(activity);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-        if(userModel!=null){
-binding.setUsermodel(userModel);}
-if(userModel.getType().equals("1")){
-    binding.card1.setVisibility(View.GONE);
-}
-binding.setLang(lang);
+        if (userModel != null) {
+            binding.setUsermodel(userModel);
+        }
+        if (userModel.getType().equals("1")) {
+            binding.card1.setVisibility(View.GONE);
+        }
+        binding.setLang(lang);
         binding.llInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(activity, Edit_Profile_Activity.class);
+                Intent intent = new Intent(activity, Edit_Profile_Activity.class);
                 startActivity(intent);
             }
         });
-binding.llnotif.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent=new Intent(activity, NotificationActivity.class);
-        startActivity(intent);
-    }
-});
-binding.lllang.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        activity.CreateLanguageDialog();
-    }
-});
+        binding.llfollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, FollowingActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.llnotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.lllang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.CreateLanguageDialog();
+            }
+        });
         binding.lladd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(activity, AddPoductActivity.class);
+                Intent intent = new Intent(activity, AddPoductActivity.class);
                 startActivity(intent);
             }
         });
         binding.llwish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(activity, WishlistActivity.class);
+                Intent intent = new Intent(activity, WishlistActivity.class);
                 startActivity(intent);
             }
         });
         binding.llorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(activity, MyOrdersActivity.class);
+                Intent intent = new Intent(activity, MyOrdersActivity.class);
                 startActivity(intent);
             }
         });
@@ -106,9 +115,9 @@ binding.lllang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, MarketProfileActivity.class);
-                intent.putExtra("id",userModel.getId()+"");
+                intent.putExtra("id", userModel.getId() + "");
                 startActivity(intent);
-               // activity.finish();
+                // activity.finish();
             }
         });
     }

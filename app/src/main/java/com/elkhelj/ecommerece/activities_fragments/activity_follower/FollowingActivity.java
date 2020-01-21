@@ -1,4 +1,4 @@
-package com.elkhelj.ecommerece.activities_fragments.activity_notification;
+package com.elkhelj.ecommerece.activities_fragments.activity_follower;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -7,24 +7,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.elkhelj.ecommerece.R;
-import com.elkhelj.ecommerece.adapters.NotificationAdapter;
-import com.elkhelj.ecommerece.databinding.ActivityNotificationBinding;
+import com.elkhelj.ecommerece.adapters.Following_Adapter;
+import com.elkhelj.ecommerece.adapters.Wish_Adapter;
+import com.elkhelj.ecommerece.databinding.ActivityFollowingBinding;
+import com.elkhelj.ecommerece.databinding.ActivityWishlistBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
-import com.elkhelj.ecommerece.models.NotificationDataModel;
 import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.models.Wish_Model;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.tags.Tags;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NotificationActivity extends AppCompatActivity implements Listeners.BackListener {
+public class FollowingActivity extends AppCompatActivity implements Listeners.BackListener {
 
-    private ActivityNotificationBinding binding;
+    private ActivityFollowingBinding binding;
     private String lang;
     private LinearLayoutManager manager;
-    private List<NotificationDataModel> notificationModelList;
-    private NotificationAdapter adapter;
+    private List<Wish_Model> notificationModelList;
+    private Following_Adapter adapter;
     private Preferences preferences;
     private UserModel userModel;
     private boolean isLoading = false;
@@ -55,7 +56,7 @@ public class NotificationActivity extends AppCompatActivity implements Listeners
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_notification);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_following);
         initView();
     }
 
@@ -72,7 +73,7 @@ public class NotificationActivity extends AppCompatActivity implements Listeners
         binding.recView.setLayoutManager(manager);
         binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
 
-        adapter = new NotificationAdapter(this,notificationModelList);
+        adapter = new Following_Adapter(notificationModelList,this);
         binding.recView.setAdapter(adapter);
 
         getNotification();
@@ -84,12 +85,12 @@ public class NotificationActivity extends AppCompatActivity implements Listeners
         try {
 
             Api.getService(Tags.base_url)
-                    .getNotifications(userModel.getId())
-                    .enqueue(new Callback<List<NotificationDataModel>>() {
+                    .getmyfollow(userModel.getId())
+                    .enqueue(new Callback<List<Wish_Model>>() {
                         @Override
-                        public void onResponse(Call<List<NotificationDataModel>> call, Response<List<NotificationDataModel>> response) {
+                        public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
                             binding.progBar.setVisibility(View.GONE);
-                            if (response.isSuccessful() && response.body() != null ) {
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
                                 notificationModelList.clear();
                                 notificationModelList.addAll(response.body());
                                 if (notificationModelList.size() > 0) {
@@ -101,11 +102,11 @@ public class NotificationActivity extends AppCompatActivity implements Listeners
                                 }
                             } else {
                                 if (response.code() == 500) {
-                                    Toast.makeText(NotificationActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FollowingActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
 
                                 } else {
-                                    Toast.makeText(NotificationActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FollowingActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
 
                                     try {
 
@@ -118,16 +119,16 @@ public class NotificationActivity extends AppCompatActivity implements Listeners
                         }
 
                         @Override
-                        public void onFailure(Call<List<NotificationDataModel>> call, Throwable t) {
+                        public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
                             try {
                                 binding.progBar.setVisibility(View.GONE);
 
                                 if (t.getMessage() != null) {
                                     Log.e("error", t.getMessage());
                                     if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-                                        Toast.makeText(NotificationActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(FollowingActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
                                     } else {
-                                        Toast.makeText(NotificationActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(FollowingActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

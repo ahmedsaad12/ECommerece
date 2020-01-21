@@ -73,10 +73,19 @@ private Fragment fragment;
 eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        fragment_men=(Fragment_Mens)fragment;
-        fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
+        index=eventHolder.getLayoutPosition();
+        notifyDataSetChanged();
     }
 });
+        if(index==position){
+            fragment_men=(Fragment_Mens)fragment;
+            fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
+            eventHolder.binding.tvTitle.setBackground(context.getResources().getDrawable(R.drawable.linear_bg_gray));
+        }
+        else {
+            eventHolder.binding.tvTitle.setBackground(null);
+
+        }
         }
     }
 

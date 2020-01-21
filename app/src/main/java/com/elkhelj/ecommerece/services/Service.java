@@ -125,11 +125,15 @@ public interface Service {
     Call<App_Data_Model> getabout();
     @FormUrlEncoded
     @POST("api/my_notification")
-    Call<NotificationDataModel> getNotifications(@Field("user_id") int user_id
+    Call<List<NotificationDataModel>> getNotifications(@Field("user_id") int user_id
     );
     @FormUrlEncoded
     @POST("api/my_like")
     Call<List<Wish_Model>> getmylike(@Field("user_id") int user_id
+    );
+    @FormUrlEncoded
+    @POST("api/who_i_follow")
+    Call<List<Wish_Model>> getmyfollow(@Field("user_id") int user_id
     );
     @FormUrlEncoded
     @POST("api/profile")

@@ -245,6 +245,7 @@ android:padding="5dp"
             >
 
             <LinearLayout
+                android:id="@+id/llfollow"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@color/white"

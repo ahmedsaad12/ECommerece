@@ -124,4 +124,6 @@
     <string name="editpr">Edit Profile</string>
     <string name="like">Like</string>
     <string name="you_rate_this_user_before">You Rate This Before</string>
+    <string name="un_follow">Un Follow</string>
+    <string name="empty">Empty</string>
 </resources>
