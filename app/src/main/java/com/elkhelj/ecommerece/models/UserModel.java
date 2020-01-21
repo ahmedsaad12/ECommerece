@@ -38,13 +38,17 @@ public class UserModel implements Serializable {
     private String rate;
     private String is_login;
     private String logout_time;
-    private String city_id;
+    private String city;
     private String email_verified_at;
     private String is_deleted;
     private String default_theme;
     private int is_following;
     private int is_like;
     private int can_rate;
+
+    public String getCity() {
+        return city;
+    }
 
     public int getIs_following() {
         return is_following;
@@ -197,9 +201,7 @@ public class UserModel implements Serializable {
         return logout_time;
     }
 
-    public String getCity_id() {
-        return city_id;
-    }
+
 
     public String getEmail_verified_at() {
         return email_verified_at;

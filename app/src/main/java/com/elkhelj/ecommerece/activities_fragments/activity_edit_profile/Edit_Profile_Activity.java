@@ -94,7 +94,7 @@ public class Edit_Profile_Activity extends AppCompatActivity implements Listener
     private void updatedata(UserModel userModel) {
         this.userModel = userModel;
         preferences.create_update_userdata(this, userModel);
-        editprofileModel.setCity_id(this.userModel.getCity_id() + "");
+        editprofileModel.setCity_id(this.userModel.getCity() + "");
         editprofileModel.setName(this.userModel.getName());
         editprofileModel.setPhone(this.userModel.getPhone());
         editprofileModel.setEmail(this.userModel.getEmail());
@@ -159,7 +159,7 @@ public class Edit_Profile_Activity extends AppCompatActivity implements Listener
         adapter.notifyDataSetChanged();
             if (userModel != null) {
                 for (int i = 1; i < dataList.size(); i++) {
-                    if ( userModel.getCity_id().equals(dataList.get(i).getId()+"")) {
+                    if ( userModel.getCity().equals(dataList.get(i).getId()+"")) {
                         binding.spinnerCity.setSelection(i);
                     }
                 }
