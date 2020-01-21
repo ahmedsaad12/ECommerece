@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Handler;
 
 import io.paperdb.Paper;
 import okhttp3.ResponseBody;
@@ -123,25 +124,17 @@ binding.share.setOnClickListener(new View.OnClickListener() {
 });
         if(userModel!=null){
         getprofiledata();}
+        binding.rateBar.setClickable(true);
 binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {
     @Override
     public void onRatingChanged(SimpleRatingBar simpleRatingBar, float rating, boolean fromUser) {
-        if(marketprofile.getUser().getCan_rate()==1){
-        rateuser((int) rating);}
-        else {
-            SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
-                    .setRatingTarget((float) 0.0)
-                    .setDuration(1000)
-                    .setRepeatCount(0)
-                    .setInterpolator(new LinearInterpolator());
-            builder.start();
-            Toast.makeText(MarketProfileActivity.this,"You cannot rate",Toast.LENGTH_LONG).show();
+        if(fromUser) {
+            rateuser((int) rating);
         }
     }
 });
 
     }
-
 
 
 
@@ -438,14 +431,15 @@ updateprofile(marketprofile);
                                     Toast.makeText(MarketProfileActivity.this, getString(R.string.you_rate_this_user_before), Toast.LENGTH_SHORT).show();
                                 }
                                 else {
-                                    Toast.makeText(MarketProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();}
+                                    Toast.makeText(MarketProfileActivity.this,"You cannot rate",Toast.LENGTH_LONG).show();
                                 try {
                                     Log.e("Error_code", response.code() + "_" + response.errorBody().string());
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+
                             }
-                        }
+                        }}
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
