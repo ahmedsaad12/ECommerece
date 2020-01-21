@@ -84,7 +84,7 @@ getdatafromintent();
 
 
 //    Log.e("y",userModel.getUser().getId()+"");
-userModel=new UserModel();
+userModel=preferences.getUserData(this);
 maProductsList=new ArrayList<>();
 
 adModels=new ArrayList<>();
@@ -117,7 +117,11 @@ binding.like.setOnClickListener(new View.OnClickListener() {
 binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChangeListener() {
     @Override
     public void onRatingChanged(SimpleRatingBar simpleRatingBar, float rating, boolean fromUser) {
-        rateuser((int) rating);
+        if(marketprofile.getUser().getCan_rate()==1){
+        rateuser((int) rating);}
+        else {
+            Toast.makeText(MarketProfileActivity.this,"You cannot rate",Toast.LENGTH_LONG).show();
+        }
     }
 });
 
@@ -315,7 +319,7 @@ if(body.getMyLastRate()!=null){
     }
     public void followads() {
         //   Common.CloseKeyBoard(homeActivity, edt_name);
-
+Log.e("ffh",userModel.getId()+" "+other_id);
         ProgressDialog dialog = Common.createProgressDialog(MarketProfileActivity.this, getString(R.string.wait));
         dialog.setCancelable(false);
         dialog.show();
@@ -343,12 +347,13 @@ if(body.getMyLastRate()!=null){
                                     marketprofile.getUser().setIs_following(1);
                                 }
 if(marketprofile.getFollowers()!=null) {
-    binding.tvfollow.setText(marketprofile.getFollowers().size()+marketprofile.getUser().getIs_following());
+    binding.tvfollow.setText(marketprofile.getFollowers().size()+marketprofile.getUser().getIs_following()+"");
 }
 else {
     binding.tvfollow.setText(marketprofile.getUser().getIs_following());
 
 }
+updateprofile(marketprofile);
                             } else {
 
 
@@ -395,7 +400,7 @@ else {
                             dialog.dismiss();
 
                             //  binding.progBar.setVisibility(View.GONE);
-                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                            if (response.isSuccessful() && response.body() != null ) {
                                 //binding.coord1.scrollTo(0,0);
                                 SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
                                         .setRatingTarget((float) rate)
@@ -404,7 +409,12 @@ else {
                                         .setInterpolator(new LinearInterpolator());
                                 builder.start();
                             } else {
-
+                                SimpleRatingBar.AnimationBuilder builder = binding.rateBar.getAnimationBuilder()
+                                        .setRatingTarget((float) 0.0)
+                                        .setDuration(1000)
+                                        .setRepeatCount(0)
+                                        .setInterpolator(new LinearInterpolator());
+                                builder.start();
                                 if(response.code()==422){
                                     Toast.makeText(MarketProfileActivity.this, getString(R.string.you_rate_this_user_before), Toast.LENGTH_SHORT).show();
                                 }
