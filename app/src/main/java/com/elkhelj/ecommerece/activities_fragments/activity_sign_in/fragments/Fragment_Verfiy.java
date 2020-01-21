@@ -119,7 +119,7 @@ public class Fragment_Verfiy extends Fragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             phone =  bundle.getString(TAG);
-sendverficationcode(phone,"+20");
+sendverficationcode(phone,"+974");
 
         }
         activity = (SignInActivity) getActivity();
