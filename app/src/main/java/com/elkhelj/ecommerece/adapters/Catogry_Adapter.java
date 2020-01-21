@@ -81,9 +81,11 @@ eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
             fragment_men=(Fragment_Mens)fragment;
             fragment_men.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
             eventHolder.binding.tvTitle.setBackground(context.getResources().getDrawable(R.drawable.linear_bg_gray));
+       eventHolder.binding.tvTitle.setTextColor(context.getResources().getColor(R.color.white));
         }
         else {
             eventHolder.binding.tvTitle.setBackground(null);
+            eventHolder.binding.tvTitle.setTextColor(context.getResources().getColor(R.color.black));
 
         }
         }
