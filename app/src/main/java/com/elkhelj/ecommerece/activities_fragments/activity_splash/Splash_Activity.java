@@ -18,6 +18,8 @@ import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.tags.Tags;
 
+import io.paperdb.Paper;
+
 
 public class Splash_Activity extends AppCompatActivity {
     private ConstraintLayout fl;
@@ -29,7 +31,8 @@ public class Splash_Activity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context base)
     {
-        super.attachBaseContext(LanguageHelper.updateResources(base, Preferences.newInstance().getLanguage(base)));
+        Paper.init(base);
+        super.attachBaseContext(LanguageHelper.updateResources(base, Paper.book().read("lang", "en")));
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
