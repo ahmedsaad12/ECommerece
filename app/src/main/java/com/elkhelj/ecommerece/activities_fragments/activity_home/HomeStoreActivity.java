@@ -172,6 +172,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
             if (fragment_main == null) {
                 fragment_main = Fragment_Main.newInstance();
             }
+            else {
+                fragment_main.changedata();
+            }
 
             if (fragment_more != null && fragment_more.isAdded()) {
                 fragmentManager.beginTransaction().hide(fragment_more).commit();
@@ -412,6 +415,9 @@ public class HomeStoreActivity extends AppCompatActivity  {
         for (Fragment fragment : fragmentList) {
             fragment.onActivityResult(requestCode, resultCode, data);
         }
+        if(fragment_main!=null){
+            fragment_main.changedata();
+        }
 
     }
 
@@ -442,14 +448,10 @@ public class HomeStoreActivity extends AppCompatActivity  {
 
     }
     public void showdetials(int id) {
-        if(userModel!=null){
         Intent intent=new Intent(HomeStoreActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
-    }
-        else {
-            Common.CreateNoSignAlertDialog(this);
-        }
+
     }
 
     public void Displaymarktprofile(int id) {

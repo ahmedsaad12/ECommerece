@@ -94,7 +94,7 @@ android:layout_marginRight="20dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/gray4"
                     android:textSize="14sp"
-                    android:text="@{productsmodel.price}"                    />
+                    android:text='@{productsmodel.price+"R.Q"}'                    />
             </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

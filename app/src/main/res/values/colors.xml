@@ -20,7 +20,7 @@
     <color name="color_bg">#b0b5b9</color>
     <color name="delete">#e71717</color>
 
-
+<color name="gray9">#F4F4F4</color>
     <color name="secondColor">#32db64</color>
     <color name="endColor">#26A84D</color>
     <color name="book_trans">#99000000</color>

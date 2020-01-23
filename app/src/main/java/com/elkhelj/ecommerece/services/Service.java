@@ -112,8 +112,7 @@ public interface Service {
     @POST("api/single_product")
     Call<Single_Adversiment_Model> getSingleAds(
 
-            @Field("product_id") String product_id,
-            @Field("user_id") String user_id
+            @Field("product_id") String product_id
 
     );
     @POST("api/add_order")

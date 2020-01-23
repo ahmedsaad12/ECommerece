@@ -1,104 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="lang"
             type="String" />
-<variable
-    name="productsmodel"
-    type="com.elkhelj.ecommerece.models.Home_Model.Products" />
+
+        <variable
+            name="productsmodel"
+            type="com.elkhelj.ecommerece.models.Home_Model.Products" />
     </data>
 
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@android:color/transparent"
+
+        >
 
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+
+            >
 
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
+
                 >
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <com.makeramen.roundedimageview.RoundedImageView
+                    image="@{productsmodel.image}"
+                    android:layout_width="170dp"
+                    android:layout_height="230dp"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_border_color="@color/black"
+                    app:riv_corner_radius="10dp"
 
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:layout_width="170dp"
-                        android:layout_height="230dp"
-                        android:layout_gravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        android:background="@color/gray3"
-                        image="@{productsmodel.image}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:riv_border_color="@color/black"
-                        app:riv_corner_radius="10dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="17sp"
-                        android:text="@string/news"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                       android:background="@drawable/linear_bg_white"
-                        />
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/image"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/ic_follow"
-android:layout_marginRight="20dp"
-                        android:visibility="gone"
-                        android:layout_marginTop="10dp"
-                        app:civ_border_width="1dp"
-                        app:civ_circle_background_color="@color/secondColor"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-
-                        />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
+                    />
 
                 <TextView
-                    android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/linear_bg_white"
+                    android:text="@string/news"
                     android:textColor="@color/black"
                     android:textSize="17sp"
-                    android:text="@{productsmodel.name}"
-                    android:layout_marginRight="10dp"
-android:layout_marginLeft="10dp"
-                    />
-                <TextView
-                    android:id="@+id/tv_cat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray4"
-                    android:textSize="14sp"
-                    android:text="@{productsmodel.price}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"/>
-            </LinearLayout>
+                    android:src="@drawable/ic_follow"
+                    android:visibility="gone"
+                    app:civ_border_width="1dp"
+                    app:civ_circle_background_color="@color/secondColor"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+
+            >
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@{productsmodel.name}"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text='@{productsmodel.price+"R.Q"}'
+                android:textColor="@color/gray4"
+                android:textSize="14sp" />
+        </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

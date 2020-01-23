@@ -87,6 +87,12 @@ manager=new LinearLayoutManager(activity);
                 checkdata();
             }
         });
+        binding.imagere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getmessge();
+            }
+        });
 
     }
     private void checkdata() {

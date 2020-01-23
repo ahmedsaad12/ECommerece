@@ -220,7 +220,7 @@ Toast.makeText(AdsDetialsActivity.this,getResources().getString(R.string.suc),To
 
 
             Api.getService( Tags.base_url)
-                    .getSingleAds(search_id,userModel.getId()+"")
+                    .getSingleAds(search_id)
                     .enqueue(new Callback<Single_Adversiment_Model>() {
                         @Override
                         public void onResponse(Call<Single_Adversiment_Model> call, Response<Single_Adversiment_Model> response) {
@@ -323,14 +323,10 @@ fragment_detials.setdesc(body.getSingelproduct().getDes());
     }
 
     public void showdetials(int id) {
-if(userModel!=null){
             Intent intent=new Intent(this, AdsDetialsActivity.class);
             intent.putExtra("search",id);
             startActivity(intent);
 
-    }
-    else {
-        Common.CreateNoSignAlertDialog(this);
-    }
+
     }
 }

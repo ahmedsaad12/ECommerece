@@ -31,7 +31,7 @@ public class Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private Context context;
     private LayoutInflater inflater;
     private String lang;
-    int index = 0;
+    int index = -1;
 private Fragment_Mens fragment_men;
 private Fragment fragment;
     public Catogry_Adapter(List<Home_Model.Categories> orderModelList, Context context, Fragment fragment) {

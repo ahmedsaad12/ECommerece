@@ -102,14 +102,10 @@ if(data!=null) {
     }
 
     public void showdetials(int id) {
-        if(userModel!=null){
         Intent intent=new Intent(AllProductActivity.this, AdsDetialsActivity.class);
         intent.putExtra("search",id);
         startActivity(intent);
-    }
-        else {
-            Common.CreateNoSignAlertDialog(this);
-        }
+
     }
 
 

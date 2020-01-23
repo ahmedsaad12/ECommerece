@@ -55,6 +55,7 @@ public class Fragment_Main extends Fragment {
 
         activity = (HomeStoreActivity) getActivity();
         preferences = Preferences.newInstance();
+     changedata();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
         fragmentList = new ArrayList<>();
@@ -65,7 +66,7 @@ public class Fragment_Main extends Fragment {
         binding.pager.setOffscreenPageLimit(fragmentList.size());
        // binding.pager.setPageMargin(0);
         //binding.pager.setPadding(0,0,0,0);
-        binding.pager.beginFakeDrag();
+      //  binding.pager.beginFakeDrag();
 
         adapter = new ViewPagerAdapter(activity.getSupportFragmentManager());
         adapter.addFragments(fragmentList);
@@ -113,6 +114,15 @@ binding.imageCart.setOnClickListener(new View.OnClickListener() {
         });
 
 
+    }
+
+    public void changedata() {
+        if(preferences.getUserOrder(activity)!=null){
+            binding.textNotify.setText(preferences.getUserOrder(activity).size()+"");
+        }
+        else {
+            binding.textNotify.setVisibility(View.GONE);
+        }
     }
 
     private void addFragments_Titles() {
