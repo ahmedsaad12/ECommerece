@@ -30,8 +30,9 @@ public class Fragment_Review extends Fragment {
     private FragmentReviewBinding binding;
     private Preferences preferences;
     private UserModel userModel;
-private List<Single_Adversiment_Model.Products.Rates> ratesList;
-private Rates_Adapter rates_adapter;
+    private List<Single_Adversiment_Model.Products.Rates> ratesList;
+    private Rates_Adapter rates_adapter;
+
     public static Fragment_Review newInstance() {
         return new Fragment_Review();
     }
@@ -44,26 +45,32 @@ private Rates_Adapter rates_adapter;
     }
 
 
-
     private void initView() {
-ratesList=new ArrayList<>();
+        ratesList = new ArrayList<>();
         activity = (AdsDetialsActivity) getActivity();
         preferences = Preferences.newInstance();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
 
-rates_adapter=new Rates_Adapter(ratesList,activity);
-binding.recview.setLayoutManager(new LinearLayoutManager(activity));
-binding.recview.setAdapter(rates_adapter);
+        rates_adapter = new Rates_Adapter(ratesList, activity);
+        binding.recview.setLayoutManager(new LinearLayoutManager(activity));
+        binding.recview.setAdapter(rates_adapter);
 
 
     }
 
 
-    public void setdesc(List<Single_Adversiment_Model.Products.Rates> rates, String price) {
-        binding.tvprice.setText(price);
+    public void setdesc(List<Single_Adversiment_Model.Products.Rates> rates, Single_Adversiment_Model.Products products) {
+        binding.tvprice.setText(products.getPrice());
+        binding.tvName.setText(products.getName());
         ratesList.clear();
         ratesList.addAll(rates);
         rates_adapter.notifyDataSetChanged();
+    }
+
+    public void setdesc(Single_Adversiment_Model.Products singelproduct) {
+        binding.tvprice.setText(singelproduct.getPrice());
+        binding.tvName.setText(singelproduct.getName());
+
     }
 }

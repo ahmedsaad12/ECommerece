@@ -10,6 +10,7 @@ public class Order_Model implements Serializable {
         private String seller_name;
         private String created_at;
 private String seller_image;
+private String seller_phone;
     public int getId() {
         return id;
     }
@@ -28,5 +29,9 @@ private String seller_image;
 
     public String getCreated_at() {
         return created_at;
+    }
+
+    public String getSeller_phone() {
+        return seller_phone;
     }
 }
