@@ -113,7 +113,9 @@ date="@{notificationModel.notification_date}"            />
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_default="spread" />
+            app:layout_constraintWidth_default="spread"
+            android:visibility="gone"
+            />
 
 
 
