@@ -42,19 +42,18 @@ app:cardBackgroundColor="@color/gray3"
 
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/im_offer"
+                        image="@{productsmodel.image}"
                         android:layout_width="170dp"
                         android:layout_height="190dp"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
                         android:background="@color/gray3"
-                        image="@{productsmodel.image}"
+                        android:scaleType="fitXY"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:riv_border_color="@color/black"
-                      />
+                        app:riv_border_color="@color/black" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image"
