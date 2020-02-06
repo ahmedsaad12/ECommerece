@@ -89,6 +89,7 @@ private List<Single_Adversiment_Model.Products.Sizes> sizesList;
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detials);
         initView();
         if(search_id!=null){
+
         getsingleads();
 
         }
@@ -189,7 +190,7 @@ binding.image.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         if(userModel!=null){
-
+Likeads();
         }
     }
 });

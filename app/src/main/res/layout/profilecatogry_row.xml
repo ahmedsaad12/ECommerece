@@ -7,7 +7,7 @@
 
         <variable
             name="admodel"
-            type="com.elkhelj.ecommerece.models.Market_Profile_Model.CategoriesBoth" />
+            type="com.elkhelj.ecommerece.models.Market_Profile_Model.CategoriesFemale" />
     </data>
 
 

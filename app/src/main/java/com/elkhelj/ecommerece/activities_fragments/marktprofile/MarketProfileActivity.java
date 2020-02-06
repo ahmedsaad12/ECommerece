@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,13 +19,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.AdsDetialsActivity;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.HomeStoreActivity;
 import com.elkhelj.ecommerece.adapters.Profile_Catogry_Adapter;
+import com.elkhelj.ecommerece.adapters.Profile_Product_Adapter;
+import com.elkhelj.ecommerece.adapters.Profile_man_Adapter;
 import com.elkhelj.ecommerece.adapters.Trends_Adapter;
 import com.elkhelj.ecommerece.databinding.ActivityMarketProfileBinding;
 import com.elkhelj.ecommerece.interfaces.Listeners;
 import com.elkhelj.ecommerece.language.LanguageHelper;
 import com.elkhelj.ecommerece.models.Market_Profile_Model;
 import com.elkhelj.ecommerece.models.UserModel;
+import com.elkhelj.ecommerece.models.Wish_Model;
 import com.elkhelj.ecommerece.preferences.Preferences;
 import com.elkhelj.ecommerece.remote.Api;
 import com.elkhelj.ecommerece.share.Common;
@@ -36,8 +42,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Handler;
 
+import belka.us.androidtoggleswitch.widgets.BaseToggleSwitch;
 import io.paperdb.Paper;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -51,12 +57,15 @@ public class MarketProfileActivity extends AppCompatActivity implements Listener
     private UserModel userModel;
     private Preferences preferences;
 private String other_id;
-private List<Market_Profile_Model.CategoriesBoth> adModels;
-private Profile_Catogry_Adapter myAdsAdapter;
+private List<Market_Profile_Model.CategoriesFemale> adModels;
+private Profile_Catogry_Adapter profile_catogry_adapter;
     private List<Market_Profile_Model.Products> maProductsList;
     private Trends_Adapter trends_adapter;
     private Market_Profile_Model marketprofile;
-
+    private List<Market_Profile_Model.CategoriesMale> CategoriesMales;
+    private Profile_man_Adapter profile_man_adapter;
+    private List<Wish_Model> productsList;
+private Profile_Product_Adapter adapter;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -82,12 +91,13 @@ getdatafromintent();
     private void initView() {
         preferences = Preferences.newInstance();
 
-
+CategoriesMales =new ArrayList<>();
+productsList=new ArrayList<>();
 
 //    Log.e("y",userModel.getUser().getId()+"");
 userModel=preferences.getUserData(this);
 maProductsList=new ArrayList<>();
-
+profile_man_adapter=new Profile_man_Adapter(CategoriesMales,this);
 adModels=new ArrayList<>();
 
         Paper.init(this);
@@ -98,9 +108,12 @@ trends_adapter=new Trends_Adapter(maProductsList,this);
 binding.recttrends.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
 binding.recttrends.setAdapter(trends_adapter);
        // binding.setUsermodel(userModel.getUser());
-myAdsAdapter=new Profile_Catogry_Adapter(adModels,this,null);
+profile_catogry_adapter =new Profile_Catogry_Adapter(adModels,this,null);
 binding.reccat.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
-binding.reccat.setAdapter(myAdsAdapter);
+binding.reccat.setAdapter(profile_catogry_adapter);
+adapter=new Profile_Product_Adapter(productsList,this);
+binding.recview1.setLayoutManager(new GridLayoutManager(this,2));
+binding.recview1.setAdapter(adapter);
 binding.follow.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -120,6 +133,28 @@ binding.share.setOnClickListener(new View.OnClickListener() {
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, other_id);
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
+    }
+});
+binding.switch1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if(group.getCheckedRadioButtonId()==R.id.re1){
+                binding.reccat.setAdapter(profile_catogry_adapter);
+                if(marketprofile.getCategoriesFemales()!=null){
+                    adModels.addAll(marketprofile.getCategoriesFemales());
+                }
+            profile_catogry_adapter.notifyDataSetChanged();
+
+
+        }
+        else {
+            binding.reccat.setAdapter(profile_man_adapter);
+            if(marketprofile.getCategoriesMale()!=null){
+                CategoriesMales.addAll(marketprofile.getCategoriesMale());
+            }
+            profile_man_adapter.notifyDataSetChanged();
+
+        }
     }
 });
         if(userModel!=null){
@@ -196,12 +231,89 @@ binding.rateBar.setOnRatingBarChangeListener(new SimpleRatingBar.OnRatingBarChan
            // Log.e("err", e.getMessage());
         }
     }
+    private void getprofiledata2() {
+        final ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        try {
+
+            Api.getService(Tags.base_url)
+                    .getmyprofile(other_id)
+                    .enqueue(new Callback<Market_Profile_Model>() {
+                        @Override
+                        public void onResponse(Call<Market_Profile_Model> call, Response<Market_Profile_Model> response) {
+                            dialog.dismiss();
+                            if (response.isSuccessful() && response.body() != null) {
+                                updateprofile(response.body());
+                            } else {
+
+                                Toast.makeText(MarketProfileActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+                                try {
+
+                                    Log.e("error_data5", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Market_Profile_Model> call, Throwable t) {
+                            try {
+                                dialog.dismiss();
+                                if (t.getMessage() != null) {
+                                    Log.e("error", t.getMessage());
+                                    if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                        Toast.makeText(MarketProfileActivity.this, R.string.something, Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(MarketProfileActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        } catch (Exception e) {
+            if(dialog!=null){
+                dialog.dismiss();}
+
+            // Log.e("err", e.getMessage());
+        }
+    }
 
     private void updateprofile(Market_Profile_Model body) {
         this.marketprofile=body;
-        if(body.getCategoriesBoths()!=null){
-            adModels.addAll(body.getCategoriesBoths());
-            myAdsAdapter.notifyDataSetChanged();
+        if(body.getUser().getShop_for()==3){
+         //   binding.switch1.setVisibility(View.GONE);
+            binding.carf.setVisibility(View.GONE);
+            binding.reccat.setAdapter(profile_catogry_adapter);
+        if(body.getCategoriesFemales()!=null){
+            adModels.addAll(body.getCategoriesFemales());
+        }
+            profile_catogry_adapter.notifyDataSetChanged();
+
+        }
+        else if(body.getUser().getShop_for()==2){
+          //  binding.switch1.setVisibility(View.GONE);
+            binding.carf.setVisibility(View.GONE);
+
+            binding.reccat.setAdapter(profile_man_adapter);
+            if(body.getCategoriesMale()!=null){
+                CategoriesMales.addAll(body.getCategoriesMale());
+            }
+            profile_man_adapter.notifyDataSetChanged();
+
+        }
+        else {
+            binding.reccat.setAdapter(profile_catogry_adapter);
+            if(body.getCategoriesFemales()!=null){
+                adModels.addAll(body.getCategoriesFemales());
+            }
+            profile_catogry_adapter.notifyDataSetChanged();
+
         }
         if(body.getUser().getIs_like()==1){
             binding.imlike.setImageDrawable(getResources().getDrawable(R.drawable.ic_like2));
@@ -262,7 +374,7 @@ if(body.getMyLastRate()!=null){
             adModels.clear();
 
             adModels.addAll(userModel.getAds());
-            myAdsAdapter.notifyDataSetChanged();
+            profile_catogry_adapter.notifyDataSetChanged();
         }
 
     }*/
@@ -460,5 +572,65 @@ updateprofile(marketprofile);
     }
 
 
+
+    public void getproduct(int cat) {
+        ProgressDialog dialog = Common.createProgressDialog(this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        Api.getService(Tags.base_url)
+                .getproductsscat(cat+"")
+                .enqueue(new Callback<List<Wish_Model>>() {
+                    @Override
+                    public void onResponse(Call<List<Wish_Model>> call, Response<List<Wish_Model>> response) {
+                        dialog.dismiss();
+                        //binding.progBar.setVisibility(View.GONE);
+                        if (response.isSuccessful() && response.body() != null ) {
+                            //   update(response.body());
+                            productsList.clear();
+                            productsList.addAll(response.body());
+                            adapter.notifyDataSetChanged();
+                            Log.e("res",response.body().toString());
+                        } else {
+
+                            try {
+
+                                Log.e("error", response.code() + "_" + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (response.code() == 500) {
+                                //Toast.makeText(activity, "Server Error", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Wish_Model>> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage());
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                             //       Toast.makeText(activity, R.string.something, Toast.LENGTH_SHORT).show();
+                                } else {
+                               //     Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+//
+    }
+    public void showdetials(int id) {
+        Intent intent=new Intent(MarketProfileActivity.this, AdsDetialsActivity.class);
+        intent.putExtra("search",id);
+        startActivity(intent);
+
+    }
 
 }

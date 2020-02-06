@@ -118,7 +118,7 @@ manager=new LinearLayoutManager(activity);
 
 
             Api.getService(Tags.base_url)
-                    .getMessge( "1")
+                    .getMessge( "4",userModel.getId()+"")
                     .enqueue(new Callback<List<AllMessageModel>>() {
                         @Override
                         public void onResponse(Call<List<AllMessageModel>> call, Response<List<AllMessageModel>> response) {

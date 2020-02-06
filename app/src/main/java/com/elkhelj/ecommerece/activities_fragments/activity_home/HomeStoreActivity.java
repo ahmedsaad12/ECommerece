@@ -455,14 +455,10 @@ public class HomeStoreActivity extends AppCompatActivity  {
     }
 
     public void Displaymarktprofile(int id) {
-        if(userModel!=null){
 
             Intent intent = new Intent(HomeStoreActivity.this, MarketProfileActivity.class);
         intent.putExtra("id",id+"");
         startActivity(intent);
-        }
-        else {
-            Common.CreateNoSignAlertDialog(this);
-        }
+
     }
 }

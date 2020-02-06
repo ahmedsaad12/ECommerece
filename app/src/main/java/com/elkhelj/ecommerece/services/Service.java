@@ -143,6 +143,13 @@ public interface Service {
 
     );
     @FormUrlEncoded
+    @POST("api/profile")
+    Call<Market_Profile_Model> getmyprofile(
+            @Field("user_id") String user_id
+
+
+    );
+    @FormUrlEncoded
     @POST("api/my_orders")
     Call<List<Order_Model>> getMyAds(
             @Field("user_id") String user_id,
@@ -180,7 +187,9 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/single_admin_room")
     Call<List<AllMessageModel>> getMessge(
-            @Field("room_id") String room_id
+           @Field("room_id") String room_id,
+           @Field("user_id") String user_id
+
     );
     @FormUrlEncoded
     @POST("api/update_profile")

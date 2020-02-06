@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class UserModel implements Serializable {
 
     private int id;
+    private int user_id;
     private String type;
     private String name;
     private String phone_code;
@@ -45,6 +46,11 @@ public class UserModel implements Serializable {
     private int is_following;
     private int is_like;
     private int can_rate;
+private int shop_for;
+
+    public int getShop_for() {
+        return shop_for;
+    }
 
     public String getCity() {
         return city;
@@ -63,6 +69,10 @@ public class UserModel implements Serializable {
     }
     public int getId() {
         return id;
+    }
+
+    public int getUser_id() {
+        return user_id;
     }
 
     public void setId(int id) {

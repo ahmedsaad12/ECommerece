@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="catogrymodel"
+            type="com.elkhelj.ecommerece.models.Market_Profile_Model.CategoriesMale" />
+    </data>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/gray9"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_marginTop="5dp"
+android:paddingRight="8dp"
+    android:paddingLeft="8dp"
+
+    >
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@{catogrymodel.name}"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:layout_gravity="start"
+        />
+</LinearLayout>
+
+
+
+
+       
+
+</layout>

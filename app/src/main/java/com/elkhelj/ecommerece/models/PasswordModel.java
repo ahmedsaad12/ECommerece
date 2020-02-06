@@ -6,6 +6,7 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableField;
 
+import com.elkhelj.ecommerece.BR;
 import com.elkhelj.ecommerece.R;
 
 
@@ -40,7 +41,7 @@ public class PasswordModel extends BaseObservable {
 
     public void setPassword(String password) {
         this.password = password;
-        notifyPropertyChanged(BR.password);
+        notifyPropertyChanged(com.elkhelj.ecommerece.BR.password);
 
     }
 
