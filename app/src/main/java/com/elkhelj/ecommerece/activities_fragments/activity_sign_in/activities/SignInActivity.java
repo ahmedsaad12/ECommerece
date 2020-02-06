@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Forgetpass;
+import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Newpass;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Phone;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In_Signup;
@@ -18,6 +19,7 @@ import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fr
 import com.elkhelj.ecommerece.activities_fragments.activity_sign_in.fragments.Fragment_Verfiy;
 import com.elkhelj.ecommerece.databinding.ActivitySignInBinding;
 import com.elkhelj.ecommerece.language.LanguageHelper;
+import com.elkhelj.ecommerece.models.UserModel;
 import com.elkhelj.ecommerece.preferences.Preferences;
 
 import java.util.Locale;
@@ -38,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
     private Fragment_Phone fragment_phone;
     private Fragment_Verfiy fragment_verfiy;
     private Fragment_Forgetpass fragment_forgetpass;
+    private Fragment_Newpass fragment_newpass;
 
 
     @Override
@@ -154,14 +157,14 @@ public class SignInActivity extends AppCompatActivity {
             fragment_code_verification = Fragment_Code_Verification.newInstance(userModel,type);
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_code_verification, "fragment_code_verification").addToBackStack("fragment_code_verification").commit();
 
-        }
+        }*/
         public void displayFragmentNewpass(UserModel userModel) {
             fragment_count ++;
             fragment_newpass = Fragment_Newpass.newInstance(userModel);
 
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_newpass, "fragment_newpass").addToBackStack("fragment_newpass").commit();
 
-        }*/
+        }
     public void RefreshActivity(String selected_language) {
         Paper.book().write("lang", selected_language);
         LanguageHelper.setNewLocale(this, selected_language);

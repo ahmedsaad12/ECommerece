@@ -192,11 +192,26 @@ public interface Service {
                                 @Field("user_id") int user_id
     );
     @FormUrlEncoded
+    @POST("api/update_profile")
+    Call<UserModel> editprofile(@Field("password") String password,
+
+                                @Field("user_id") String user_id
+    );
+    @FormUrlEncoded
     @POST("api/like")
     Call<ResponseBody> Like(
 
             @Field("to_id") String to_id,
             @Field("form_id") String form_id
+    );
+    @FormUrlEncoded
+    @POST("api/like")
+    Call<ResponseBody> Like(
+
+            @Field("to_id") String to_id,
+            @Field("form_id") String form_id,
+            @Field("product_id") String product_id
+
     );
     @FormUrlEncoded
     @POST("api/follow")
@@ -212,5 +227,9 @@ public interface Service {
 
             @Field("to_id") String to_id,
             @Field("rate")int rate
+    );
+    @FormUrlEncoded
+    @POST("api/canRest")
+    Call<UserModel> forget(@Field("kayWord") String kayWord
     );
 }

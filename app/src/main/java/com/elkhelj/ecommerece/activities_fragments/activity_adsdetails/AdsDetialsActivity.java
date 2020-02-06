@@ -23,6 +23,7 @@ import com.elkhelj.ecommerece.R;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_AdShop;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Detials;
 import com.elkhelj.ecommerece.activities_fragments.activity_adsdetails.fragment.Fragment_Review;
+import com.elkhelj.ecommerece.activities_fragments.marktprofile.MarketProfileActivity;
 import com.elkhelj.ecommerece.adapters.ColorsAdapter;
 import com.elkhelj.ecommerece.adapters.MaLike_Product_Adapter;
 import com.elkhelj.ecommerece.adapters.SingleAdsSlidingImage_Adapter;
@@ -48,6 +49,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -117,6 +119,7 @@ private List<Single_Adversiment_Model.Products.Sizes> sizesList;
 if(getIntent().getIntExtra("search",-1)!=0){
     search_id=getIntent().getIntExtra("search",-1)+"";
 }
+
 colorsList=new ArrayList<>();
 sizesList=new ArrayList<>();
 youmaylikeList=new ArrayList<>();
@@ -182,7 +185,65 @@ binding.frAddcart.setOnClickListener(new View.OnClickListener() {
 
             }
         });
+binding.image.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        if(userModel!=null){
 
+        }
+    }
+});
+    }
+    public void Likeads() {
+        //   Common.CloseKeyBoard(homeActivity, edt_name);
+
+        ProgressDialog dialog = Common.createProgressDialog(AdsDetialsActivity.this, getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+        // rec_sent.setVisibility(View.GONE);
+        try {
+
+
+            Api.getService( Tags.base_url)
+                    .Like(single_adversiment_model.getSingelproduct().getForm_id(),userModel.getId()+"",single_adversiment_model.getSingelproduct().getId()+"")
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            dialog.dismiss();
+
+                            //  binding.progBar.setVisibility(View.GONE);
+                            if (response.isSuccessful() && response.body() != null && response.body() != null) {
+                                //binding.coord1.scrollTo(0,0);
+
+//getsingleads();
+
+
+                            } else {
+
+
+                                try {
+                                    Log.e("Error_code", response.code() + "_" + response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            try {
+
+                                dialog.dismiss();
+
+                                Log.e("error", t.getMessage());
+                            } catch (Exception e) {
+                            }
+                        }
+                    });
+        }catch (Exception e){
+
+            dialog.dismiss();
+        }
     }
 
     private void addtocart() {
