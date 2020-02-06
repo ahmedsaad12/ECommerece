@@ -108,7 +108,8 @@
                 android:text="@{productsmodel.name}"
                 android:textColor="@color/black"
                 android:textSize="17sp"
-
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
                 />
 
             <TextView
@@ -119,7 +120,10 @@
                 android:layout_marginRight="20dp"
                 android:text='@{productsmodel.price+"R.Q"}'
                 android:textColor="@color/gray4"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                />
         </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
