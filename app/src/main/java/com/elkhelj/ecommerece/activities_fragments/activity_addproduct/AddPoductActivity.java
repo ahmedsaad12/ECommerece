@@ -660,7 +660,8 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
             {
                 intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
-                intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+
             }else
             {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -669,6 +670,8 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
 
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setType("image/*");
+
+
             startActivityForResult(intent,img_req);
 
         }else if (img_req ==IMG_REQ2)
@@ -830,6 +833,7 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
     private List<MultipartBody.Part> getMultipartBodyList(List<Uri> uriList, String image_cv) {
         List<MultipartBody.Part> partList = new ArrayList<>();
         for (Uri uri : uriList) {
+            Log.e("sss",uri.getPath().toString());
             MultipartBody.Part part = Common.getMultiPart(this, uri, image_cv);
             partList.add(part);
         }

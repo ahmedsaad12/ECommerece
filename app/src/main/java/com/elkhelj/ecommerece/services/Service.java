@@ -194,7 +194,7 @@ public interface Service {
     @FormUrlEncoded
     @POST("api/update_profile")
     Call<UserModel> editprofile(@Field("name") String name,
-                                @Field("mobile") String mobile,
+                                @Field("phone") String phone,
 
                                 @Field("email") String email,
                                 @Field("city") String city,

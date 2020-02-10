@@ -102,7 +102,7 @@ public class Fragment_Newpass extends Fragment implements Listeners.PasswordList
         try {
 
             Api.getService(Tags.base_url)
-                    .editprofile(userModel.getUser_id() + "", pass)
+                    .editprofile(pass + "", userModel.getUser_id()+"")
                     .enqueue(new Callback<UserModel>() {
                         @Override
                         public void onResponse(Call<UserModel> call, Response<UserModel> response) {

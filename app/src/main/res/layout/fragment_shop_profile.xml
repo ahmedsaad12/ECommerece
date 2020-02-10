@@ -122,7 +122,7 @@
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_nav_wish"
-android:padding="5dp"
+android:padding="8dp"
                     android:tint="@color/gray3"
 
                />
@@ -496,9 +496,10 @@ android:visibility="gone"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_nav_notification"
+                    android:src="@drawable/ic_nav_wish"
                     android:tint="@color/gray3"
-                    android:padding="5dp"
+                    android:padding="8dp"
+
                     />
 
                 <TextView
@@ -547,7 +548,7 @@ android:visibility="gone"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/ic_phone_call"
+                    android:src="@drawable/addpro"
                     android:padding="5dp"
                     android:tint="@color/gray3"
                     />

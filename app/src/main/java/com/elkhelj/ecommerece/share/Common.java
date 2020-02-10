@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -234,6 +235,7 @@ public class Common {
     }
 
     public static boolean isGooglePhotosUri(Uri uri) {
+      //  Log.e("llll",uri.toString());
         return "com.google.android.apps.photos.content".equals(uri
                 .getAuthority());
     }
