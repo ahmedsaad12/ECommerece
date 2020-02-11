@@ -113,6 +113,7 @@ public class Common {
         }
         if (currentApiVersion >= Build.VERSION_CODES.KITKAT) {
 
+            Log.e("jjjddhhd",uri.toString());
 
             if (DocumentsContract.isDocumentUri(context, uri)) {
 
@@ -160,11 +161,15 @@ public class Common {
             else if ("content".equalsIgnoreCase(uri.getScheme())) {
 
                 // Return the remote address
-                if (isGooglePhotosUri(uri))
+                if (isGooglePhotosUri(uri)){
+                    return uri.getLastPathSegment();}
+               else {
                     return uri.getLastPathSegment();
+                }
 
-                return getDataColumn(context, uri, null, null);
+              //  return getDataColumn(context, uri, null, null);
             }
+
             // File
             else if ("file".equalsIgnoreCase(uri.getScheme())) {
                 return uri.getPath();
@@ -240,12 +245,18 @@ public class Common {
                 .getAuthority());
     }
 
+    public static boolean isGoogleDriveAUri(Uri uri) {
+        //  Log.e("llll",uri.toString());
+        return "com.google.android.apps.docs.content".equals(uri
+                .getAuthority());
+    }
     private static File getFileFromImagePath(String path) {
         File file = new File(path);
         return file;
     }
 
     public static MultipartBody.Part getMultiPart(Context context, Uri uri, String partName) {
+      Log.e("jjjddhhd",uri.toString());
         File file = getFileFromImagePath(getImagePath(context, uri));
         RequestBody requestBody = getRequestBodyImage(file);
         MultipartBody.Part part = MultipartBody.Part.createFormData(partName, file.getName(), requestBody);
