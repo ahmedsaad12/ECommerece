@@ -786,8 +786,14 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
         for(int i=0;i<collorid.size();i++){
             collor_part.add(Common.getRequestBodyText(collorid.get(i)+""));
         }
+        List<MultipartBody.Part> partimageList = null;
+try {
+    partimageList  = getMultipartBodyList(urlList, "image[]");
 
-        List<MultipartBody.Part> partimageList = getMultipartBodyList(urlList, "image[]");
+}
+catch (Exception e){
+}
+if(partimageList!=null){
         try {
             Api.getService(Tags.base_url)
                     .createcv(user_part, name_part, price_part, gender_part, cat_part, brand_part, collor_part, skill_part,des_part,partimageList).enqueue(new Callback<ResponseBody>() {
@@ -827,7 +833,12 @@ binding.btNext.setOnClickListener(new View.OnClickListener() {
         } catch (Exception e) {
             dialog.dismiss();
             Log.e("error", e.getMessage().toString());
-        }
+        }}
+else {
+    dialog.dismiss();
+    Toast.makeText(this,"please dont choose image from google drive",Toast.LENGTH_LONG).show();
+
+}
     }
 
     private List<MultipartBody.Part> getMultipartBodyList(List<Uri> uriList, String image_cv) {
