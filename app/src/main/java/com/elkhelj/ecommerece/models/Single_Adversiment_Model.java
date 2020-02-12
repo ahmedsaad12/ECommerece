@@ -190,7 +190,7 @@ private List<Rates> rates;
             private String  shop_name;
             private String  category_name;
             private String  sub_category_name;
-
+private String product_image;
             public int getId() {
                 return id;
             }
@@ -237,6 +237,10 @@ private List<Rates> rates;
 
             public String getImage() {
                 return image;
+            }
+
+            public String getProduct_image() {
+                return product_image;
             }
 
             public String getShop_name() {
