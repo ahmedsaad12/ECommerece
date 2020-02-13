@@ -2,6 +2,7 @@ package com.elkhelj.ecommerece.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elkhelj.ecommerece.R;
+import com.elkhelj.ecommerece.activities_fragments.activity_home.fragments.fragmentmaim.Fragment_Women;
 import com.elkhelj.ecommerece.databinding.CatogryRowBinding;
 import com.elkhelj.ecommerece.databinding.WomencatogryRowBinding;
 import com.elkhelj.ecommerece.models.Home_Model;
@@ -27,14 +29,14 @@ public class Women_Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     private LayoutInflater inflater;
     private String lang;
     int index = -1;
-
+private Fragment_Women fragment_women;
     public Women_Catogry_Adapter(List<Home_Model.Categories> orderModelList, Context context, Fragment fragment) {
         this.orderModelList = orderModelList;
         this.context = context;
         inflater = LayoutInflater.from(context);
         Paper.init(context);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
+this.fragment_women=(Fragment_Women)fragment;
     }
 
     @NonNull
@@ -55,7 +57,12 @@ public class Women_Catogry_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         {
         EventHolder eventHolder = (EventHolder) holder;
         eventHolder.binding.setAdmodel(order_orderModel);
-
+eventHolder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        fragment_women.getproduct(orderModelList.get(eventHolder.getLayoutPosition()).getId());
+    }
+});
         }
     }
 

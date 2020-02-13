@@ -37,7 +37,7 @@
 
 
                     <com.makeramen.roundedimageview.RoundedImageView
-                        image="@{admodel.image}"
+                        image="@{admodel.product_image}"
                         android:layout_width="250dp"
                         android:layout_height="300dp"
                         android:layout_gravity="center"

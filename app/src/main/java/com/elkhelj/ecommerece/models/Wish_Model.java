@@ -1,5 +1,7 @@
 package com.elkhelj.ecommerece.models;
 
+import org.stringtemplate.v4.ST;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Wish_Model implements Serializable {
         private String  super_cat;
         private String  category_id;
         private String  sub_category_id;
-
+private String product_image;
         private String  image;
         private String  shop_name;
         private String  category_name;
@@ -70,7 +72,11 @@ public class Wish_Model implements Serializable {
             return image;
         }
 
-        public String getShop_name() {
+    public String getProduct_image() {
+        return product_image;
+    }
+
+    public String getShop_name() {
             return shop_name;
         }
 
